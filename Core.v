@@ -50,7 +50,7 @@ module Core(
 	 
 	 parameter FETCH = 3'b000;
 	 parameter DECODE = 3'b001;
-	 parameter EXEXUTE = 3'b010;
+	 parameter EXECUTE = 3'b010;
 	 parameter LOAD1 = 3'b011;
 	 parameter LOAD2 = 3'b100;
 	 parameter STORE1 = 3'b101;
@@ -71,21 +71,29 @@ module Core(
 	 
 	 // Data that needs to persist between instructions
 	 reg [23:0] program_counter;
+	 reg [23:0] program_return_link;
 	 reg status_SF;
 	 reg status_ZF;
 	 reg status_OF; 
 	 reg [3:0] core_state;
 	 
+	 initial program_counter = 0;
+	 initial status_SF = 0;
+	 initial status_ZF = 0;
+	 initial status_OF = 0;
+	 initial core_state = 0;
+	 
 	 // Data that needs to persist between cycles
 	 reg [4:0] dest_reg_index;
-	 reg [10:0] immediate;
+	 reg [10:0] immediateL;
+	 reg [5:0] immediateS;
 	 reg [23:0] data_from_reg_1;
 	 reg [23:0] data_from_reg_2;
 	 reg [4:0] op_code;
 	 
 	 reg [15:0] instruction;	// Latch the instruction so we can deocde it and guarantee that it is the correct value
 	 
-	 reg [4:0]	next_state;		// Used to determine the next state based on the op-code.
+	 reg [4:0]	next_state;		// Used to determine the next state based on the op-code. (do we need a next state? or can we just assign the state parameter to the next state?)
 	 
 	 always@*
 	 begin
@@ -94,57 +102,67 @@ module Core(
 							// Send the address to memory to get the instruction, disable writing.
 							core_to_mem_addr = program_counter;
 							core_to_mem_write_enable = 0;
+							program_return_link = program_counter + 1; //should this be $reta???
 						end				
 			DECODE:	begin
 							// Check to see if the instruction is a load or store instruction
 							// If it isn't send to the EXECUTE stage
-							
-							if (mem_to_core_data[15:11] == 5'b01101 || mem_to_core_data[15:11] == 5'b01110)
+							if (instruction[15:11] == LOAD || instruction[15:11] == LOADI)
 								next_state = LOAD1;
 							
-							else if (mem_to_core_data[15:11] == 5'b01111)
+							else if (instruction[15:11] == STORE)
 								next_state = STORE1;
 								
 							else
 								next_state = EXECUTE;
+								
+							//Grab register values
+							read_index_1 = instruction [4:0];
+							read_index_2 = instruction [9:5]; //where are we placing the extra bit? this needs to be adjusted to match where the register index is set in the instruction						
 						end
 			EXECUTE:	begin
 							case(instruction[15:11])
 								ADD:		begin
-								
+												write_data = data_reg_1 + data_reg_2; //Does write data also need to be latched in clocked always block?
 											end
 								SUB:		begin
-								
+												write_data = data_reg_1 + ((~data_reg_2)+1);
 											end
 								ADDI:		begin
-								
+												write_data = data_reg_1 + immediateS;
 											end
 								SHLLI:	begin
-								
+												write_data = data_reg_1 << immediateS;
 											end
 								SHRLI:	begin
-								
+												write_data = data_reg_1 >> immediateS;
 											end
 								JUMP:		begin
-								
+												program_counter = immediateL;
 											end
 								JUMPLI:	begin
-								
+												program_counter = immediateL;
 											end
 								JUMPL:	begin
-								
+												if(status_SF != status_OF)
+														program_counter = immediateL;
 											end
 								JUMPG:	begin
-								
+												if(status_SF == status_OF && status_ZF == 0)
+													program_counter = immediateL;
 											end
 								JUMPE:	begin
-								
+												if(status_ZF == 1)
+													program_counter = immediateL;
 											end
 								JUMPNE:	begin
-								
+												if(status_ZF == 0)
+													program_counter = immediateL;
 											end
 								CMP:		begin
-								
+												status_SF = (data_reg_1[15])^(data_reg_1+((~data_reg_2)+1)[15];	//
+												status_ZF = !(|(data_reg_1+((~data_reg_2)+1)));	//or all the bits together and invert for ZF bit
+												status_OF = ;//????
 											end
 								RET:		begin
 										
@@ -182,14 +200,25 @@ module Core(
 		case(core_state)
 			FETCH:	begin
 							core_state <= DECODE;
+							instruction <= mem_to_core_data;	//I think we want to latch instruction here so it is available during decodem(it will latch at the next clock cycle, the end of fetch)
 						end				
 			DECODE:	begin
 							// Latch the instruction
-							instruction <= mem_to_core_data;
+							//instruction <= mem_to_core_data;  *see above
 							core_state <= next_state;
+							
+							//Grab possible inputs i.e. reg, immediate, etc (src, dest)
+							dest_reg_index <= instruction [4:0] ;	//we also have a write_index????
+							immediateL <= instruction [10:0];
+							immediateS <= instruction [11:5];
+							data_from_reg_1 <= read_data_1;
+							data_from_reg_2 <= read_data_2;
+							op_code <= instruction [15:11];
 						end
 			EXECUTE:	begin
-			
+							write_index <= dest_reg_index;
+							write_enable <= //should be matched to opcodes that write
+							core_state <= next_state;
 						end
 			LOAD1:	begin
 			
