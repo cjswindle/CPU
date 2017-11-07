@@ -27,9 +27,6 @@ module MemoryController(
     );
 
 
-	// still in VGA controller. Needs to be passed back and fort
-
-
 	//synthesis attribute box_type VGARAM "black_box"
 	VGARAM	_VGARAM(.clka(clk),.addra(RAMaddress),.douta(RAMdata), .wea(write_enable), .dina(write_data));
 endmodule
