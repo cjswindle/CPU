@@ -19,6 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module RegisterFile(
+	input clk,
 	input [4:0] read_index_1,
 	input [4:0] read_index_2,
 	input [4:0] write_index,

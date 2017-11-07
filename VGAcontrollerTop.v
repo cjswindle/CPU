@@ -24,7 +24,7 @@ module VGAcontrollerTop(
 	output Hsync,
 	output Vsync,
 	output [7:0] RGBcolor,
-	input [16:0] RAMdata,
+	input [15:0] RAMdata,
 	output [23:0] RAMaddress
     );
 

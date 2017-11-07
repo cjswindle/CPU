@@ -19,10 +19,11 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module Core(
+	input 						clk,
 	input [15:0] 				mem_to_core_data,
 	output reg [23:0] 	core_to_mem_addr,
 	output reg [15:0] 	core_to_mem_data,
-	output reg					core_to_mem_write_enable,
+	output reg					core_to_mem_write_enable
     );
 
 	 // List of parameters for our registers and their associated binary values
@@ -63,7 +64,7 @@ module Core(
 	 reg [23:0] write_data; // unlatched
 
 	 // Instantiate the register file module
-	 RegisterFile _RegisterFile (.read_data_1(read_data_1), .read_data_2(read_data_2), .read_index_1(read_index_1), .read_index_2(read_index_2), .write_index(write_index), .write_enable(write_enable), .write_data(write_data));
+	 RegisterFile _RegisterFile (.clk(clk), .read_data_1(read_data_1), .read_data_2(read_data_2), .read_index_1(read_index_1), .read_index_2(read_index_2), .write_index(write_index), .write_enable(write_enable), .write_data(write_data));
 
 	 // Data that needs to persist between instructions
 	 reg [23:0] program_counter;
@@ -73,7 +74,7 @@ module Core(
 	 reg status_OF;
 	 reg [3:0] core_state;
 
-	 initial program_counter = 0;	//Start of assembly code (fix address)
+	 initial program_counter = 16393;	//Start of assembly code (fix address)
 	 initial status_SF = 0;
 	 initial status_ZF = 0;
 	 initial status_OF = 0;
@@ -85,7 +86,6 @@ module Core(
 	 reg [5:0] immediateS;
 	 reg [23:0] data_from_reg_1;
 	 reg [23:0] data_from_reg_2;
-	 reg [4:0] op_code;
 
 	 reg [15:0] instruction;	// Latch the instruction so we can decode it and guarantee that it is the correct value
 
@@ -94,17 +94,23 @@ module Core(
 	 reg next_status_ZF;
 	 reg next_status_OF;
 	 reg [23:0] next_program_counter;
-	 reg [4:0]	next_state;		// Used to determine the next state based on the op-code. (do we need a next state? or can we just assign the state parameter to the next state?)
+	 reg [3:0]	next_state;		// Used to determine the next state based on the op-code. (do we need a next state? or can we just assign the state parameter to the next state?)
 
 	 always@*
 	 begin
+		core_to_mem_write_enable = 1'b0;
+		core_to_mem_addr = 16'b0;
+		next_state = 4'b0;
+		write_data = 24'b0;
+		write_enable = 0;
+		next_program_counter = program_counter + 4'd16;
+		read_index_1 = 5'b0;
+		read_index_2 = 5'b0;
+		write_index = 5'b0;
+		core_to_mem_data = 16'b0;
+		next_status_ZF = 0;
+		
 		case(core_state)
-			core_to_mem_write_enable = 0;
-			core_to_mem_addr = 16'b0;
-			next_state = 5'b0;
-			write_data = 24'b0;
-			write_enable = 0;
-			next_program_counter = 24'b0;
 
 			FETCH:	begin
 							// Send the address to memory to get the instruction, disable writing.
@@ -114,6 +120,9 @@ module Core(
 			DECODE:	begin
 							// Check to see if the instruction is a load or store instruction
 							// If it isn't send to the EXECUTE stage
+							read_index_1 = mem_to_core_data[4:0];
+							read_index_2 = mem_to_core_data[9:5];
+							
 							if (mem_to_core_data[15:11] == LOAD)
 								next_state = LOAD1;
 
@@ -126,23 +135,23 @@ module Core(
 			EXECUTE:	begin
 							case(instruction[15:11])
 								ADD:		begin
-												write_data = data_reg_1 + data_reg_2;
+												write_data = data_from_reg_1 + data_from_reg_2;
 												write_enable = 1;
 											end
 								SUB:		begin
-												write_data = data_reg_1 - data_reg_2;
+												write_data = data_from_reg_1 - data_from_reg_2;
 												write_enable = 1;
 											end
 								ADDI:		begin
-												write_data = data_reg_1 + immediateS;
+												write_data = data_from_reg_1 + immediateS;
 												write_enable = 1;
 											end
 								SHLLI:	begin
-												write_data = data_reg_1 << immediateS;
+												write_data = data_from_reg_1 << immediateS;
 												write_enable = 1;
 											end
 								SHRLI:	begin
-												write_data = data_reg_1 >> immediateS;
+												write_data = data_from_reg_1 >> immediateS;
 												write_enable = 1;
 											end
 								JUMP:		begin
@@ -169,15 +178,16 @@ module Core(
 													next_program_counter = (immediateL << 4);
 											end
 								CMP:		begin
-												next_status_SF = (data_reg_1[15])^(data_reg_1 - data_reg_2)[15];	//
-												next_status_ZF = !(|(data_reg_1- data_reg_2));	//or all the bits together and invert for ZF bit
-												next_status_OF = (data_reg_1[15] == data_reg_2[15]); // THIS IS NOT RIGHT. Need to fix.
+												//next_status_SF = ((data_from_reg_1[15])^(data_from_reg_1 - data_from_reg_2))[15];	//
+												next_status_ZF = !(|(data_from_reg_1- data_from_reg_2));	//or all the bits together and invert for ZF bit
+												next_status_OF = (data_from_reg_1[15] == data_from_reg_2[15]); // THIS IS NOT RIGHT. Need to fix.
 											end
 								RET:		begin
 													//next_program_counter = ;//Insert return address $reta
 											end
 								MOV:		begin
-													write_data = data_reg_2;
+													write_data = data_from_reg_2;
+													write_index = dest_reg_index;
 													write_enable = 1;
 											end
 								LOADI:	begin
@@ -190,15 +200,16 @@ module Core(
 							endcase
 						end
 			LOAD1:	begin
-								core_to_mem_addr = data_reg_2; //load from address register
+							core_to_mem_addr = data_from_reg_2; //load from address register
 						end
 			LOAD2:	begin
-							data_reg_1 = mem_to_core_data;
+							write_data = mem_to_core_data;
+							write_index = dest_reg_index;
 							write_enable = 1;
 						end
 			STORE1:	begin
-							core_to_mem_addr = data_reg_1;
-							core_to_mem_data = data_reg_2;
+							core_to_mem_addr = data_from_reg_1;
+							core_to_mem_data = data_from_reg_2[15:0];
 							core_to_mem_write_enable = 1;
 						end
 			default:	begin
@@ -209,6 +220,7 @@ module Core(
 
 	 always@(posedge clk)
 	 begin
+		program_counter <= next_program_counter;
 		case(core_state)
 			FETCH:	begin
 							core_state <= DECODE;
@@ -224,7 +236,6 @@ module Core(
 							immediateS <= mem_to_core_data[10:5];
 							data_from_reg_1 <= read_data_1;
 							data_from_reg_2 <= read_data_2;
-							op_code <= mem_to_core_data[15:11];
 						end
 			EXECUTE:	begin
 							core_state <= FETCH;
@@ -237,6 +248,7 @@ module Core(
 							core_state <= LOAD2;
 						end
 			LOAD2:	begin
+							
 							core_state <= FETCH;
 						end
 			STORE1:	begin
