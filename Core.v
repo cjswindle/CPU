@@ -19,10 +19,10 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module Core(
-	input [15:0] 			mem_to_core_data,
+	input [15:0] 				mem_to_core_data,
 	output reg [23:0] 	core_to_mem_addr,
 	output reg [15:0] 	core_to_mem_data,
-	output reg				core_to_mem_write_enable,
+	output reg					core_to_mem_write_enable,
     );
 
 	 // List of parameters for our registers and their associated binary values
@@ -52,7 +52,7 @@ module Core(
 	 parameter LOAD2 = 3'b100;
 	 parameter STORE1 = 3'b101;
 
-	 // Wires and registers usd to communicate with the register file.
+	 // Wires and registers used to communicate with the register file.
 	 wire [23:0] read_data_1;
 	 wire [23:0] read_data_2;
 
@@ -89,16 +89,27 @@ module Core(
 
 	 reg [15:0] instruction;	// Latch the instruction so we can decode it and guarantee that it is the correct value
 
+	 // Used to calculate the next SF, ZF, and OF for the next assembly instruction to use.
+	 reg next_status_SF;
+	 reg next_status_ZF;
+	 reg next_status_OF;
+	 reg [23:0] next_program_counter;
 	 reg [4:0]	next_state;		// Used to determine the next state based on the op-code. (do we need a next state? or can we just assign the state parameter to the next state?)
 
 	 always@*
 	 begin
-		core_to_mem_write_enable = 0;
 		case(core_state)
+			core_to_mem_write_enable = 0;
+			core_to_mem_addr = 16'b0;
+			next_state = 5'b0;
+			write_data = 24'b0;
+			write_enable = 0;
+			next_program_counter = 24'b0;
+
 			FETCH:	begin
 							// Send the address to memory to get the instruction, disable writing.
 							core_to_mem_addr = program_counter;
-							
+
 						end
 			DECODE:	begin
 							// Check to see if the instruction is a load or store instruction
@@ -110,15 +121,9 @@ module Core(
 								next_state = STORE1;
 
 							else
-								next_state = EXECUTE; 
+								next_state = EXECUTE;
 						end
 			EXECUTE:	begin
-							//Grab register values
-							read_index_1 = mem_to_core_data [4:0];
-							read_index_2 = mem_to_core_data [9:5];
-							immediatS = mem_to_core_data [10:5];
-							dest_reg_index = read_index_1;
-							
 							case(instruction[15:11])
 								ADD:		begin
 												write_data = data_reg_1 + data_reg_2;
@@ -141,35 +146,35 @@ module Core(
 												write_enable = 1;
 											end
 								JUMP:		begin
-												program_counter = immediateL;
+												next_program_counter = (immediateL << 4);
 											end
 								JUMPLI:	begin
-												program_counter = immediateL;
-												program_return_link = program_counter + 16; //should this be $reta???
+												//next_program_counter = immediateL;
+												//next_program_return_link = program_counter + 16; //should this be $reta???
 											end
 								JUMPL:	begin
 												if(status_SF != status_OF)
-														program_counter = immediateL;
+													next_program_counter = immediateL << 4;
 											end
 								JUMPG:	begin
 												if(status_SF == status_OF && status_ZF == 0)
-													program_counter = immediateL;
+													next_program_counter = immediateL << 4;
 											end
 								JUMPE:	begin
 												if(status_ZF == 1)
-													program_counter = immediateL << 4;
+													next_program_counter = (immediateL << 4);
 											end
 								JUMPNE:	begin
 												if(status_ZF == 0)
-													program_counter = immediateL;<< 4;
+													next_program_counter = (immediateL << 4);
 											end
 								CMP:		begin
-												status_SF = (data_reg_1[15])^(data_reg_1 - data_reg_2)[15];	//
-												status_ZF = !(|(data_reg_1- data_reg_2));	//or all the bits together and invert for ZF bit
-												status_OF = ;//????
+												next_status_SF = (data_reg_1[15])^(data_reg_1 - data_reg_2)[15];	//
+												next_status_ZF = !(|(data_reg_1- data_reg_2));	//or all the bits together and invert for ZF bit
+												next_status_OF = (data_reg_1[15] == data_reg_2[15]); // THIS IS NOT RIGHT. Need to fix.
 											end
 								RET:		begin
-													program_counter = ;//Insert return address $reta
+													//next_program_counter = ;//Insert return address $reta
 											end
 								MOV:		begin
 													write_data = data_reg_2;
@@ -180,12 +185,12 @@ module Core(
 												write_enable = 1;
 											end
 								default:	begin
-
+														// Do nothing. Maybe throw an error?
 											end
 							endcase
 						end
-			LOAD1:	begin							
-								core_to_mem_addr = data_reg_2; //load from address register		
+			LOAD1:	begin
+								core_to_mem_addr = data_reg_2; //load from address register
 						end
 			LOAD2:	begin
 							data_reg_1 = mem_to_core_data;
@@ -194,7 +199,7 @@ module Core(
 			STORE1:	begin
 							core_to_mem_addr = data_reg_1;
 							core_to_mem_data = data_reg_2;
-	output reg			core_to_mem_write_enable = 1;
+							core_to_mem_write_enable = 1;
 						end
 			default:	begin
 							// do nothing
@@ -223,6 +228,10 @@ module Core(
 						end
 			EXECUTE:	begin
 							core_state <= FETCH;
+							status_SF <= next_status_SF;
+							status_ZF <= next_status_ZF;
+							status_OF <= next_status_ZF;
+							program_counter <= next_program_counter;
 						end
 			LOAD1:	begin
 							core_state <= LOAD2;
