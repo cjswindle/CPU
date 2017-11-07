@@ -51,7 +51,6 @@ module Core(
 	 parameter LOAD1 = 3'b011;
 	 parameter LOAD2 = 3'b100;
 	 parameter STORE1 = 3'b101;
-	 parameter STORE2 = 3'b110;
 
 	 // Wires and registers usd to communicate with the register file.
 	 wire [23:0] read_data_1;
@@ -74,7 +73,7 @@ module Core(
 	 reg status_OF;
 	 reg [3:0] core_state;
 
-	 initial program_counter = 0;
+	 initial program_counter = 0;	//Start of assembly code (fix address)
 	 initial status_SF = 0;
 	 initial status_ZF = 0;
 	 initial status_OF = 0;
@@ -94,51 +93,59 @@ module Core(
 
 	 always@*
 	 begin
+		core_to_mem_write_enable = 0;
 		case(core_state)
 			FETCH:	begin
 							// Send the address to memory to get the instruction, disable writing.
 							core_to_mem_addr = program_counter;
-							core_to_mem_write_enable = 0;
-							program_return_link = program_counter + 16; //should this be $reta???
+							
 						end
 			DECODE:	begin
 							// Check to see if the instruction is a load or store instruction
 							// If it isn't send to the EXECUTE stage
-							if (instruction[15:11] == LOAD || instruction[15:11] == LOADI)
+							if (mem_to_core_data[15:11] == LOAD)
 								next_state = LOAD1;
 
-							else if (instruction[15:11] == STORE)
+							else if (mem_to_core_data[15:11] == STORE)
 								next_state = STORE1;
 
 							else
-								next_state = EXECUTE;
-
-							//Grab register values
-							read_index_1 = instruction [4:0];
-							read_index_2 = instruction [9:5]; //where are we placing the extra bit? this needs to be adjusted to match where the register index is set in the instruction
+								next_state = EXECUTE; 
 						end
 			EXECUTE:	begin
+							//Grab register values
+							read_index_1 = mem_to_core_data [4:0];
+							read_index_2 = mem_to_core_data [9:5];
+							immediatS = mem_to_core_data [10:5];
+							dest_reg_index = read_index_1;
+							
 							case(instruction[15:11])
 								ADD:		begin
-												write_data = data_reg_1 + data_reg_2; //Does write data also need to be latched in clocked always block?
+												write_data = data_reg_1 + data_reg_2;
+												write_enable = 1;
 											end
 								SUB:		begin
-												write_data = data_reg_1 + ((~data_reg_2)+1);
+												write_data = data_reg_1 - data_reg_2;
+												write_enable = 1;
 											end
 								ADDI:		begin
 												write_data = data_reg_1 + immediateS;
+												write_enable = 1;
 											end
 								SHLLI:	begin
 												write_data = data_reg_1 << immediateS;
+												write_enable = 1;
 											end
 								SHRLI:	begin
 												write_data = data_reg_1 >> immediateS;
+												write_enable = 1;
 											end
 								JUMP:		begin
 												program_counter = immediateL;
 											end
 								JUMPLI:	begin
 												program_counter = immediateL;
+												program_return_link = program_counter + 16; //should this be $reta???
 											end
 								JUMPL:	begin
 												if(status_SF != status_OF)
@@ -150,39 +157,44 @@ module Core(
 											end
 								JUMPE:	begin
 												if(status_ZF == 1)
-													program_counter = immediateL;
+													program_counter = immediateL << 4;
 											end
 								JUMPNE:	begin
 												if(status_ZF == 0)
-													program_counter = immediateL;
+													program_counter = immediateL;<< 4;
 											end
 								CMP:		begin
-												status_SF = (data_reg_1[15])^(data_reg_1+((~data_reg_2)+1)[15];	//
-												status_ZF = !(|(data_reg_1+((~data_reg_2)+1)));	//or all the bits together and invert for ZF bit
+												status_SF = (data_reg_1[15])^(data_reg_1 - data_reg_2)[15];	//
+												status_ZF = !(|(data_reg_1- data_reg_2));	//or all the bits together and invert for ZF bit
 												status_OF = ;//????
 											end
 								RET:		begin
-
+													program_counter = ;//Insert return address $reta
 											end
 								MOV:		begin
-
+													write_data = data_reg_2;
+													write_enable = 1;
+											end
+								LOADI:	begin
+												write_data = immediateS;
+												write_enable = 1;
 											end
 								default:	begin
 
 											end
 							endcase
 						end
-			LOAD1:	begin
-
+			LOAD1:	begin							
+								core_to_mem_addr = data_reg_2; //load from address register		
 						end
 			LOAD2:	begin
-
+							data_reg_1 = mem_to_core_data;
+							write_enable = 1;
 						end
 			STORE1:	begin
-
-						end
-			STORE2:	begin
-
+							core_to_mem_addr = data_reg_1;
+							core_to_mem_data = data_reg_2;
+	output reg			core_to_mem_write_enable = 1;
 						end
 			default:	begin
 							// do nothing
@@ -192,25 +204,22 @@ module Core(
 
 	 always@(posedge clk)
 	 begin
-		// Change the core state.
-		//	Change the PC (increment/jump/etc.)
 		case(core_state)
 			FETCH:	begin
 							core_state <= DECODE;
-							instruction <= mem_to_core_data;	//I think we want to latch instruction here so it is available during decodem(it will latch at the next clock cycle, the end of fetch)
 						end
 			DECODE:	begin
 							// Latch the instruction
-							//instruction <= mem_to_core_data;  *see above
+							instruction <= mem_to_core_data;
 							core_state <= next_state;
 
 							//Grab possible inputs i.e. reg, immediate, etc (src, dest)
-							dest_reg_index <= instruction [4:0] ;	//we also have a write_index????
-							immediateL <= instruction [10:0];
-							immediateS <= instruction [11:5];
+							dest_reg_index <= mem_to_core_data[4:0];
+							immediateL <= mem_to_core_data[10:0];
+							immediateS <= mem_to_core_data[10:5];
 							data_from_reg_1 <= read_data_1;
 							data_from_reg_2 <= read_data_2;
-							op_code <= instruction [15:11];
+							op_code <= mem_to_core_data[15:11];
 						end
 			EXECUTE:	begin
 							core_state <= FETCH;
@@ -223,9 +232,6 @@ module Core(
 						end
 			STORE1:	begin
 							core_state <= FETCH;
-						end
-			default:	begin
-							// do nothing
 						end
 			endcase
 	 end
