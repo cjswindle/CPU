@@ -30,40 +30,40 @@ module RegisterFile(
    );
 
 	// 16-bit registers
-	reg [15:0] r0;
-	reg [15:0] r1;
-	reg [15:0] r2;
-	reg [15:0] r3;
-	reg [15:0] r4;
-	reg [15:0] r5;
-	reg [15:0] r6;
-	reg [15:0] r7;
-	reg [15:0] r8;
-	reg [15:0] r9;
-	reg [15:0] r10;
-	reg [15:0] r11;
-	reg [15:0] r12;
-	reg [15:0] r13;
-	reg [15:0] r14;
-	reg [15:0] r15;
-	reg [15:0] r16;
-	reg [15:0] r17;
-	reg [15:0] r18;
-	reg [15:0] r19;
-	reg [15:0] r20;
-	reg [15:0] r21;
-	reg [15:0] r22;
-	reg [15:0] r23;
-	reg [15:0] r24;
-	reg [15:0] r25;
-	reg [15:0] r26;
-	reg [15:0] r27;
+	reg [15:0] r0		= 16'hAAAAAAAAA;
+	reg [15:0] r1		= 16'hAAAAAAAAA;
+	reg [15:0] r2		= 16'hAAAAAAAAA;
+	reg [15:0] r3		= 16'hAAAAAAAAA;
+	reg [15:0] r4		= 16'hAAAAAAAAA;
+	reg [15:0] r5		= 16'hAAAAAAAAA;
+	reg [15:0] r6		= 16'hAAAAAAAAA;
+	reg [15:0] r7		= 16'hAAAAAAAAA;
+	reg [15:0] r8		= 16'hAAAAAAAAA;
+	reg [15:0] r9		= 16'hAAAAAAAAA;
+	reg [15:0] r10		= 16'hAAAAAAAAA;
+	reg [15:0] r11		= 16'hAAAAAAAAA;
+	reg [15:0] r12		= 16'hAAAAAAAAA;
+	reg [15:0] r13		= 16'hAAAAAAAAA;
+	reg [15:0] r14		= 16'hAAAAAAAAA;
+	reg [15:0] r15		= 16'hAAAAAAAAA;
+	reg [15:0] r16		= 16'hAAAAAAAAA;
+	reg [15:0] r17		= 16'hAAAAAAAAA;
+	reg [15:0] r18		= 16'hAAAAAAAAA;
+	reg [15:0] r19		= 16'hAAAAAAAAA;
+	reg [15:0] r20		= 16'hAAAAAAAAA;
+	reg [15:0] r21		= 16'hAAAAAAAAA;
+	reg [15:0] r22		= 16'hAAAAAAAAA;
+	reg [15:0] r23		= 16'hAAAAAAAAA;
+	reg [15:0] r24		= 16'hAAAAAAAAA;
+	reg [15:0] r25		= 16'hAAAAAAAAA;
+	reg [15:0] r26		= 16'hAAAAAAAAA;
+	reg [15:0] r27		= 16'hAAAAAAAAA;
 
 	// 24-bit registers
-	reg [23:0] lr0;
-	reg [23:0] lr1;
-	reg [23:0] lr2;
-	reg [23:0] lr3;
+	reg [23:0] lr0		= 24'hAAAAAAAAA;
+	reg [23:0] lr1		= 24'hAAAAAAAAA;
+	reg [23:0] lr2		= 24'hAAAAAAAAA;
+	reg [23:0] lr3		= 24'hAAAAAAAAA;
 
 
 	always@*

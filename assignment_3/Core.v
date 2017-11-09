@@ -75,13 +75,18 @@ module Core(
 										
 	// Data that needs to persist between instructions
 	reg [14:0] program_counter;
+	initial program_counter = 15'd9216;	//Start of assembly code (fix address)
+	
+	reg [14:0] next_program_counter;
+	initial next_program_counter = 15'b0;
+	
 	reg [23:0] program_return_link;
 	//reg status_SF;
 	reg status_ZF;
 	reg status_OF;
 	reg [3:0] core_state;
 
-	initial program_counter = 15'd16384 ;	//Start of assembly code (fix address)
+
 	//initial status_SF = 0;
 	initial status_ZF = 0;
 	initial status_OF = 0;
@@ -96,13 +101,13 @@ module Core(
 
 	reg [4:0] opcode;	// Latch the instruction so we can decode it and guarantee that it is the correct value
 	initial opcode = 0;
+	
 	// Used to calculate the next SF, ZF, and OF for the next assembly instruction to use.
 	//reg next_status_SF;
 	reg next_status_ZF;
 	reg next_status_OF;
 	 
-	reg [14:0] next_program_counter;
-	initial next_program_counter = 14'b0;
+
 	 
 	reg [3:0]	next_state;		// Used to determine the next state based on the op-code. (do we need a next state? or can we just assign the state parameter to the next state?)
 
@@ -201,6 +206,7 @@ module Core(
 													write_enable = 1;
 											end
 								LOADI:	begin
+												write_index = dest_reg_index;
 												write_data = immediateS;
 												write_enable = 1;
 											end
@@ -225,8 +231,7 @@ module Core(
 		endcase
 	end
 
-	always@(posedge clk)
-	begin
+	always@(posedge clk)	begin
 		case(core_state)
 			FETCH:	begin
 							core_state <= DECODE;

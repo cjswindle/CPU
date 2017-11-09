@@ -1,10 +1,30 @@
 Command line:
    CoreTest_isim_beh.exe
      -simmode  gui
-     -simrunnum  0
-     -socket  39103
+     -simrunnum  1
+     -socket  40995
 
-Thu Nov  9 09:18:22 2017
+Thu Nov  9 10:45:54 2017
 
 
- Elaboration Time: 0.04 sec
+ Elaboration Time: 0.02 sec
+
+ Current Memory Usage: 197.603 Meg
+
+ Total Signals          : 228
+ Total Nets             : 822
+ Total Signal Drivers   : 99
+ Total Blocks           : 25
+ Total Primitive Blocks : 18
+ Total Processes        : 132
+ Total Traceable Variables  : 432
+ Total Scalar Nets and Variables : 659184
+Total Line Count : 692
+Total Line Count : 692
+
+ Total Simulation Time: 0.55 sec
+
+ Current Memory Usage: 273.105 Meg
+
+Thu Nov  9 12:24:46 2017
+

@@ -5,6 +5,38 @@ Turning on mult-threading, number of parallel sub-compilation jobs: 16
 Determining compilation order of HDL files
 Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/VGASignalGenerator.v" into library work
 Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" into library work
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 33: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 34: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 35: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 36: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 37: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 38: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 39: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 40: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 41: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 42: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 43: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 44: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 45: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 46: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 47: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 48: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 49: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 50: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 51: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 52: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 53: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 54: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 55: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 56: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 57: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 58: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 59: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 60: Constant value is truncated to fit in <16> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 63: Constant value is truncated to fit in <24> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 64: Constant value is truncated to fit in <24> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 65: Constant value is truncated to fit in <24> bits.
+WARNING:HDLCompiler:568 - "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" Line 66: Constant value is truncated to fit in <24> bits.
 Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/PixelGenerator.v" into library work
 Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/VGAController.v" into library work
 Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/ipcore_dir/VGARAM.v" into library work
@@ -14,8 +46,8 @@ Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/CoreTest.v" int
 Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 96148 KB
-Fuse CPU Usage: 1080 ms
+Fuse Memory Usage: 96152 KB
+Fuse CPU Usage: 1100 ms
 Compiling module BLK_MEM_GEN_V7_3_output_stage(C_...
 Compiling module BLK_MEM_GEN_V7_3_softecc_output_...
 Compiling module BLK_MEM_GEN_V7_3_mem_module(C_CO...
@@ -33,6 +65,6 @@ Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
 Compiled 13 Verilog Units
 Built simulation executable /home/rajp/Projects/CS_3710/assignment_3/CoreTest_isim_beh.exe
-Fuse Memory Usage: 1183968 KB
-Fuse CPU Usage: 1150 ms
-GCC CPU Usage: 1340 ms
+Fuse Memory Usage: 1183972 KB
+Fuse CPU Usage: 1180 ms
+GCC CPU Usage: 1260 ms
