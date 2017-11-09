@@ -74,11 +74,11 @@ module Core(
 	 reg status_OF;
 	 reg [3:0] core_state;
 
-	 initial program_counter = 16393;	//Start of assembly code (fix address)
+	 initial program_counter = 24'd16384 ;	//Start of assembly code (fix address)
 	 initial status_SF = 0;
 	 initial status_ZF = 0;
 	 initial status_OF = 0;
-	 initial core_state = 0;
+	 initial core_state = 3'b0;
 
 	 // Data that needs to persist between cycles
 	 reg [4:0] dest_reg_index;
@@ -88,12 +88,13 @@ module Core(
 	 reg [23:0] data_from_reg_2;
 
 	 reg [15:0] instruction;	// Latch the instruction so we can decode it and guarantee that it is the correct value
-
+	 initial instruction = 0;
 	 // Used to calculate the next SF, ZF, and OF for the next assembly instruction to use.
 	 reg next_status_SF;
 	 reg next_status_ZF;
 	 reg next_status_OF;
 	 reg [23:0] next_program_counter;
+	 initial next_program_counter = 24'b0;
 	 reg [3:0]	next_state;		// Used to determine the next state based on the op-code. (do we need a next state? or can we just assign the state parameter to the next state?)
 
 	 always@*
@@ -103,7 +104,7 @@ module Core(
 		next_state = 4'b0;
 		write_data = 24'b0;
 		write_enable = 0;
-		next_program_counter = program_counter + 4'd16;
+		next_program_counter = program_counter + 1'b1;
 		read_index_1 = 5'b0;
 		read_index_2 = 5'b0;
 		write_index = 5'b0;
@@ -155,7 +156,7 @@ module Core(
 												write_enable = 1;
 											end
 								JUMP:		begin
-												next_program_counter = (immediateL << 4);
+												next_program_counter = immediateL;
 											end
 								JUMPLI:	begin
 												//next_program_counter = immediateL;
@@ -163,19 +164,19 @@ module Core(
 											end
 								JUMPL:	begin
 												if(status_SF != status_OF)
-													next_program_counter = immediateL << 4;
+													next_program_counter = immediateL;
 											end
 								JUMPG:	begin
 												if(status_SF == status_OF && status_ZF == 0)
-													next_program_counter = immediateL << 4;
+													next_program_counter = immediateL;
 											end
 								JUMPE:	begin
 												if(status_ZF == 1)
-													next_program_counter = (immediateL << 4);
+													next_program_counter = immediateL;
 											end
 								JUMPNE:	begin
 												if(status_ZF == 0)
-													next_program_counter = (immediateL << 4);
+													next_program_counter = immediateL;
 											end
 								CMP:		begin
 												//next_status_SF = ((data_from_reg_1[15])^(data_from_reg_1 - data_from_reg_2))[15];	//
@@ -193,9 +194,6 @@ module Core(
 								LOADI:	begin
 												write_data = immediateS;
 												write_enable = 1;
-											end
-								default:	begin
-														// Do nothing. Maybe throw an error?
 											end
 							endcase
 						end
@@ -227,7 +225,7 @@ module Core(
 						end
 			DECODE:	begin
 							// Latch the instruction
-							instruction <= mem_to_core_data;
+							//instruction <= mem_to_core_data;
 							core_state <= next_state;
 
 							//Grab possible inputs i.e. reg, immediate, etc (src, dest)
@@ -242,7 +240,6 @@ module Core(
 							status_SF <= next_status_SF;
 							status_ZF <= next_status_ZF;
 							status_OF <= next_status_ZF;
-							program_counter <= next_program_counter;
 						end
 			LOAD1:	begin
 							core_state <= LOAD2;

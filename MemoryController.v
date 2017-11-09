@@ -21,7 +21,7 @@
 module MemoryController(
     input [23:0] core_RAMaddress,
     input clk,
-    output [15:0] core_RAMdata,
+    output [15:0] mem_to_core_data,
     input write_enable,
     input [15:0] core_write_data,
 	 input [23:0] vga_address,
@@ -30,5 +30,14 @@ module MemoryController(
 
 
 	//synthesis attribute box_type VGARAM "black_box"
-	VGARAM	_VGARAM(.clkb(clk), .dinb(16'b0), .web(1'b0), .addrb(vga_address[14:0]), .doutb(vga_data), .clka(clk),.addra(core_RAMaddress[14:0]),.douta(core_RAMdata), .wea(write_enable), .dina(core_write_data));
+	VGARAM	_VGARAM(.clkb(clk), 
+						  .dinb(16'b0), 
+						  .web(1'b0), 
+						  .addrb(vga_address[15:0]), 
+						  .doutb(vga_data), 
+						  .clka(clk),
+						  .addra(core_RAMaddress[15:0]),
+						  .douta(mem_to_core_data), 
+						  .wea(write_enable), 
+						  .dina(core_write_data));
 endmodule
