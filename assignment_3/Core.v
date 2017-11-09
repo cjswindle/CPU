@@ -120,7 +120,7 @@ module Core(
 		next_program_counter = program_counter + 1'b1;
 		read_index_1 = 5'b0;
 		read_index_2 = 5'b0;
-		write_index = 5'b0;
+		write_index = dest_reg_index;
 		data_to_ram = 16'b0;
 		next_status_ZF = 0;
 		
@@ -158,7 +158,7 @@ module Core(
 												write_enable = 1;
 											end
 								ADDI:		begin
-												write_data = data_from_reg_1 + immediateS;
+												write_data = data_from_reg_1 + {{9{immediateS[5]}},immediateS};
 												write_enable = 1;
 											end
 								SHLLI:	begin
@@ -170,7 +170,7 @@ module Core(
 												write_enable = 1;
 											end
 								JUMP:		begin
-												next_program_counter = immediateL;
+												next_program_counter = (program_counter + 1'b1) + {{4{immediateL[10]}},immediateL};
 											end
 								JUMPLI:	begin
 												//next_program_counter = immediateL;
@@ -186,11 +186,11 @@ module Core(
 											end
 								JUMPE:	begin
 												if(status_ZF == 1)
-													next_program_counter = immediateL;
+													next_program_counter = (program_counter + 1'b1) + {{4{immediateL[10]}},immediateL};
 											end
 								JUMPNE:	begin
 												if(status_ZF == 0)
-													next_program_counter = immediateL;
+													next_program_counter = (program_counter + 1'b1) + {{4{immediateL[10]}},immediateL};
 											end
 								CMP:		begin
 												//next_status_SF = ((data_from_reg_1[15])^(data_from_reg_1 - data_from_reg_2))[15];	//
@@ -221,7 +221,7 @@ module Core(
 							write_enable = 1;
 						end
 			STORE1:	begin
-							ram_address = data_from_reg_1[14:0];
+							ram_address = 15'b0;	//data_from_reg_1[14:0];
 							data_to_ram = data_from_reg_2[15:0];
 							web = 1'b1;
 						end

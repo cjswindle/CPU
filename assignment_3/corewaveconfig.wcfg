@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="C:/Users/Youve Been Swindled/Documents/3710/Final Project/CPU/CPU/assignment_3/CoreTest_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="CoreTest" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="28" />
+   <wvobject fp_name="/CoreTest/hsync" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">hsync</obj_property>
+      <obj_property name="ObjectShortName">hsync</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/vsync" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">vsync</obj_property>
+      <obj_property name="ObjectShortName">vsync</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/rgbcolor" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rgbcolor[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rgbcolor[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/mode" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mode[1:0]</obj_property>
+      <obj_property name="ObjectShortName">mode[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/core_state" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">core_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">core_state[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/program_counter" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">program_counter[14:0]</obj_property>
+      <obj_property name="ObjectShortName">program_counter[14:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/next_program_counter" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">next_program_counter[14:0]</obj_property>
+      <obj_property name="ObjectShortName">next_program_counter[14:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/opcode" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">opcode[4:0]</obj_property>
+      <obj_property name="ObjectShortName">opcode[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/_RegisterFile/r1" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">r1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/_RegisterFile/r2" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">r2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/_RegisterFile/r5" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r5[15:0]</obj_property>
+      <obj_property name="ObjectShortName">r5[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/_RegisterFile/lr0" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">lr0[23:0]</obj_property>
+      <obj_property name="ObjectShortName">lr0[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/read_data_2" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">read_data_2[23:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data_2[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/write_data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">write_data[23:0]</obj_property>
+      <obj_property name="ObjectShortName">write_data[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/write_index" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">write_index[4:0]</obj_property>
+      <obj_property name="ObjectShortName">write_index[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/write_enable" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">write_enable</obj_property>
+      <obj_property name="ObjectShortName">write_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/read_index_2" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">read_index_2[4:0]</obj_property>
+      <obj_property name="ObjectShortName">read_index_2[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/read_index_1" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">read_index_1[4:0]</obj_property>
+      <obj_property name="ObjectShortName">read_index_1[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/ram_address" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ram_address[14:0]</obj_property>
+      <obj_property name="ObjectShortName">ram_address[14:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/data_from_ram" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_from_ram[15:0]</obj_property>
+      <obj_property name="ObjectShortName">data_from_ram[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/dest_reg_index" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dest_reg_index[4:0]</obj_property>
+      <obj_property name="ObjectShortName">dest_reg_index[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/immediateL" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">immediateL[10:0]</obj_property>
+      <obj_property name="ObjectShortName">immediateL[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/immediateS" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">immediateS[5:0]</obj_property>
+      <obj_property name="ObjectShortName">immediateS[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/data_from_reg_1" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_from_reg_1[23:0]</obj_property>
+      <obj_property name="ObjectShortName">data_from_reg_1[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/data_from_reg_2" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_from_reg_2[23:0]</obj_property>
+      <obj_property name="ObjectShortName">data_from_reg_2[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/read_data_1" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">read_data_1[23:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data_1[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/CoreTest/uut/_core/data_to_ram" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_to_ram[15:0]</obj_property>
+      <obj_property name="ObjectShortName">data_to_ram[15:0]</obj_property>
+   </wvobject>
+</wave_config>

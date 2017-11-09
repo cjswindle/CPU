@@ -1,21 +1,18 @@
-Release 14.7 - xst P.20131013 (lin64)
+Release 14.7 - xst P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
---> 
-Parameter TMPDIR set to xst/projnav.tmp
+--> Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.10 secs
  
---> 
-Parameter xsthdpdir set to xst
+--> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.10 secs
  
---> 
-Reading design: CPU.prj
+--> Reading design: CPU.prj
 
 TABLE OF CONTENTS
   1) Synthesis Options Summary
@@ -111,19 +108,19 @@ Cores Search Directories           : {"ipcore_dir"  }
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/VGASignalGenerator.v" into library work
+Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\VGASignalGenerator.v" into library work
 Parsing module <VGASignalGenerator>.
-Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" into library work
+Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\RegisterFile.v" into library work
 Parsing module <RegisterFile>.
-Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/PixelGenerator.v" into library work
+Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\PixelGenerator.v" into library work
 Parsing module <PixelGenerator>.
-Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/VGAController.v" into library work
+Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\VGAController.v" into library work
 Parsing module <VGAController>.
-Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/ipcore_dir/VGARAM.v" into library work
+Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\ipcore_dir\VGARAM.v" into library work
 Parsing module <VGARAM>.
-Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/Core.v" into library work
+Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\Core.v" into library work
 Parsing module <Core>.
-Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/CPU.v" into library work
+Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\CPU.v" into library work
 Parsing module <CPU>.
 
 =========================================================================
@@ -149,19 +146,19 @@ Elaborating module <RegisterFile>.
 =========================================================================
 
 Synthesizing Unit <CPU>.
-    Related source file is "/home/rajp/Projects/CS_3710/assignment_3/CPU.v".
+    Related source file is "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\CPU.v".
     Summary:
 	no macro.
 Unit <CPU> synthesized.
 
 Synthesizing Unit <VGAController>.
-    Related source file is "/home/rajp/Projects/CS_3710/assignment_3/VGAController.v".
+    Related source file is "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\VGAController.v".
     Summary:
 	no macro.
 Unit <VGAController> synthesized.
 
 Synthesizing Unit <PixelGenerator>.
-    Related source file is "/home/rajp/Projects/CS_3710/assignment_3/PixelGenerator.v".
+    Related source file is "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\PixelGenerator.v".
     Found 2-bit register for signal <glyph_state>.
     Found 9-bit register for signal <latched_row>.
     Found 10-bit register for signal <latched_column>.
@@ -180,7 +177,7 @@ Synthesizing Unit <PixelGenerator>.
 Unit <PixelGenerator> synthesized.
 
 Synthesizing Unit <VGASignalGenerator>.
-    Related source file is "/home/rajp/Projects/CS_3710/assignment_3/VGASignalGenerator.v".
+    Related source file is "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\VGASignalGenerator.v".
     Found 10-bit register for signal <column_counter>.
     Found 10-bit register for signal <row_counter>.
     Found 1-bit register for signal <hsync>.
@@ -208,7 +205,7 @@ Synthesizing Unit <VGASignalGenerator>.
 Unit <VGASignalGenerator> synthesized.
 
 Synthesizing Unit <Core>.
-    Related source file is "/home/rajp/Projects/CS_3710/assignment_3/Core.v".
+    Related source file is "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\Core.v".
         ADD = 5'b00000
         SUB = 5'b00001
         ADDI = 5'b00010
@@ -252,22 +249,23 @@ Synthesizing Unit <Core>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 24-bit subtractor for signal <data_from_reg_1[23]_data_from_reg_2[23]_sub_7_OUT> created at line 156.
-    Found 15-bit adder for signal <program_counter[14]_GND_6_o_add_0_OUT> created at line 119.
-    Found 24-bit adder for signal <data_from_reg_1[23]_data_from_reg_2[23]_add_5_OUT> created at line 152.
-    Found 24-bit adder for signal <data_from_reg_1[23]_GND_6_o_add_7_OUT> created at line 160.
-    Found 24-bit shifter logical left for signal <data_from_reg_1[23]_immediateS[5]_shift_left_8_OUT> created at line 164
-    Found 24-bit shifter logical right for signal <data_from_reg_1[23]_immediateS[5]_shift_right_9_OUT> created at line 168
+    Found 24-bit subtractor for signal <data_from_reg_1[23]_data_from_reg_2[23]_sub_7_OUT> created at line 157.
+    Found 15-bit adder for signal <n0133> created at line 120.
+    Found 24-bit adder for signal <data_from_reg_1[23]_data_from_reg_2[23]_add_5_OUT> created at line 153.
+    Found 24-bit adder for signal <data_from_reg_1[23]_GND_6_o_add_7_OUT> created at line 161.
+    Found 15-bit adder for signal <program_counter[14]_immediateL[10]_add_11_OUT> created at line 173.
+    Found 24-bit shifter logical left for signal <data_from_reg_1[23]_immediateS[5]_shift_left_8_OUT> created at line 165
+    Found 24-bit shifter logical right for signal <data_from_reg_1[23]_immediateS[5]_shift_right_9_OUT> created at line 169
     Summary:
-	inferred   4 Adder/Subtractor(s).
+	inferred   5 Adder/Subtractor(s).
 	inferred  91 D-type flip-flop(s).
-	inferred  26 Multiplexer(s).
+	inferred  18 Multiplexer(s).
 	inferred   2 Combinational logic shifter(s).
 	inferred   1 Finite State Machine(s).
 Unit <Core> synthesized.
 
 Synthesizing Unit <RegisterFile>.
-    Related source file is "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v".
+    Related source file is "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\RegisterFile.v".
     Found 24-bit register for signal <lr2>.
     Found 24-bit register for signal <lr1>.
     Found 24-bit register for signal <lr0>.
@@ -311,10 +309,10 @@ Unit <RegisterFile> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 11
+# Adders/Subtractors                                   : 12
  10-bit adder                                          : 2
  10-bit subtractor                                     : 1
- 15-bit adder                                          : 2
+ 15-bit adder                                          : 3
  2-bit adder                                           : 2
  24-bit adder                                          : 2
  24-bit subtractor                                     : 1
@@ -336,14 +334,14 @@ Macro Statistics
  10-bit comparator greater                             : 3
  10-bit comparator lessequal                           : 4
  9-bit comparator greater                              : 1
-# Multiplexers                                         : 34
+# Multiplexers                                         : 26
  1-bit 2-to-1 multiplexer                              : 3
  1-bit 8-to-1 multiplexer                              : 2
- 15-bit 2-to-1 multiplexer                             : 10
+ 15-bit 2-to-1 multiplexer                             : 8
  16-bit 2-to-1 multiplexer                             : 1
  24-bit 2-to-1 multiplexer                             : 7
  24-bit 32-to-1 multiplexer                            : 2
- 5-bit 2-to-1 multiplexer                              : 8
+ 5-bit 2-to-1 multiplexer                              : 2
  8-bit 4-to-1 multiplexer                              : 1
 # Logic shifters                                       : 2
  24-bit shifter logical left                           : 1
@@ -386,9 +384,9 @@ Unit <VGASignalGenerator> synthesized (advanced).
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 7
+# Adders/Subtractors                                   : 8
  10-bit subtractor                                     : 1
- 15-bit adder                                          : 2
+ 15-bit adder                                          : 3
  24-bit adder                                          : 2
  24-bit subtractor                                     : 1
  9-bit subtractor                                      : 1
@@ -401,14 +399,14 @@ Macro Statistics
  10-bit comparator greater                             : 3
  10-bit comparator lessequal                           : 4
  9-bit comparator greater                              : 1
-# Multiplexers                                         : 79
+# Multiplexers                                         : 71
  1-bit 2-to-1 multiplexer                              : 2
  1-bit 32-to-1 multiplexer                             : 48
  1-bit 8-to-1 multiplexer                              : 2
- 15-bit 2-to-1 multiplexer                             : 10
+ 15-bit 2-to-1 multiplexer                             : 8
  16-bit 2-to-1 multiplexer                             : 1
  24-bit 2-to-1 multiplexer                             : 7
- 5-bit 2-to-1 multiplexer                              : 8
+ 5-bit 2-to-1 multiplexer                              : 2
  8-bit 4-to-1 multiplexer                              : 1
 # Logic shifters                                       : 2
  24-bit shifter logical left                           : 1
@@ -500,20 +498,20 @@ Top Level Output File Name         : CPU.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 1701
+# BELS                             : 1737
 #      GND                         : 2
 #      INV                         : 8
-#      LUT1                        : 50
-#      LUT2                        : 95
-#      LUT3                        : 460
-#      LUT4                        : 70
-#      LUT5                        : 85
-#      LUT6                        : 629
-#      MUXCY                       : 101
+#      LUT1                        : 41
+#      LUT2                        : 116
+#      LUT3                        : 463
+#      LUT4                        : 88
+#      LUT5                        : 74
+#      LUT6                        : 614
+#      MUXCY                       : 115
 #      MUXF7                       : 74
 #      MUXF8                       : 18
 #      VCC                         : 2
-#      XORCY                       : 107
+#      XORCY                       : 122
 # FlipFlops/Latches                : 715
 #      FD                          : 17
 #      FDE                         : 660
@@ -538,16 +536,16 @@ Selected Device : 6slx16csg324-3
 
 Slice Logic Utilization: 
  Number of Slice Registers:             715  out of  18224     3%  
- Number of Slice LUTs:                 1399  out of   9112    15%  
-    Number used as Logic:              1397  out of   9112    15%  
+ Number of Slice LUTs:                 1406  out of   9112    15%  
+    Number used as Logic:              1404  out of   9112    15%  
     Number used as Memory:                2  out of   2176     0%  
        Number used as SRL:                2
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   1938
-   Number with an unused Flip Flop:    1223  out of   1938    63%  
-   Number with an unused LUT:           539  out of   1938    27%  
-   Number of fully used LUT-FF pairs:   176  out of   1938     9%  
+ Number of LUT Flip Flop pairs used:   1946
+   Number with an unused Flip Flop:    1231  out of   1946    63%  
+   Number with an unused LUT:           540  out of   1946    27%  
+   Number of fully used LUT-FF pairs:   175  out of   1946     8%  
    Number of unique control sets:        44
 
 IO Utilization: 
@@ -603,7 +601,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
   Clock period: 7.202ns (frequency: 138.846MHz)
-  Total number of paths / destination ports: 132271 / 2491
+  Total number of paths / destination ports: 119452 / 2491
 -------------------------------------------------------------------------
 Delay:               7.202ns (Levels of Logic = 6)
   Source:            _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
@@ -620,7 +618,7 @@ Delay:               7.202ns (Levels of Logic = 6)
      end scope: '_vgaRam:doutb<5>'
      LUT2:I1->O           17   0.205   1.132  _core/core_state_read_index_2<0>1 (_core/read_index_2<0>)
      LUT6:I4->O            1   0.203   0.580  _core/_RegisterFile/mux26_91 (_core/_RegisterFile/mux26_91)
-     LUT6:I5->O            1   0.205   0.000  _core/_RegisterFile/mux26_2_f7_G (N1061)
+     LUT6:I5->O            1   0.205   0.000  _core/_RegisterFile/mux26_2_f7_G (N1055)
      MUXF7:I1->O           1   0.140   0.000  _core/_RegisterFile/mux26_2_f7 (_core/read_data_2<11>)
      FDE:D                     0.102          _core/data_from_reg_2_11
     ----------------------------------------
@@ -641,7 +639,7 @@ Offset:              3.792ns (Levels of Logic = 3)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            16   1.222   1.252  mode_0_IBUF (mode_0_IBUF)
-     LUT4:I0->O            1   0.203   0.808  _vgaController/_pixelGenerator/Mmux_mode[1]_PWR_4_o_wide_mux_10_OUT12_SW1 (N34)
+     LUT4:I0->O            1   0.203   0.808  _vgaController/_pixelGenerator/Mmux_mode[1]_PWR_4_o_wide_mux_10_OUT12_SW1 (N32)
      LUT6:I3->O            1   0.205   0.000  _vgaController/_pixelGenerator/Mmux_mode[1]_PWR_4_o_wide_mux_10_OUT21 (_vgaController/_pixelGenerator/mode[1]_PWR_4_o_wide_mux_10_OUT<1>)
      FDE:D                     0.102          _vgaController/_pixelGenerator/next_color_1
     ----------------------------------------
@@ -683,13 +681,12 @@ clk            |    7.202|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 11.00 secs
-Total CPU time to Xst completion: 11.24 secs
+Total REAL time to Xst completion: 18.00 secs
+Total CPU time to Xst completion: 18.73 secs
  
 --> 
 
-
-Total memory usage is 417976 kilobytes
+Total memory usage is 301320 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)
