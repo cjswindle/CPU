@@ -36,6 +36,21 @@ module VGAcontrollerTop(
 	wire [7:0] VGAdata;
 
 
-	VGAPixelGenerator _VGAPixelGenerator(clk, mode, req, row, column, RAMdata, VGAdata, RAMaddress);
-	VGASignalGenerator _VGASignal(clk, VGAdata, req, row, column, Hsync, Vsync, RGBcolor);
+	VGAPixelGenerator _VGAPixelGenerator(clk, 
+													 mode, 
+													 req, 
+													 row, 
+													 column, 
+													 RAMdata, 
+													 VGAdata, 
+													 RAMaddress);
+													 
+	VGASignalGenerator _VGASignal(clk, 
+											VGAdata, 
+											req, 
+											row, 
+											column, 
+											Hsync, 
+											Vsync, 
+											RGBcolor);
 endmodule

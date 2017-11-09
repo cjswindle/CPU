@@ -19,39 +19,39 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module Core(
-	input 						clk,
-	input [15:0] 				mem_to_core_data,
+	input 					clk,
+	input 	  [15:0] 	mem_to_core_data,
 	output reg [23:0] 	core_to_mem_addr,
 	output reg [15:0] 	core_to_mem_data,
-	output reg					core_to_mem_write_enable
+	output reg				core_to_mem_write_enable
     );
 
 	 // List of parameters for our registers and their associated binary values
 	 // and the state names with the correlated binary value.
-	 parameter ADD = 5'b00000;
-	 parameter SUB = 5'b00001;
-	 parameter ADDI = 5'b00010;
-	 parameter SHLLI = 5'b00011;
-	 parameter SHRLI = 5'b00100;
-	 parameter JUMP = 5'b00101;
-	 parameter JUMPLI = 5'b00110;
-	 parameter JUMPL = 5'b00111;
-	 parameter JUMPG = 5'b01000;
-	 parameter JUMPE = 5'b01001;
-	 parameter JUMPNE = 5'b01010;
-	 parameter CMP = 5'b01011;
-	 parameter RET = 5'b01100;
-	 parameter LOAD = 5'b01101;
-	 parameter LOADI = 5'b01110;
-	 parameter STORE = 5'b01111;
-	 parameter MOV = 5'b10000;
+	 parameter ADD 		= 5'b00000;
+	 parameter SUB 		= 5'b00001;
+	 parameter ADDI 		= 5'b00010;
+	 parameter SHLLI 		= 5'b00011;
+	 parameter SHRLI 		= 5'b00100;
+	 parameter JUMP 		= 5'b00101;
+	 parameter JUMPLI 	= 5'b00110;
+	 parameter JUMPL 		= 5'b00111;
+	 parameter JUMPG 		= 5'b01000;
+	 parameter JUMPE 		= 5'b01001;
+	 parameter JUMPNE 	= 5'b01010;
+	 parameter CMP 		= 5'b01011;
+	 parameter RET 		= 5'b01100;
+	 parameter LOAD 		= 5'b01101;
+	 parameter LOADI 		= 5'b01110;
+	 parameter STORE 		= 5'b01111;
+	 parameter MOV 		= 5'b10000;
 
-	 parameter FETCH = 3'b000;
-	 parameter DECODE = 3'b001;
-	 parameter EXECUTE = 3'b010;
-	 parameter LOAD1 = 3'b011;
-	 parameter LOAD2 = 3'b100;
-	 parameter STORE1 = 3'b101;
+	 parameter FETCH 	 	= 3'b000;
+	 parameter DECODE  	= 3'b001;
+	 parameter EXECUTE 	= 3'b010;
+	 parameter LOAD1 	 	= 3'b011;
+	 parameter LOAD2 	 	= 3'b100;
+	 parameter STORE1  	= 3'b101;
 
 	 // Wires and registers used to communicate with the register file.
 	 wire [23:0] read_data_1;
@@ -64,18 +64,25 @@ module Core(
 	 reg [23:0] write_data; // unlatched
 
 	 // Instantiate the register file module
-	 RegisterFile _RegisterFile (.clk(clk), .read_data_1(read_data_1), .read_data_2(read_data_2), .read_index_1(read_index_1), .read_index_2(read_index_2), .write_index(write_index), .write_enable(write_enable), .write_data(write_data));
+	 RegisterFile _RegisterFile(.clk				(clk), 
+										 .read_data_1	(read_data_1), 
+										 .read_data_2	(read_data_2), 
+										 .read_index_1	(read_index_1), 
+										 .read_index_2	(read_index_2), 
+										 .write_index	(write_index), 
+										 .write_enable	(write_enable), 
+										 .write_data	(write_data));
 
 	 // Data that needs to persist between instructions
-	 reg [23:0] program_counter;
+	 reg [14:0] program_counter;
 	 reg [23:0] program_return_link;
-	 reg status_SF;
+	 //reg status_SF;
 	 reg status_ZF;
 	 reg status_OF;
 	 reg [3:0] core_state;
 
-	 initial program_counter = 24'd16384 ;	//Start of assembly code (fix address)
-	 initial status_SF = 0;
+	 initial program_counter = 15'd16384 ;	//Start of assembly code (fix address)
+	 //initial status_SF = 0;
 	 initial status_ZF = 0;
 	 initial status_OF = 0;
 	 initial core_state = 3'b0;
@@ -87,18 +94,19 @@ module Core(
 	 reg [23:0] data_from_reg_1;
 	 reg [23:0] data_from_reg_2;
 
-	 reg [15:0] instruction;	// Latch the instruction so we can decode it and guarantee that it is the correct value
-	 initial instruction = 0;
+	 reg [4:0] opcode;	// Latch the instruction so we can decode it and guarantee that it is the correct value
+	 initial opcode = 0;
 	 // Used to calculate the next SF, ZF, and OF for the next assembly instruction to use.
-	 reg next_status_SF;
+	 //reg next_status_SF;
 	 reg next_status_ZF;
 	 reg next_status_OF;
-	 reg [23:0] next_program_counter;
-	 initial next_program_counter = 24'b0;
+	 
+	 reg [14:0] next_program_counter;
+	 initial next_program_counter = 14'b0;
+	 
 	 reg [3:0]	next_state;		// Used to determine the next state based on the op-code. (do we need a next state? or can we just assign the state parameter to the next state?)
 
-	 always@*
-	 begin
+	 always@(*) begin
 		core_to_mem_write_enable = 1'b0;
 		core_to_mem_addr = 16'b0;
 		next_state = 4'b0;
@@ -116,8 +124,8 @@ module Core(
 			FETCH:	begin
 							// Send the address to memory to get the instruction, disable writing.
 							core_to_mem_addr = program_counter;
-
 						end
+						
 			DECODE:	begin
 							// Check to see if the instruction is a load or store instruction
 							// If it isn't send to the EXECUTE stage
@@ -133,8 +141,9 @@ module Core(
 							else
 								next_state = EXECUTE;
 						end
+						
 			EXECUTE:	begin
-							case(instruction[15:11])
+							case(opcode)
 								ADD:		begin
 												write_data = data_from_reg_1 + data_from_reg_2;
 												write_enable = 1;
@@ -163,12 +172,12 @@ module Core(
 												//next_program_return_link = program_counter + 16; //should this be $reta???
 											end
 								JUMPL:	begin
-												if(status_SF != status_OF)
-													next_program_counter = immediateL;
+												//if(status_SF != status_OF)
+												//	next_program_counter = immediateL;
 											end
 								JUMPG:	begin
-												if(status_SF == status_OF && status_ZF == 0)
-													next_program_counter = immediateL;
+												//if(status_SF == status_OF && status_ZF == 0)
+												//	next_program_counter = immediateL;
 											end
 								JUMPE:	begin
 												if(status_ZF == 1)
@@ -218,14 +227,13 @@ module Core(
 
 	 always@(posedge clk)
 	 begin
-		program_counter <= next_program_counter;
 		case(core_state)
 			FETCH:	begin
 							core_state <= DECODE;
 						end
 			DECODE:	begin
 							// Latch the instruction
-							//instruction <= mem_to_core_data;
+							opcode <= mem_to_core_data[15:11];
 							core_state <= next_state;
 
 							//Grab possible inputs i.e. reg, immediate, etc (src, dest)
@@ -237,19 +245,21 @@ module Core(
 						end
 			EXECUTE:	begin
 							core_state <= FETCH;
-							status_SF <= next_status_SF;
+							program_counter <= next_program_counter;
+							//status_SF <= next_status_SF;
 							status_ZF <= next_status_ZF;
-							status_OF <= next_status_ZF;
+							//status_OF <= next_status_ZF;
 						end
 			LOAD1:	begin
 							core_state <= LOAD2;
 						end
-			LOAD2:	begin
-							
+			LOAD2:	begin							
 							core_state <= FETCH;
+							program_counter <= next_program_counter;
 						end
 			STORE1:	begin
 							core_state <= FETCH;
+							program_counter <= next_program_counter;
 						end
 			endcase
 	 end

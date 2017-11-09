@@ -45,7 +45,7 @@ module CPU(
 												  .vga_data(mem_to_vga_data),
 												  .core_RAMaddress(core_to_ram_address), 
 												  .clk(clk), 
-												  .core_RAMdata(ram_to_core_data), 
+												  .mem_to_core_data(ram_to_core_data), 
 												  .write_enable(core_to_ram_write_enable), 
 												  .core_write_data(core_to_ram_data));
 	
