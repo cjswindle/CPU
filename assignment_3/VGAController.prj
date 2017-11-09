@@ -1,0 +1,4 @@
+verilog work "VGASignalGenerator.v"
+verilog work "PixelGenerator.v"
+verilog work "ipcore_dir/VGARAM.v"
+verilog work "VGAController.v"

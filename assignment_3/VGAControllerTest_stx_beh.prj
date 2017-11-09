@@ -1,0 +1,5 @@
+verilog isim_temp "VGASignalGenerator.v"
+verilog isim_temp "PixelGenerator.v"
+verilog isim_temp "VGAController.v"
+verilog isim_temp "VGAControllerTest.v"
+verilog isim_temp "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v"

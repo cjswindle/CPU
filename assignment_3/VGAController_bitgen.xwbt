@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/rajp/Projects/CS_3710/assignment_3/VGAController.ncd
+OUTFILE=/home/rajp/Projects/CS_3710/assignment_3/VGAController.bit
+FAMILY=Spartan6
+PART=xc6slx16-3csg324
+WORKINGDIR=/home/rajp/Projects/CS_3710/assignment_3
+LICENSE=WebPack
+USER_INFO=211302633_0_0_974
