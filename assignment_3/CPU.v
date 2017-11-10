@@ -21,6 +21,8 @@
 module CPU(
 	input 				clk,
    input 	[1:0] 	mode,
+	input					debug_core,
+	input					raw_next_inst,
    output 				hsync,
    output 				vsync,
    output	[7:0] 	rgbcolor
@@ -38,12 +40,14 @@ module CPU(
    wire [15:0] data_from_ram_b;
    wire web;
 	
-	// This is temp
-//	assign ram_address_b = 0;
-//	assign data_to_ram_b = 0;
-//	assign data_from_ram_b = 0;
-//	assign web = 0;
+	// Debouncer wires
+	wire debounced_next_inst;
 	
+	// Debounce the next instruction button
+	Debouncer _debouncer(.clk						(clk),
+								.raw_button				(raw_next_inst),
+								.debounced_button		(debounced_next_inst));
+
 	// RAM for the glyphs and text in ascii
    //synthesis attribute box_type VGARAM "black_box"
    VGARAM _vgaRam (.addra		(ram_address_a),
@@ -66,14 +70,16 @@ module CPU(
 										  .rgbcolor				(rgbcolor),
 										  .ram_address_a		(ram_address_a),
 										  .data_to_ram_a		(data_to_ram_a),
-										  .wea					(wea));
+										  .wea					(wea));									
 										  
 	// The Core
-	Core _core(.clk				(clk),
-				  .data_from_ram	(data_from_ram_b),
-				  .ram_address		(ram_address_b),
-				  .data_to_ram		(data_to_ram_b),
-				  .web				(web));			
+	Core _core(.clk					(clk),
+				  .debug_core			(debug_core),
+				  .debug_next_inst	(debounced_next_inst),
+				  .data_from_ram		(data_from_ram_b),
+				  .ram_address			(ram_address_b),
+				  .data_to_ram			(data_to_ram_b),
+				  .web					(web));			
 										  
 
 endmodule

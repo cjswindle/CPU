@@ -20,6 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 module Core(
 	input						clk,
+	input						debug_core,
+	input						debug_next_inst,
 	input			[15:0]	data_from_ram,
 	output reg	[14:0]	ram_address,
 	output reg	[15:0]	data_to_ram,
@@ -116,8 +118,8 @@ module Core(
 		ram_address = 16'b0;
 		next_state = 4'b0;
 		write_data = 24'b0;
-		write_enable = 0;
-		next_program_counter = program_counter + 1'b1;
+		write_enable = 0;		
+		next_program_counter = program_counter + 1'b1;		
 		read_index_1 = 5'b0;
 		read_index_2 = 5'b0;
 		write_index = dest_reg_index;
@@ -185,12 +187,14 @@ module Core(
 												//	next_program_counter = immediateL;
 											end
 								JUMPE:	begin
-												if(status_ZF == 1)
+												if(status_ZF == 1) begin
 													next_program_counter = (program_counter + 1'b1) + {{4{immediateL[10]}},immediateL};
+												end
 											end
 								JUMPNE:	begin
-												if(status_ZF == 0)
+												if(status_ZF == 0) begin
 													next_program_counter = (program_counter + 1'b1) + {{4{immediateL[10]}},immediateL};
+												end
 											end
 								CMP:		begin
 												//next_status_SF = ((data_from_reg_1[15])^(data_from_reg_1 - data_from_reg_2))[15];	//
@@ -234,7 +238,15 @@ module Core(
 	always@(posedge clk)	begin
 		case(core_state)
 			FETCH:	begin
-							core_state <= DECODE;
+							if (!debug_core) begin
+								core_state <= DECODE;
+							end
+							else begin
+								core_state <= FETCH;
+								if (debug_next_inst) begin
+									core_state <= DECODE;
+								end
+							end
 						end
 			DECODE:	begin
 							// Latch the instruction
