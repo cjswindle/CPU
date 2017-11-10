@@ -1,8 +1,8 @@
 INTSTYLE=ise
-INFILE=C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\CPU.ncd
-OUTFILE=C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\CPU.bit
+INFILE=/home/rajp/Projects/CS_3710/assignment_3/CPU.ncd
+OUTFILE=/home/rajp/Projects/CS_3710/assignment_3/CPU.bit
 FAMILY=Spartan6
 PART=xc6slx16-3csg324
-WORKINGDIR=C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3
+WORKINGDIR=/home/rajp/Projects/CS_3710/assignment_3
 LICENSE=WebPack
-USER_INFO=211306782_0_0_332
+USER_INFO=211302633_0_0_974

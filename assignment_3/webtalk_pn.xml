@@ -3,11 +3,11 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pn" timeStamp="Thu Nov 09 13:51:17 2017">
+<application name="pn" timeStamp="Thu Nov  9 18:17:43 2017">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="DC454B7CDA680894B561A6D1DF042D83" type="project"/>
-<property name="ProjectIteration" value="81" type="project"/>
-<property name="ProjectFile" value="C:/Users/Youve Been Swindled/Documents/3710/Final Project/CPU/CPU/assignment_3/assignment_3.xise" type="project"/>
+<property name="ProjectIteration" value="90" type="project"/>
+<property name="ProjectFile" value="/home/rajp/Projects/CS_3710/assignment_3/assignment_3.xise" type="project"/>
 <property name="ProjectCreationTimestamp" value="2017-09-14T11:54:15" type="project"/>
 </section>
 <section name="Project Statistics" visible="true">
@@ -25,13 +25,12 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="PROP_UserConstraintEditorPreference" value="Text Editor" type="process"/>
 <property name="PROP_intProjectCreationTimestamp" value="2017-09-14T11:54:15" type="design"/>
 <property name="PROP_intWbtProjectID" value="DC454B7CDA680894B561A6D1DF042D83" type="design"/>
-<property name="PROP_intWbtProjectIteration" value="81" type="process"/>
+<property name="PROP_intWbtProjectIteration" value="90" type="process"/>
 <property name="PROP_intWorkingDirLocWRTProjDir" value="Same" type="design"/>
 <property name="PROP_intWorkingDirUsed" value="No" type="design"/>
 <property name="PROP_selectedSimRootSourceNode_behav" value="work.CoreTest" type="process"/>
 <property name="PROP_xilxBitgStart_IntDone" value="true" type="process"/>
 <property name="PROP_AutoTop" value="false" type="design"/>
-<property name="PROP_CompxlibEdkSimLib" value="false" type="process"/>
 <property name="PROP_DevFamily" value="Spartan6" type="design"/>
 <property name="PROP_DevDevice" value="xc6slx16" type="design"/>
 <property name="PROP_DevFamilyPMName" value="spartan6" type="design"/>

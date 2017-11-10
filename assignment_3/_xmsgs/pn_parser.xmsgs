@@ -8,23 +8,5 @@
 <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.    -->
 
 <messages>
-<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/Youve Been Swindled/Documents/3710/Final Project/CPU/CPU/assignment_3/CPU.v&quot; into library work</arg>
-</msg>
-
-<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/Youve Been Swindled/Documents/3710/Final Project/CPU/CPU/assignment_3/Core.v&quot; into library work</arg>
-</msg>
-
-<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/Youve Been Swindled/Documents/3710/Final Project/CPU/CPU/assignment_3/PixelGenerator.v&quot; into library work</arg>
-</msg>
-
-<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/Youve Been Swindled/Documents/3710/Final Project/CPU/CPU/assignment_3/RegisterFile.v&quot; into library work</arg>
-</msg>
-
-<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/Youve Been Swindled/Documents/3710/Final Project/CPU/CPU/assignment_3/VGAController.v&quot; into library work</arg>
-</msg>
-
-<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/Youve Been Swindled/Documents/3710/Final Project/CPU/CPU/assignment_3/VGASignalGenerator.v&quot; into library work</arg>
-</msg>
-
 </messages>
 

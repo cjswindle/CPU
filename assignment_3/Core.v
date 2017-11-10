@@ -194,7 +194,7 @@ module Core(
 											end
 								CMP:		begin
 												//next_status_SF = ((data_from_reg_1[15])^(data_from_reg_1 - data_from_reg_2))[15];	//
-												next_status_ZF = !(|(data_from_reg_1- data_from_reg_2));	//or all the bits together and invert for ZF bit
+												next_status_ZF = !(|(data_from_reg_1 - data_from_reg_2));	//or all the bits together and invert for ZF bit
 												next_status_OF = (data_from_reg_1[15] == data_from_reg_2[15]); // THIS IS NOT RIGHT. Need to fix.
 											end
 								RET:		begin
@@ -221,7 +221,7 @@ module Core(
 							write_enable = 1;
 						end
 			STORE1:	begin
-							ram_address = 15'b0;	//data_from_reg_1[14:0];
+							ram_address = data_from_reg_1[14:0];
 							data_to_ram = data_from_reg_2[15:0];
 							web = 1'b1;
 						end

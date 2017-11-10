@@ -1,18 +1,21 @@
-Release 14.7 - xst P.20131013 (nt64)
+Release 14.7 - xst P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
---> Parameter TMPDIR set to xst/projnav.tmp
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.03 secs
  
---> Parameter xsthdpdir set to xst
+--> 
+Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.10 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.03 secs
  
---> Reading design: CPU.prj
+--> 
+Reading design: CPU.prj
 
 TABLE OF CONTENTS
   1) Synthesis Options Summary
@@ -108,19 +111,19 @@ Cores Search Directories           : {"ipcore_dir"  }
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\VGASignalGenerator.v" into library work
+Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/VGASignalGenerator.v" into library work
 Parsing module <VGASignalGenerator>.
-Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\RegisterFile.v" into library work
+Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v" into library work
 Parsing module <RegisterFile>.
-Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\PixelGenerator.v" into library work
+Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/PixelGenerator.v" into library work
 Parsing module <PixelGenerator>.
-Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\VGAController.v" into library work
+Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/VGAController.v" into library work
 Parsing module <VGAController>.
-Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\ipcore_dir\VGARAM.v" into library work
+Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/ipcore_dir/VGARAM.v" into library work
 Parsing module <VGARAM>.
-Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\Core.v" into library work
+Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/Core.v" into library work
 Parsing module <Core>.
-Analyzing Verilog file "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\CPU.v" into library work
+Analyzing Verilog file "/home/rajp/Projects/CS_3710/assignment_3/CPU.v" into library work
 Parsing module <CPU>.
 
 =========================================================================
@@ -146,19 +149,19 @@ Elaborating module <RegisterFile>.
 =========================================================================
 
 Synthesizing Unit <CPU>.
-    Related source file is "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\CPU.v".
+    Related source file is "/home/rajp/Projects/CS_3710/assignment_3/CPU.v".
     Summary:
 	no macro.
 Unit <CPU> synthesized.
 
 Synthesizing Unit <VGAController>.
-    Related source file is "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\VGAController.v".
+    Related source file is "/home/rajp/Projects/CS_3710/assignment_3/VGAController.v".
     Summary:
 	no macro.
 Unit <VGAController> synthesized.
 
 Synthesizing Unit <PixelGenerator>.
-    Related source file is "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\PixelGenerator.v".
+    Related source file is "/home/rajp/Projects/CS_3710/assignment_3/PixelGenerator.v".
     Found 2-bit register for signal <glyph_state>.
     Found 9-bit register for signal <latched_row>.
     Found 10-bit register for signal <latched_column>.
@@ -177,7 +180,7 @@ Synthesizing Unit <PixelGenerator>.
 Unit <PixelGenerator> synthesized.
 
 Synthesizing Unit <VGASignalGenerator>.
-    Related source file is "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\VGASignalGenerator.v".
+    Related source file is "/home/rajp/Projects/CS_3710/assignment_3/VGASignalGenerator.v".
     Found 10-bit register for signal <column_counter>.
     Found 10-bit register for signal <row_counter>.
     Found 1-bit register for signal <hsync>.
@@ -205,7 +208,7 @@ Synthesizing Unit <VGASignalGenerator>.
 Unit <VGASignalGenerator> synthesized.
 
 Synthesizing Unit <Core>.
-    Related source file is "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\Core.v".
+    Related source file is "/home/rajp/Projects/CS_3710/assignment_3/Core.v".
         ADD = 5'b00000
         SUB = 5'b00001
         ADDI = 5'b00010
@@ -259,13 +262,13 @@ Synthesizing Unit <Core>.
     Summary:
 	inferred   5 Adder/Subtractor(s).
 	inferred  91 D-type flip-flop(s).
-	inferred  18 Multiplexer(s).
+	inferred  20 Multiplexer(s).
 	inferred   2 Combinational logic shifter(s).
 	inferred   1 Finite State Machine(s).
 Unit <Core> synthesized.
 
 Synthesizing Unit <RegisterFile>.
-    Related source file is "C:\Users\Youve Been Swindled\Documents\3710\Final Project\CPU\CPU\assignment_3\RegisterFile.v".
+    Related source file is "/home/rajp/Projects/CS_3710/assignment_3/RegisterFile.v".
     Found 24-bit register for signal <lr2>.
     Found 24-bit register for signal <lr1>.
     Found 24-bit register for signal <lr0>.
@@ -334,10 +337,10 @@ Macro Statistics
  10-bit comparator greater                             : 3
  10-bit comparator lessequal                           : 4
  9-bit comparator greater                              : 1
-# Multiplexers                                         : 26
+# Multiplexers                                         : 28
  1-bit 2-to-1 multiplexer                              : 3
  1-bit 8-to-1 multiplexer                              : 2
- 15-bit 2-to-1 multiplexer                             : 8
+ 15-bit 2-to-1 multiplexer                             : 10
  16-bit 2-to-1 multiplexer                             : 1
  24-bit 2-to-1 multiplexer                             : 7
  24-bit 32-to-1 multiplexer                            : 2
@@ -399,11 +402,11 @@ Macro Statistics
  10-bit comparator greater                             : 3
  10-bit comparator lessequal                           : 4
  9-bit comparator greater                              : 1
-# Multiplexers                                         : 71
+# Multiplexers                                         : 73
  1-bit 2-to-1 multiplexer                              : 2
  1-bit 32-to-1 multiplexer                             : 48
  1-bit 8-to-1 multiplexer                              : 2
- 15-bit 2-to-1 multiplexer                             : 8
+ 15-bit 2-to-1 multiplexer                             : 10
  16-bit 2-to-1 multiplexer                             : 1
  24-bit 2-to-1 multiplexer                             : 7
  5-bit 2-to-1 multiplexer                              : 2
@@ -504,9 +507,9 @@ Primitive and Black Box Usage:
 #      LUT1                        : 41
 #      LUT2                        : 116
 #      LUT3                        : 463
-#      LUT4                        : 88
+#      LUT4                        : 73
 #      LUT5                        : 74
-#      LUT6                        : 614
+#      LUT6                        : 629
 #      MUXCY                       : 115
 #      MUXF7                       : 74
 #      MUXF8                       : 18
@@ -601,7 +604,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
   Clock period: 7.202ns (frequency: 138.846MHz)
-  Total number of paths / destination ports: 119452 / 2491
+  Total number of paths / destination ports: 120360 / 2491
 -------------------------------------------------------------------------
 Delay:               7.202ns (Levels of Logic = 6)
   Source:            _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
@@ -681,12 +684,13 @@ clk            |    7.202|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 18.00 secs
-Total CPU time to Xst completion: 18.73 secs
+Total REAL time to Xst completion: 12.00 secs
+Total CPU time to Xst completion: 11.15 secs
  
 --> 
 
-Total memory usage is 301320 kilobytes
+
+Total memory usage is 417840 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)
