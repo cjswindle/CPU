@@ -24,51 +24,40 @@ module Debouncer(
 	output		debounced_button
 	);
 	
-	wire slow_clk_en;
-	wire Q1,Q2,Q2_bar;
+	reg [] buttonDebounce;
+	reg [] counter;
 	
-	clock_enable u1(clk,raw_button,slow_clk_en);
-	
-	Dflipflop d1(clk,slow_clk_en,raw_button,Q1);
-	
-	Dflipflop d2(clk,slow_clk_en,Q1,Q2);
-	
-	assign Q2_bar = ~Q2;
-	assign debounced_button = Q1 & Q2_bar;
-	
+	always@(posedge clk) begin  
+			  counter <= counter + 1'b1;
+			  //Sample user button press
+			  if(raw_button) begin
+					buttonDebounce <= buttonDebounce + 1'b1;
+			  end
+			  //Trigger slower clock rate
+			  if(counter == 10000000)begin
+					counter <= 0;
+					 if(raw_button == 0) begin
+						  buttonFlag <= 1'b0;
+						  buttonDebounce <= 0;
+					 end
+				end
+				else begin
+					//timer mode enabled
+					if(buttonFlag == 0) begin
+							  //check timer stop
+							 if(buttonDebounce > 2000000) begin
+									buttonFlag <= 1; 
+									buttonDebounce <= 0;
+							  end
+					end
+					else begin
+							  if(buttonDebounce > 2000000) begin
+							  buttonFlag <= 0;
+							  buttonDebounce <= 0;
+							  end
+					end
+				 end
+		 end
 endmodule
 
 
-// Slow clock enable for debouncing button 
-module clock_enable(
-	input 		Clk_100M,
-	input			pb_1, 
-	output 		slow_clk_en
-	);
-	
-   reg [17:0] counter = 18'b0;
-   always @(posedge Clk_100M, negedge pb_1) begin
-     if(pb_1==0)
-			counter <= 0;
-      else
-       counter <= (counter >= 249999) ? 18'b0 : counter + 1'b1;
-   end
-   assign slow_clk_en = (counter == 249999) ? 1'b1 : 1'b0;
-	
-endmodule
-
-// D-flip-flop with clock enable signal for debouncing module 
-module Dflipflop(
-	input 		DFF_CLOCK,
-	input 		clock_enable,
-	input			D, 
-	output reg 	Q
-	);
-	
-	initial Q = 0;
-	always @ (posedge DFF_CLOCK) begin
-		if(clock_enable==1) 
-			Q <= D;
-	end
-	 
-endmodule
