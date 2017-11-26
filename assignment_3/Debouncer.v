@@ -24,7 +24,7 @@ module Debouncer(
 	output		debounced_button
 	);
 	
-	reg [] buttonDebounce;
+/*	reg [] buttonDebounce;
 	reg [] counter;
 	
 	always@(posedge clk) begin  
@@ -57,7 +57,7 @@ module Debouncer(
 							  end
 					end
 				 end
-		 end
+		 end*/
 endmodule
 
 

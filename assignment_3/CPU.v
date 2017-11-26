@@ -23,6 +23,8 @@ module CPU(
    input 	[1:0] 	mode,
 	input					debug_core,
 	input					raw_next_inst,
+	input					mouse_data,
+	output				mouse_clk,
    output 				hsync,
    output 				vsync,
    output	[7:0] 	rgbcolor
@@ -79,7 +81,12 @@ module CPU(
 				  .data_from_ram		(data_from_ram_b),
 				  .ram_address			(ram_address_b),
 				  .data_to_ram			(data_to_ram_b),
-				  .web					(web));			
+				  .web					(web));	
+
+
+	IOController _ioController(.clk			(clk)
+										.data_in		(mouse_data)
+										.usb_clk		(mouse_clk));
 										  
 
 endmodule
