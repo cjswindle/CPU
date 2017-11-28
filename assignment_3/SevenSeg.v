@@ -19,14 +19,14 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module SevenSeg(
-	input clk,
-	input [15:0] inputNumber,
-	output reg [7:0] sev_seg,
-	output [3:0] an
+	input 		clk,
+	input 		[15:0] inputNumber,
+	output reg 	[7:0] sev_seg,
+	output 		[3:0] an
    );
 	
    // 7 seg variable states.
-	parameter num0 = 8'b11000000, // 0
+	parameter num0	= 8'b11000000, // 0
 				 num1 = 8'b11111001, // 1
 				 num2 = 8'b10100100, // 2
 				 num3 = 8'b10110000, // 3
@@ -35,7 +35,13 @@ module SevenSeg(
 				 num6 = 8'b10000010, // 6
 				 num7 = 8'b11111000, // 7
 				 num8 = 8'b10000000, // 8
-				 num9 = 8'b10010000; // 9
+				 num9 = 8'b10010000, // 9
+				 leta = 8'b10100000, // a
+				 letb = 8'b10000011, // b
+				 letc = 8'b11000110, // c
+				 letd = 8'b10100001, // d
+				 lete = 8'b10000110, // e
+				 letf = 8'b10001110; // f
 	
 	reg [19:0] counter;				// Counter for the clock.
 	reg [1:0] anode_counter;		// Keeps track of which anode to update.
@@ -85,6 +91,12 @@ module SevenSeg(
 			7:  sev_seg = num7;
 			8:  sev_seg = num8;
 			9:  sev_seg = num9;
+			10: sev_seg = leta;
+			11: sev_seg = letb;
+			12: sev_seg = letc;
+			13: sev_seg = letd;
+			14: sev_seg = lete;
+			15: sev_seg = letf;
 			default : sev_seg = 8'b10111111; //dash
 		endcase
 	end

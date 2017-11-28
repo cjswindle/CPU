@@ -21,7 +21,9 @@
 module IOController(
 	input				clk,
 	input				data_in,
-	output			usb_clk
+	output			usb_clk,
+	output [7:0]	sev_seg,
+	output [3:0]	an
 /*	output [7:0]	x,
 	output [7:0]	y*/
 	);
@@ -31,6 +33,8 @@ module IOController(
 	reg [11:0] 	counter 			= 0;
 	reg [11:0] 	next_counter	= 0;
 	reg 			usb_ready;
+	
+	reg [15:0]	latched_packet	= 0;
 	
 	
 	assign usb_ready		= (counter == 4000);
@@ -45,9 +49,9 @@ module IOController(
 		counter <= next_counter;
 	end
 
-	SevenSeg _sevenSeg(.clk				(clk)
-							 .inputNumber	()
-							 .seb_seg		()
-							 .an				());
+	SevenSeg _sevenSeg(.clk				(clk),
+							 .inputNumber	(latched_packet),
+							 .sev_seg		(sev_seg),
+							 .an				(an));
 
 endmodule

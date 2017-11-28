@@ -27,7 +27,9 @@ module CPU(
 	output				mouse_clk,
    output 				hsync,
    output 				vsync,
-   output	[7:0] 	rgbcolor
+   output	[7:0] 	rgbcolor,
+	output	[7:0]		sev_seg,
+	output	[3:0]		an
    );
 
 	// RAM wires for VGA
@@ -84,9 +86,11 @@ module CPU(
 				  .web					(web));	
 
 
-	IOController _ioController(.clk			(clk)
-										.data_in		(mouse_data)
-										.usb_clk		(mouse_clk));
+	IOController _ioController(.clk			(clk),
+										.data_in		(mouse_data),
+										.usb_clk		(mouse_clk),
+										.sev_seg		(sev_seg),
+										.an			(an));
 										  
 
 endmodule

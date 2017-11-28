@@ -1,4 +1,5 @@
 verilog work "VGASignalGenerator.v"
+verilog work "SevenSeg.v"
 verilog work "RegisterFile.v"
 verilog work "PixelGenerator.v"
 verilog work "VGAController.v"

@@ -4,14 +4,14 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
+Total REAL time to Xst completion: 1.00 secs
 Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 0.00 secs
+Total REAL time to Xst completion: 1.00 secs
 Total CPU time to Xst completion: 0.04 secs
  
 --> 
@@ -113,6 +113,8 @@ Cores Search Directories           : {"ipcore_dir"  }
 =========================================================================
 Analyzing Verilog file "/home/rajp/Projects/CPU/assignment_3/VGASignalGenerator.v" into library work
 Parsing module <VGASignalGenerator>.
+Analyzing Verilog file "/home/rajp/Projects/CPU/assignment_3/SevenSeg.v" into library work
+Parsing module <SevenSeg>.
 Analyzing Verilog file "/home/rajp/Projects/CPU/assignment_3/RegisterFile.v" into library work
 Parsing module <RegisterFile>.
 Analyzing Verilog file "/home/rajp/Projects/CPU/assignment_3/PixelGenerator.v" into library work
@@ -123,14 +125,17 @@ Analyzing Verilog file "/home/rajp/Projects/CPU/assignment_3/ipcore_dir/VGARAM.v
 Parsing module <VGARAM>.
 Analyzing Verilog file "/home/rajp/Projects/CPU/assignment_3/IOController.v" into library work
 Parsing module <IOController>.
-ERROR:HDLCompiler:806 - "/home/rajp/Projects/CPU/assignment_3/IOController.v" Line 27: Syntax error near ")".
+ERROR:HDLCompiler:806 - "/home/rajp/Projects/CPU/assignment_3/IOController.v" Line 49: Syntax error near ".".
+ERROR:HDLCompiler:329 - "/home/rajp/Projects/CPU/assignment_3/IOController.v" Line 36: Target <usb_ready> of concurrent assignment or output port connection should be a net type.
+ERROR:HDLCompiler:329 - "/home/rajp/Projects/CPU/assignment_3/IOController.v" Line 37: Target <next_counter> of concurrent assignment or output port connection should be a net type.
+ERROR:HDLCompiler:598 - "/home/rajp/Projects/CPU/assignment_3/IOController.v" Line 21: Module <IOController> ignored due to previous errors.
 Verilog file /home/rajp/Projects/CPU/assignment_3/IOController.v ignored due to errors
 --> 
 
 
-Total memory usage is 334912 kilobytes
+Total memory usage is 334800 kilobytes
 
-Number of errors   :    1 (   0 filtered)
+Number of errors   :    4 (   0 filtered)
 Number of warnings :    0 (   0 filtered)
 Number of infos    :    0 (   0 filtered)
 

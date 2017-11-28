@@ -5,7 +5,16 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="error" file="HDLCompiler" num="806" delta="new" >"/home/rajp/Projects/CPU/assignment_3/IOController.v" Line 27: Syntax error near &quot;<arg fmt="%s" index="1">)</arg>&quot;.
+<msg type="error" file="HDLCompiler" num="806" delta="old" >"/home/rajp/Projects/CPU/assignment_3/IOController.v" Line 49: Syntax error near &quot;<arg fmt="%s" index="1">.</arg>&quot;.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="329" delta="old" >"/home/rajp/Projects/CPU/assignment_3/IOController.v" Line 36: Target &lt;<arg fmt="%s" index="1">usb_ready</arg>&gt; of concurrent assignment or output port connection should be a net type.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="329" delta="old" >"/home/rajp/Projects/CPU/assignment_3/IOController.v" Line 37: Target &lt;<arg fmt="%s" index="1">next_counter</arg>&gt; of concurrent assignment or output port connection should be a net type.
+</msg>
+
+<msg type="error" file="HDLCompiler" num="598" delta="old" >"/home/rajp/Projects/CPU/assignment_3/IOController.v" Line 21: Module &lt;<arg fmt="%s" index="1">IOController</arg>&gt; ignored due to previous errors.
 </msg>
 
 </messages>
