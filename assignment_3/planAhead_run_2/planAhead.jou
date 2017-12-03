@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Sat Dec  2 17:22:33 2017
+# Process ID: 18213
+# Log file: /home/rajp/Projects/CPU/assignment_3/planAhead_run_2/planAhead.log
+# Journal file: /home/rajp/Projects/CPU/assignment_3/planAhead_run_2/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source /home/rajp/Projects/CPU/assignment_3/pa.fromNetlist.tcl

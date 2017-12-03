@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/rajp/Projects/CS_3710/assignment_3/CoreTest_isim_beh.exe" -prj "/home/rajp/Projects/CS_3710/assignment_3/CoreTest_beh.prj" "work.CoreTest" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/rajp/Projects/CPU/assignment_3/CoreTest_isim_beh.exe" -prj "/home/rajp/Projects/CPU/assignment_3/CoreTest_beh.prj" "CoreTest" "work.glbl" 

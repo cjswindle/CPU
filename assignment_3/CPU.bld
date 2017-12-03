@@ -5,7 +5,7 @@ Command Line: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/ngdbuild -intstyle
 ise -dd _ngo -sd ipcore_dir -nt timestamp -uc Nexys3_Master.ucf -p
 xc6slx16-csg324-3 CPU.ngc CPU.ngd
 
-Reading NGO file "/home/rajp/Projects/CS_3710/assignment_3/CPU.ngc" ...
+Reading NGO file "/home/rajp/Projects/CPU/assignment_3/CPU.ngc" ...
 Loading design module "ipcore_dir/VGARAM.ngc"...
 Gathering constraint information from source properties...
 Done.
@@ -28,7 +28,7 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   0
 
-Total memory usage is 435076 kilobytes
+Total memory usage is 435016 kilobytes
 
 Writing NGD file "CPU.ngd" ...
 Total REAL time to NGDBUILD completion:  2 sec

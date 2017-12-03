@@ -1,5 +1,5 @@
 ISim log file
-Running: /home/rajp/Projects/CS_3710/assignment_3/CoreTest_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/rajp/Projects/CS_3710/assignment_3/CoreTest_isim_beh.wdb 
+Running: /home/rajp/Projects/CPU/assignment_3/CoreTest_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/rajp/Projects/CPU/assignment_3/CoreTest_isim_beh.wdb 
 ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -14,13 +14,6 @@ Simulator is doing circuit initialization process.
  Block Memory Generator data initialization complete.
 Block Memory Generator CORE Generator module CoreTest.uut._vgaRam.inst.\native_mem_module.blk_mem_gen_v7_3_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
 Finished circuit initialization process.
-# restart
-# run 1.00us
-Simulator is doing circuit initialization process.
- Block Memory Generator CORE Generator module loading initial data...
- Block Memory Generator data initialization complete.
-Block Memory Generator CORE Generator module CoreTest.uut._vgaRam.inst.\native_mem_module.blk_mem_gen_v7_3_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
-Finished circuit initialization process.
 # run 1.00us
 # run 1.00us
 # run 1.00us
@@ -29,6 +22,6 @@ Finished circuit initialization process.
 # run 1.00us
 # run 1.00us
 # run 1.00us
-# run 1.00us
-# run 1.00us
+# run all
+Stopped at time : 5771350100 ps : File "/home/rajp/Projects/CPU/assignment_3/PixelGenerator.v" Line 76
 # exit 0

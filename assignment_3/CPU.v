@@ -24,7 +24,7 @@ module CPU(
 	input					debug_core,
 	input					raw_next_inst,
 	input					mouse_data,
-	output				mouse_clk,
+	input					mouse_clk,
    output 				hsync,
    output 				vsync,
    output	[7:0] 	rgbcolor,
@@ -48,9 +48,9 @@ module CPU(
 	wire debounced_next_inst;
 	
 	// Debounce the next instruction button
-	Debouncer _debouncer(.clk						(clk),
+/*	Debouncer _debouncer(.clk						(clk),
 								.raw_button				(raw_next_inst),
-								.debounced_button		(debounced_next_inst));
+								.debounced_button		(debounced_next_inst));*/
 
 	// RAM for the glyphs and text in ascii
    //synthesis attribute box_type VGARAM "black_box"
