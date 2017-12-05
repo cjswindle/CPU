@@ -20,8 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 module IOController(
 	input				clk,
-	input				data_in,
-	input				usb_clk,
+	inout				data_in,
+	inout				usb_clk,
+	output			left_button,
+	output			middle_button,
+	output			right_button,
+	output			x_overflow,
+	output			y_overflow,
 	output [7:0]	sev_seg,
 	output [3:0]	an
 /*	output [7:0]	x,
@@ -39,6 +44,14 @@ module IOController(
 				 PACKET_3					= 3'b101,
 				 DONE							= 3'b110;
 				 
+	wire	[15:0] latched_packet;
+	assign latched_packet = { current_x[7:0], current_y[7:0] };
+	
+	assign x_overflow 	= current_x[8];
+	assign y_overflow 	= current_y[8];
+	assign left_button	= current_btn[0];
+	assign right_button	= current_btn[1];
+	assign middle_button = current_btn[2];
 	
 	reg	[2:0]	current_state	= 0;
 	reg	[2:0] next_state		= 0;
@@ -53,9 +66,30 @@ module IOController(
 	wire			done_reading;
 	wire	[7:0]	mouse_data;
 	
+	wire idle_status;
+	
+	ReadFromMouse _readFromMouse(.clk					(clk),
+										  .data_in				(data_in),
+										  .usb_clk				(usb_clk),
+										  .read_from_mouse	(idle_status),
+										  .done_reading		(done_reading),
+										  .data_out				(mouse_data));
+	
+	WriteToMouse _writeToMouse(.clk					(clk),
+										.write_to_mouse	(write_to_mouse),
+										.data_to_write		(stream_command),
+										.usb_clk				(usb_clk),
+										.data_out			(data_in),
+										.idle_status		(idle_status),
+										.done_writing		(done_writing));
+	
 	always@(*) begin	
 		next_state 		= current_state;
 		write_to_mouse = 1'b0;
+		next_x			= current_x;
+		next_y			= current_y;
+		next_btn			= current_btn;
+		
 		case(current_state)
 		
 			SEND_STREAM_COMMAND_1: 	begin
@@ -117,8 +151,6 @@ module IOController(
 	SevenSeg _sevenSeg(.clk				(clk),
 							 .inputNumber	(latched_packet),
 							 .sev_seg		(sev_seg),
-							 .an				(an));
-							 
-							 
+							 .an				(an));						 
 
 endmodule

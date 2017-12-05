@@ -22,11 +22,16 @@ module CPU(
 	input 				clk,
    input 	[1:0] 	mode,
 	input					debug_core,
-	input					raw_next_inst,
-	input					mouse_data,
-	input					mouse_clk,
+	//input					raw_next_inst,
+	inout					mouse_data,
+	inout					mouse_clk,
    output 				hsync,
    output 				vsync,
+	output				x_overflow,
+	output				y_overflow,
+	output				left_button,
+	output				middle_button,
+	output				right_button,
    output	[7:0] 	rgbcolor,
 	output	[7:0]		sev_seg,
 	output	[3:0]		an
@@ -46,6 +51,7 @@ module CPU(
 	
 	// Debouncer wires
 	wire debounced_next_inst;
+	assign debounced_next_inst = 0;
 	
 	// Debounce the next instruction button
 /*	Debouncer _debouncer(.clk						(clk),
@@ -86,11 +92,16 @@ module CPU(
 				  .web					(web));	
 
 
-	IOController _ioController(.clk			(clk),
-										.data_in		(mouse_data),
-										.usb_clk		(mouse_clk),
-										.sev_seg		(sev_seg),
-										.an			(an));
+	IOController _ioController(.clk				(clk),
+										.data_in			(mouse_data),
+										.usb_clk			(mouse_clk),
+										.x_overflow		(x_overflow),
+										.y_overflow		(y_overflow),
+										.left_button	(left_button),
+										.middle_button	(middle_button),
+										.right_button	(right_button),
+										.sev_seg			(sev_seg),
+										.an				(an));
 										  
 
 endmodule

@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Sat Dec 02 17:23:30 2017
+// Written by: Map P.20131013 on Mon Dec 04 18:30:52 2017
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -30,7 +30,12 @@ COMP "mode<1>" LOCATE = SITE "T9" LEVEL 1;
 COMP "hsync" LOCATE = SITE "N6" LEVEL 1;
 COMP "debug_core" LOCATE = SITE "T5" LEVEL 1;
 COMP "vsync" LOCATE = SITE "P7" LEVEL 1;
+COMP "x_overflow" LOCATE = SITE "T11" LEVEL 1;
+COMP "y_overflow" LOCATE = SITE "R11" LEVEL 1;
+COMP "left_button" LOCATE = SITE "U15" LEVEL 1;
 COMP "mouse_clk" LOCATE = SITE "L13" LEVEL 1;
+COMP "right_button" LOCATE = SITE "U16" LEVEL 1;
+COMP "middle_button" LOCATE = SITE "V16" LEVEL 1;
 PIN
         _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[13].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram_pins<28>
         = BEL
@@ -331,7 +336,57 @@ PIN
         = BEL
         "_vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[14].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram"
         PINNAME CLKB;
-TIMEGRP sys_clk_pin = BEL "_vgaController/_pixelGenerator/glyph_state_1" BEL
+TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
+        "_ioController/current_state_FSM_FFd3" BEL
+        "_ioController/current_state_FSM_FFd1" BEL "_ioController/current_y_8"
+        BEL "_ioController/current_y_7" BEL "_ioController/current_y_6" BEL
+        "_ioController/current_y_5" BEL "_ioController/current_y_4" BEL
+        "_ioController/current_y_3" BEL "_ioController/current_y_2" BEL
+        "_ioController/current_y_1" BEL "_ioController/current_y_0" BEL
+        "_ioController/current_x_8" BEL "_ioController/current_x_7" BEL
+        "_ioController/current_x_6" BEL "_ioController/current_x_5" BEL
+        "_ioController/current_x_4" BEL "_ioController/current_x_3" BEL
+        "_ioController/current_x_2" BEL "_ioController/current_x_1" BEL
+        "_ioController/current_x_0" BEL "_ioController/current_btn_2" BEL
+        "_ioController/current_btn_1" BEL "_ioController/current_btn_0" BEL
+        "_ioController/_writeToMouse/current_data_counter_3" BEL
+        "_ioController/_writeToMouse/current_data_counter_2" BEL
+        "_ioController/_writeToMouse/current_data_counter_1" BEL
+        "_ioController/_writeToMouse/current_data_counter_0" BEL
+        "_ioController/_writeToMouse/current_state_FSM_FFd1" BEL
+        "_ioController/_writeToMouse/current_clk_counter_12" BEL
+        "_ioController/_writeToMouse/current_clk_counter_11" BEL
+        "_ioController/_writeToMouse/current_clk_counter_10" BEL
+        "_ioController/_writeToMouse/current_clk_counter_9" BEL
+        "_ioController/_writeToMouse/current_clk_counter_8" BEL
+        "_ioController/_writeToMouse/current_clk_counter_7" BEL
+        "_ioController/_writeToMouse/current_clk_counter_6" BEL
+        "_ioController/_writeToMouse/current_clk_counter_5" BEL
+        "_ioController/_writeToMouse/current_clk_counter_4" BEL
+        "_ioController/_writeToMouse/current_clk_counter_3" BEL
+        "_ioController/_writeToMouse/current_clk_counter_2" BEL
+        "_ioController/_writeToMouse/current_clk_counter_1" BEL
+        "_ioController/_writeToMouse/current_clk_counter_0" BEL
+        "_ioController/_writeToMouse/current_state_FSM_FFd3" BEL
+        "_ioController/_writeToMouse/current_state_FSM_FFd2" BEL
+        "_ioController/_writeToMouse/current_data_buffer_7" BEL
+        "_ioController/_writeToMouse/current_data_buffer_6" BEL
+        "_ioController/_writeToMouse/current_data_buffer_5" BEL
+        "_ioController/_writeToMouse/current_data_buffer_4" BEL
+        "_ioController/_writeToMouse/current_data_buffer_3" BEL
+        "_ioController/_writeToMouse/current_data_buffer_2" BEL
+        "_ioController/_writeToMouse/current_data_buffer_1" BEL
+        "_ioController/_writeToMouse/current_data_buffer_0" BEL
+        "_ioController/_writeToMouse/current_filter_7" BEL
+        "_ioController/_writeToMouse/current_filter_6" BEL
+        "_ioController/_writeToMouse/current_filter_5" BEL
+        "_ioController/_writeToMouse/current_filter_4" BEL
+        "_ioController/_writeToMouse/current_filter_3" BEL
+        "_ioController/_writeToMouse/current_filter_2" BEL
+        "_ioController/_writeToMouse/current_filter_1" BEL
+        "_ioController/_writeToMouse/current_filter_0" BEL
+        "_ioController/_writeToMouse/current_filter_clk" BEL
+        "_vgaController/_pixelGenerator/glyph_state_1" BEL
         "_vgaController/_pixelGenerator/glyph_state_0" BEL
         "_vgaController/_pixelGenerator/next_color_7" BEL
         "_vgaController/_pixelGenerator/next_color_6" BEL
@@ -719,6 +774,19 @@ TIMEGRP sys_clk_pin = BEL "_vgaController/_pixelGenerator/glyph_state_1" BEL
         "_core/_RegisterFile/lr0_5" BEL "_core/_RegisterFile/lr0_4" BEL
         "_core/_RegisterFile/lr0_3" BEL "_core/_RegisterFile/lr0_2" BEL
         "_core/_RegisterFile/lr0_1" BEL "_core/_RegisterFile/lr0_0" BEL
+        "_ioController/_readFromMouse/current_data_counter_3" BEL
+        "_ioController/_readFromMouse/current_data_counter_2" BEL
+        "_ioController/_readFromMouse/current_data_counter_1" BEL
+        "_ioController/_readFromMouse/current_data_counter_0" BEL
+        "_ioController/_readFromMouse/current_state_FSM_FFd1" BEL
+        "_ioController/_readFromMouse/current_state_FSM_FFd2" BEL
+        "_ioController/_readFromMouse/current_buffer_7" BEL
+        "_ioController/_readFromMouse/current_buffer_6" BEL
+        "_ioController/_readFromMouse/current_buffer_5" BEL
+        "_ioController/_readFromMouse/current_buffer_4" BEL
+        "_ioController/_readFromMouse/current_buffer_3" BEL
+        "_ioController/_readFromMouse/current_buffer_2" BEL
+        "_ioController/_readFromMouse/current_buffer_1" BEL
         "_ioController/_sevenSeg/anode_counter_1" BEL
         "_ioController/_sevenSeg/anode_counter_0" BEL
         "_ioController/_sevenSeg/counter_19" BEL
@@ -742,6 +810,8 @@ TIMEGRP sys_clk_pin = BEL "_vgaController/_pixelGenerator/glyph_state_1" BEL
         "_ioController/_sevenSeg/counter_1" BEL
         "_ioController/_sevenSeg/counter_0" BEL "_core/status_ZF" BEL
         "clk_BUFGP/BUFG" BEL
+        "_ioController/_readFromMouse/Mshreg_current_buffer_8" BEL
+        "_ioController/_readFromMouse/current_buffer_8" BEL
         "_vgaController/_pixelGenerator/Mshreg_random_number_27" BEL
         "_vgaController/_pixelGenerator/random_number_27" BEL
         "_vgaController/_pixelGenerator/Mshreg_random_number_30" BEL
