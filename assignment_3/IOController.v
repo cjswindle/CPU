@@ -19,18 +19,21 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module IOController(
-	input				clk,
-	inout				data_in,
-	inout				usb_clk,
-	output			left_button,
-	output			middle_button,
-	output			right_button,
-	output			x_overflow,
-	output			y_overflow,
-	output [7:0]	sev_seg,
-	output [3:0]	an
-/*	output [7:0]	x,
-	output [7:0]	y*/
+	input						clk,
+	inout						data_in,
+	inout						usb_clk,
+	output					left_button,
+	output					middle_button,
+	output					right_button,
+	output					x_overflow,
+	output					y_overflow,
+	output 		[7:0]		sev_seg,
+	output 		[3:0]		an,
+	output 		[15:0]	x,
+	output 		[15:0]	y,
+	output reg			 	data_ready,
+	output					left_click,
+	output					right_click
 	);
 	
 	parameter stream_command = 8'hf4;
@@ -44,14 +47,16 @@ module IOController(
 				 PACKET_3					= 3'b101,
 				 DONE							= 3'b110;
 				 
+	// Prints to Seven Seg			 
 	wire	[15:0] latched_packet;
 	assign latched_packet = { current_x[7:0], current_y[7:0] };
 	
-	assign x_overflow 	= current_x[8];
-	assign y_overflow 	= current_y[8];
-	assign left_button	= current_btn[0];
-	assign right_button	= current_btn[1];
-	assign middle_button = current_btn[2];
+	// Prints to LEDS
+	assign x_overflow 		= current_x[8];
+	assign y_overflow 		= current_y[8];
+	assign left_button		= current_btn[0];
+	assign right_button		= current_btn[1];
+	assign middle_button 	= current_btn[2];
 	
 	reg	[2:0]	current_state	= 0;
 	reg	[2:0] next_state		= 0;
@@ -65,6 +70,12 @@ module IOController(
 	wire			done_writing;
 	wire			done_reading;
 	wire	[7:0]	mouse_data;
+	
+	// Outputs
+	assign x = 					{ {8{current_x[8]}}, current_x[7:0] };
+	assign y = 					{ {8{current_y[8]}}, current_y[7:0] };
+	assign left_click = 		current_btn[0];
+	assign right_click = 	current_btn[1];
 	
 	wire idle_status;
 	
@@ -89,7 +100,7 @@ module IOController(
 		next_x			= current_x;
 		next_y			= current_y;
 		next_btn			= current_btn;
-		
+		data_ready		= 1'b0;
 		case(current_state)
 		
 			SEND_STREAM_COMMAND_1: 	begin
@@ -135,6 +146,7 @@ module IOController(
 			
 			DONE:			begin
 				next_state		= PACKET_1;
+				data_ready		= 1'b1;
 			end
 		
 		endcase

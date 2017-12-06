@@ -25,6 +25,11 @@ module RegisterFile(
 	input 		[4:0] 	write_index,
 	input 		[23:0] 	write_data,
 	input 					write_enable,
+	input						data_ready,
+	input						left_click,
+	input						right_click,
+	input			[15:0]	x,
+	input			[15:0]	y,
 	output reg 	[23:0] 	read_data_1,
 	output reg 	[23:0] 	read_data_2
    );
@@ -53,11 +58,6 @@ module RegisterFile(
 	reg [15:0] r20		= 16'hAAAA;
 	reg [15:0] r21		= 16'hAAAA;
 	reg [15:0] r22		= 16'hAAAA;
-	reg [15:0] r23		= 16'hAAAA;
-	reg [15:0] r24		= 16'hAAAA;
-	reg [15:0] r25		= 16'hAAAA;
-	reg [15:0] r26		= 16'hAAAA;
-	reg [15:0] r27		= 16'hAAAA;
 
 	// 24-bit registers
 	reg [23:0] lr0		= 24'hAAAAAA;
@@ -92,11 +92,13 @@ module RegisterFile(
 		 20 :  read_data_1 = {8'b0, r20};
 		 21 :  read_data_1 = {8'b0, r21};
 		 22 :  read_data_1 = {8'b0, r22};
-		 23 :  read_data_1 = {8'b0, r23};
-		 24 :  read_data_1 = {8'b0, r24};
-		 25 :  read_data_1 = {8'b0, r25};
-		 26 :  read_data_1 = {8'b0, r26};
-		 27 :  read_data_1 = {8'b0, r27};
+		 
+		 23 :  read_data_1 = x;
+		 24 :  read_data_1 = y;
+		 25 :  read_data_1 = {15'b0, data_ready};
+		 26 :  read_data_1 = {15'b0, left_click};
+		 27 :  read_data_1 = {15'b0, right_click};
+		 
 		 28 :  read_data_1 = lr0;
 		 29 :  read_data_1 = lr1;
 		 30 :  read_data_1 = lr2;
@@ -125,13 +127,15 @@ module RegisterFile(
 		 18 :  read_data_2 = {8'b0, r18};
 		 19 :  read_data_2 = {8'b0, r19};
 		 20 :  read_data_2 = {8'b0, r20};
-		 21 :  read_data_2 = {8'b0, r21};
+		 21 :  read_data_2 = {8'b0, r21};		 
 		 22 :  read_data_2 = {8'b0, r22};
-		 23 :  read_data_2 = {8'b0, r23};
-		 24 :  read_data_2 = {8'b0, r24};
-		 25 :  read_data_2 = {8'b0, r25};
-		 26 :  read_data_2 = {8'b0, r26};
-		 27 :  read_data_2 = {8'b0, r27};
+		 
+		 23 :  read_data_2 = x;
+		 24 :  read_data_2 = y;
+		 25 :  read_data_2 = {15'b0, data_ready};
+		 26 :  read_data_2 = {15'b0, left_click};
+		 27 :  read_data_2 = {15'b0, right_click};
+		 
 		 28 :  read_data_2 = lr0;
 		 29 :  read_data_2 = lr1;
 		 30 :  read_data_2 = lr2;
@@ -167,15 +171,15 @@ module RegisterFile(
 			20 :  r20 <= write_data[15:0];
 			21 :  r21 <= write_data[15:0];
 			22 :  r22 <= write_data[15:0];
-			23 :  r23 <= write_data[15:0];
-			24 :  r24 <= write_data[15:0];
-			25 :  r25 <= write_data[15:0];
-			26 :  r26 <= write_data[15:0];
-			27 :  r27 <= write_data[15:0];
+			// We don't need to write to 23 - 27 because they're used for mouse data.
+			
 			28 :  lr0 <= write_data;
 			29 :  lr1 <= write_data;
 			30 :  lr2 <= write_data;
 			31 :  lr3 <= write_data;
+			default: begin
+				// Do nothing.
+			end
 		 endcase
 	  end
 	end

@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Mon Dec 04 18:30:52 2017
+// Written by: Map P.20131013 on Tue Dec 05 10:07:47 2017
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -32,6 +32,7 @@ COMP "debug_core" LOCATE = SITE "T5" LEVEL 1;
 COMP "vsync" LOCATE = SITE "P7" LEVEL 1;
 COMP "x_overflow" LOCATE = SITE "T11" LEVEL 1;
 COMP "y_overflow" LOCATE = SITE "R11" LEVEL 1;
+COMP "data_ready_LED" LOCATE = SITE "M11" LEVEL 1;
 COMP "left_button" LOCATE = SITE "U15" LEVEL 1;
 COMP "mouse_clk" LOCATE = SITE "L13" LEVEL 1;
 COMP "right_button" LOCATE = SITE "U16" LEVEL 1;

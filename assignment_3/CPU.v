@@ -57,6 +57,12 @@ module CPU(
 /*	Debouncer _debouncer(.clk						(clk),
 								.raw_button				(raw_next_inst),
 								.debounced_button		(debounced_next_inst));*/
+	
+	wire	[15:0]	x;
+	wire	[15:0] 	y;
+	wire				data_ready;
+	wire				left_click;
+	wire				right_click;
 
 	// RAM for the glyphs and text in ascii
    //synthesis attribute box_type VGARAM "black_box"
@@ -87,21 +93,31 @@ module CPU(
 				  .debug_core			(debug_core),
 				  .debug_next_inst	(debounced_next_inst),
 				  .data_from_ram		(data_from_ram_b),
+				  .x						(x),
+				  .y						(y),
+				  .data_ready			(data_ready),
+				  .left_click			(left_click),
+				  .right_click			(right_click),
 				  .ram_address			(ram_address_b),
 				  .data_to_ram			(data_to_ram_b),
 				  .web					(web));	
 
 
-	IOController _ioController(.clk				(clk),
-										.data_in			(mouse_data),
-										.usb_clk			(mouse_clk),
-										.x_overflow		(x_overflow),
-										.y_overflow		(y_overflow),
-										.left_button	(left_button),
-										.middle_button	(middle_button),
-										.right_button	(right_button),
-										.sev_seg			(sev_seg),
-										.an				(an));
+	IOController _ioController(.clk					(clk),
+										.data_in				(mouse_data),
+										.usb_clk				(mouse_clk),
+										.x_overflow			(x_overflow),
+										.y_overflow			(y_overflow),
+										.left_button		(left_button),
+										.middle_button		(middle_button),
+										.right_button		(right_button),
+										.sev_seg				(sev_seg),
+										.an					(an),
+										.data_ready			(data_ready),
+										.x						(x),
+										.y						(y),
+										.right_click		(right_click),
+										.left_click			(left_click));
 										  
 
 endmodule

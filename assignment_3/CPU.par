@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-DarthVader::  Mon Dec 04 18:30:54 2017
+DarthVader::  Tue Dec 05 10:07:49 2017
 
 par -w -intstyle ise -ol high -mt off CPU_map.ncd CPU.ncd CPU.pcf 
 
@@ -28,9 +28,9 @@ Slice Logic Utilization:
     Number used as AND/OR logics:                0
   Number of Slice LUTs:                      1,199 out of   9,112   13%
     Number used as logic:                    1,191 out of   9,112   13%
-      Number using O6 output only:             814
+      Number using O6 output only:             813
       Number using O5 output only:              55
-      Number using O5 and O6:                  322
+      Number using O5 and O6:                  323
       Number used as ROM:                        0
     Number used as Memory:                       3 out of   2,176    1%
       Number used as Dual Port RAM:              0
@@ -45,12 +45,12 @@ Slice Logic Utilization:
       Number with other load:                    0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                   485 out of   2,278   21%
+  Number of occupied Slices:                   445 out of   2,278   19%
   Number of MUXCYs used:                       164 out of   4,556    3%
-  Number of LUT Flip Flop pairs used:        1,445
-    Number with an unused Flip Flop:           649 out of   1,445   44%
-    Number with an unused LUT:                 246 out of   1,445   17%
-    Number of fully used LUT-FF pairs:         550 out of   1,445   38%
+  Number of LUT Flip Flop pairs used:        1,403
+    Number with an unused Flip Flop:           607 out of   1,403   43%
+    Number with an unused LUT:                 204 out of   1,403   14%
+    Number of fully used LUT-FF pairs:         592 out of   1,403   42%
     Number of slice register sites lost
       to control set restrictions:               0 out of  18,224    0%
 
@@ -61,8 +61,8 @@ Slice Logic Distribution:
   over-mapped for a non-slice resource or if Placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                        33 out of     232   14%
-    Number of LOCed IOBs:                       33 out of      33  100%
+  Number of bonded IOBs:                        34 out of     232   14%
+    Number of LOCed IOBs:                       34 out of      34  100%
 
 Specific Feature Utilization:
   Number of RAMB16BWERs:                        30 out of      32   93%
@@ -99,13 +99,13 @@ Finished initial Timing Analysis.  REAL time: 3 secs
 Starting Router
 
 
-Phase  1  : 10982 unrouted;      REAL time: 3 secs 
+Phase  1  : 10953 unrouted;      REAL time: 3 secs 
 
-Phase  2  : 7892 unrouted;      REAL time: 4 secs 
+Phase  2  : 7876 unrouted;      REAL time: 4 secs 
 
-Phase  3  : 3648 unrouted;      REAL time: 8 secs 
+Phase  3  : 3675 unrouted;      REAL time: 8 secs 
 
-Phase  4  : 3648 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 8 secs 
+Phase  4  : 3675 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 8 secs 
 
 Updating file: CPU.ncd with current fully routed design.
 
@@ -119,9 +119,9 @@ Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL 
 
 Phase  9  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 12 secs 
 
-Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 12 secs 
-Total REAL time to Router completion: 12 secs 
-Total CPU time to Router completion: 12 secs 
+Phase 10  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 13 secs 
+Total REAL time to Router completion: 13 secs 
+Total CPU time to Router completion: 13 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -139,7 +139,7 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|           clk_BUFGP | BUFGMUX_X3Y13| No   |  335 |  0.064     |  0.910      |
+|           clk_BUFGP | BUFGMUX_X3Y13| No   |  321 |  0.067     |  0.913      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -159,8 +159,8 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_ | SETUP       |     0.357ns|     9.643ns|       0|           0
-  pin" 100 MHz HIGH 50%                     | HOLD        |     0.399ns|            |       0|           0
+  TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_ | SETUP       |     0.471ns|     9.529ns|       0|           0
+  pin" 100 MHz HIGH 50%                     | HOLD        |     0.379ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -172,7 +172,7 @@ Generating Pad Report.
 All signals are completely routed.
 
 Total REAL time to PAR completion: 13 secs 
-Total CPU time to PAR completion: 13 secs 
+Total CPU time to PAR completion: 14 secs 
 
 Peak Memory Usage:  650 MB
 

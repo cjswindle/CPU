@@ -23,6 +23,11 @@ module Core(
 	input						debug_core,
 	input						debug_next_inst,
 	input			[15:0]	data_from_ram,
+	input			[15:0]	x,
+	input			[15:0]	y,
+	input						data_ready,
+	input						left_click,
+	input						right_click,
 	output reg	[14:0]	ram_address,
 	output reg	[15:0]	data_to_ram,
 	output reg				web
@@ -73,7 +78,11 @@ module Core(
 										.read_index_2	(read_index_2), 
 										.write_index	(write_index), 
 										.write_enable	(write_enable), 
-										.write_data		(write_data));
+										.write_data		(write_data),
+										.x					(x),
+										.y					(y),
+										.left_click		(left_click),
+										.right_click	(right_click));
 										
 	// Data that needs to persist between instructions
 	reg [14:0] program_counter;

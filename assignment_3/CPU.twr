@@ -29,19 +29,19 @@ Timing constraint: TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH
 50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 120849 paths analyzed, 3894 endpoints analyzed, 0 failing endpoints
+ 120849 paths analyzed, 3909 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is   9.643ns.
+ Minimum period is   9.529ns.
 --------------------------------------------------------------------------------
 
-Paths for end point _core/data_from_reg_2_10 (SLICE_X8Y17.D2), 28 paths
+Paths for end point _core/data_from_reg_2_3 (SLICE_X32Y23.C1), 16 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     0.357ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[25].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
-  Destination:          _core/data_from_reg_2_10 (FF)
+Slack (setup path):     0.471ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
+  Destination:          _core/data_from_reg_2_3 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      9.564ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.044ns (0.446 - 0.490)
+  Data Path Delay:      9.464ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.030ns (0.367 - 0.397)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -52,36 +52,152 @@ Slack (setup path):     0.357ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[25].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_10
+  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_3
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    RAMB16_X1Y30.DOB1    Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[25].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[25].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-    SLICE_X18Y32.B4      net (fanout=1)        2.920   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[25].ram.ram_doutb<1>
-    SLICE_X18Y32.BMUX    Topbb                 0.361   _core/immediateL<8>
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_514
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_3_f7_6
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_2_f8_6
-    SLICE_X18Y30.B1      net (fanout=9)        0.869   data_from_ram_b<8>
-    SLICE_X18Y30.B       Tilo                  0.203   _core/read_index_2<3>
-                                                       _core/core_state_read_index_2<3>1
-    SLICE_X8Y17.D2       net (fanout=32)       2.954   _core/read_index_2<3>
-    SLICE_X8Y17.CLK      Tas                   0.407   _core/data_from_reg_2<10>
-                                                       _core/_RegisterFile/mux25_2_f7_F
-                                                       _core/_RegisterFile/mux25_2_f7
-                                                       _core/data_from_reg_2_10
+    RAMB16_X0Y8.DOB0     Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+    SLICE_X21Y33.A5      net (fanout=1)        2.659   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.ram_doutb
+    SLICE_X21Y33.AMUX    Tilo                  0.313   _core/immediateL<5>
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux71
+    SLICE_X37Y19.B4      net (fanout=108)      2.805   data_from_ram_b<6>
+    SLICE_X37Y19.B       Tilo                  0.259   _core/_RegisterFile/r15<3>
+                                                       _core/_RegisterFile/mux41_10
+    SLICE_X32Y23.C1      net (fanout=1)        1.166   _core/_RegisterFile/mux41_10
+    SLICE_X32Y23.CLK     Tas                   0.412   _core/data_from_reg_2<3>
+                                                       _core/_RegisterFile/mux41_2_f7_G
+                                                       _core/_RegisterFile/mux41_2_f7
+                                                       _core/data_from_reg_2_3
     -------------------------------------------------  ---------------------------
-    Total                                      9.564ns (2.821ns logic, 6.743ns route)
-                                                       (29.5% logic, 70.5% route)
+    Total                                      9.464ns (2.834ns logic, 6.630ns route)
+                                                       (29.9% logic, 70.1% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     0.445ns (requirement - (data path - clock path skew + uncertainty))
+Slack (setup path):     0.761ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[13].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
+  Destination:          _core/data_from_reg_2_3 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      9.181ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.023ns (0.367 - 0.390)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[13].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_3
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    RAMB16_X0Y10.DOB0    Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[13].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[13].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+    SLICE_X21Y33.A3      net (fanout=1)        2.376   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[13].ram.ram_doutb
+    SLICE_X21Y33.AMUX    Tilo                  0.313   _core/immediateL<5>
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux71
+    SLICE_X37Y19.B4      net (fanout=108)      2.805   data_from_ram_b<6>
+    SLICE_X37Y19.B       Tilo                  0.259   _core/_RegisterFile/r15<3>
+                                                       _core/_RegisterFile/mux41_10
+    SLICE_X32Y23.C1      net (fanout=1)        1.166   _core/_RegisterFile/mux41_10
+    SLICE_X32Y23.CLK     Tas                   0.412   _core/data_from_reg_2<3>
+                                                       _core/_RegisterFile/mux41_2_f7_G
+                                                       _core/_RegisterFile/mux41_2_f7
+                                                       _core/data_from_reg_2_3
+    -------------------------------------------------  ---------------------------
+    Total                                      9.181ns (2.834ns logic, 6.347ns route)
+                                                       (30.9% logic, 69.1% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     1.226ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
+  Destination:          _core/data_from_reg_2_3 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      8.719ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.020ns (0.367 - 0.387)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_3
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    RAMB16_X0Y12.DOB0    Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+    SLICE_X21Y33.A2      net (fanout=1)        2.205   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.ram_doutb
+    SLICE_X21Y33.A       Tilo                  0.259   _core/immediateL<5>
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux61
+    SLICE_X37Y19.B6      net (fanout=108)      2.568   data_from_ram_b<5>
+    SLICE_X37Y19.B       Tilo                  0.259   _core/_RegisterFile/r15<3>
+                                                       _core/_RegisterFile/mux41_10
+    SLICE_X32Y23.C1      net (fanout=1)        1.166   _core/_RegisterFile/mux41_10
+    SLICE_X32Y23.CLK     Tas                   0.412   _core/data_from_reg_2<3>
+                                                       _core/_RegisterFile/mux41_2_f7_G
+                                                       _core/_RegisterFile/mux41_2_f7
+                                                       _core/data_from_reg_2_3
+    -------------------------------------------------  ---------------------------
+    Total                                      8.719ns (2.780ns logic, 5.939ns route)
+                                                       (31.9% logic, 68.1% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point _core/data_from_reg_2_4 (SLICE_X20Y21.CX), 28 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     0.582ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[22].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
+  Destination:          _core/data_from_reg_2_4 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      9.323ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.060ns (0.419 - 0.479)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[22].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_4
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    RAMB16_X0Y28.DOB0    Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[22].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[22].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+    SLICE_X30Y44.B2      net (fanout=1)        2.701   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[22].ram.ram_doutb<0>
+    SLICE_X30Y44.BMUX    Topbb                 0.361   _core/immediateL<7>
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_512
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_3_f7_5
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_2_f8_5
+    SLICE_X27Y33.B3      net (fanout=10)       1.959   data_from_ram_b<7>
+    SLICE_X27Y33.B       Tilo                  0.259   _core/read_index_2<2>
+                                                       _core/core_state_read_index_2<2>1
+    SLICE_X20Y21.CX      net (fanout=16)       1.961   _core/read_index_2<2>
+    SLICE_X20Y21.CLK     Tdick                 0.232   _core/data_from_reg_2<4>
+                                                       _core/_RegisterFile/mux42_2_f7
+                                                       _core/data_from_reg_2_4
+    -------------------------------------------------  ---------------------------
+    Total                                      9.323ns (2.702ns logic, 6.621ns route)
+                                                       (29.0% logic, 71.0% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.692ns (requirement - (data path - clock path skew + uncertainty))
   Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[23].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
-  Destination:          _core/data_from_reg_2_10 (FF)
+  Destination:          _core/data_from_reg_2_4 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      9.482ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.038ns (0.446 - 0.484)
+  Data Path Delay:      9.210ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.063ns (0.419 - 0.482)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -92,36 +208,153 @@ Slack (setup path):     0.445ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[23].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_10
+  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[23].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_4
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    RAMB16_X1Y26.DOB1    Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[23].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+    RAMB16_X0Y18.DOB0    Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[23].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
                                                        _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[23].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-    SLICE_X18Y32.B1      net (fanout=1)        2.838   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[23].ram.ram_doutb<1>
-    SLICE_X18Y32.BMUX    Topbb                 0.361   _core/immediateL<8>
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_514
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_3_f7_6
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_2_f8_6
-    SLICE_X18Y30.B1      net (fanout=9)        0.869   data_from_ram_b<8>
-    SLICE_X18Y30.B       Tilo                  0.203   _core/read_index_2<3>
-                                                       _core/core_state_read_index_2<3>1
-    SLICE_X8Y17.D2       net (fanout=32)       2.954   _core/read_index_2<3>
-    SLICE_X8Y17.CLK      Tas                   0.407   _core/data_from_reg_2<10>
-                                                       _core/_RegisterFile/mux25_2_f7_F
-                                                       _core/_RegisterFile/mux25_2_f7
-                                                       _core/data_from_reg_2_10
+    SLICE_X30Y44.B6      net (fanout=1)        2.588   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[23].ram.ram_doutb<0>
+    SLICE_X30Y44.BMUX    Topbb                 0.361   _core/immediateL<7>
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_512
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_3_f7_5
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_2_f8_5
+    SLICE_X27Y33.B3      net (fanout=10)       1.959   data_from_ram_b<7>
+    SLICE_X27Y33.B       Tilo                  0.259   _core/read_index_2<2>
+                                                       _core/core_state_read_index_2<2>1
+    SLICE_X20Y21.CX      net (fanout=16)       1.961   _core/read_index_2<2>
+    SLICE_X20Y21.CLK     Tdick                 0.232   _core/data_from_reg_2<4>
+                                                       _core/_RegisterFile/mux42_2_f7
+                                                       _core/data_from_reg_2_4
     -------------------------------------------------  ---------------------------
-    Total                                      9.482ns (2.821ns logic, 6.661ns route)
+    Total                                      9.210ns (2.702ns logic, 6.508ns route)
+                                                       (29.3% logic, 70.7% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.744ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[26].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
+  Destination:          _core/data_from_reg_2_4 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      9.151ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.070ns (0.419 - 0.489)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[26].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_4
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    RAMB16_X0Y16.DOB0    Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[26].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[26].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+    SLICE_X30Y44.A6      net (fanout=1)        2.520   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[26].ram.ram_doutb<0>
+    SLICE_X30Y44.BMUX    Topab                 0.370   _core/immediateL<7>
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_46
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_3_f7_5
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_2_f8_5
+    SLICE_X27Y33.B3      net (fanout=10)       1.959   data_from_ram_b<7>
+    SLICE_X27Y33.B       Tilo                  0.259   _core/read_index_2<2>
+                                                       _core/core_state_read_index_2<2>1
+    SLICE_X20Y21.CX      net (fanout=16)       1.961   _core/read_index_2<2>
+    SLICE_X20Y21.CLK     Tdick                 0.232   _core/data_from_reg_2<4>
+                                                       _core/_RegisterFile/mux42_2_f7
+                                                       _core/data_from_reg_2_4
+    -------------------------------------------------  ---------------------------
+    Total                                      9.151ns (2.711ns logic, 6.440ns route)
+                                                       (29.6% logic, 70.4% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point _core/data_from_reg_1_15 (SLICE_X18Y48.D2), 16 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     0.607ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
+  Destination:          _core/data_from_reg_1_15 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      9.297ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.061ns (0.421 - 0.482)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_1_15
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    RAMB16_X0Y2.DOB0     Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+    SLICE_X25Y26.B5      net (fanout=1)        3.090   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.ram_doutb
+    SLICE_X25Y26.B       Tilo                  0.259   _core/dest_reg_index<1>
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux21
+    SLICE_X24Y49.C4      net (fanout=138)      2.583   data_from_ram_b<1>
+    SLICE_X24Y49.C       Tilo                  0.205   _core/_RegisterFile/r14<15>
+                                                       _core/_RegisterFile/mux6_92
+    SLICE_X18Y48.D2      net (fanout=1)        0.930   _core/_RegisterFile/mux6_92
+    SLICE_X18Y48.CLK     Tas                   0.380   _core/data_from_reg_1<15>
+                                                       _core/_RegisterFile/mux6_4
+                                                       _core/_RegisterFile/mux6_2_f7
+                                                       _core/data_from_reg_1_15
+    -------------------------------------------------  ---------------------------
+    Total                                      9.297ns (2.694ns logic, 6.603ns route)
+                                                       (29.0% logic, 71.0% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.874ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
+  Destination:          _core/data_from_reg_1_15 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      9.033ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.058ns (0.421 - 0.479)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_1_15
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    RAMB16_X0Y4.DOB0     Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+    SLICE_X25Y26.B3      net (fanout=1)        2.826   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.ram_doutb
+    SLICE_X25Y26.B       Tilo                  0.259   _core/dest_reg_index<1>
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux21
+    SLICE_X24Y49.C4      net (fanout=138)      2.583   data_from_ram_b<1>
+    SLICE_X24Y49.C       Tilo                  0.205   _core/_RegisterFile/r14<15>
+                                                       _core/_RegisterFile/mux6_92
+    SLICE_X18Y48.D2      net (fanout=1)        0.930   _core/_RegisterFile/mux6_92
+    SLICE_X18Y48.CLK     Tas                   0.380   _core/data_from_reg_1<15>
+                                                       _core/_RegisterFile/mux6_4
+                                                       _core/_RegisterFile/mux6_2_f7
+                                                       _core/data_from_reg_1_15
+    -------------------------------------------------  ---------------------------
+    Total                                      9.033ns (2.694ns logic, 6.339ns route)
                                                        (29.8% logic, 70.2% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     0.676ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[24].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
-  Destination:          _core/data_from_reg_2_10 (FF)
+Slack (setup path):     1.596ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
+  Destination:          _core/data_from_reg_1_15 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      9.254ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.035ns (0.446 - 0.481)
+  Data Path Delay:      8.298ns (Levels of Logic = 3)
+  Clock Path Skew:      -0.071ns (0.421 - 0.492)
   Source Clock:         clk_BUFGP rising at 0.000ns
   Destination Clock:    clk_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.035ns
@@ -132,329 +365,66 @@ Slack (setup path):     0.676ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[24].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_10
+  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_1_15
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    RAMB16_X1Y28.DOB1    Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[24].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[24].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-    SLICE_X18Y32.B3      net (fanout=1)        2.610   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[24].ram.ram_doutb<1>
-    SLICE_X18Y32.BMUX    Topbb                 0.361   _core/immediateL<8>
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_514
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_3_f7_6
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux_2_f8_6
-    SLICE_X18Y30.B1      net (fanout=9)        0.869   data_from_ram_b<8>
-    SLICE_X18Y30.B       Tilo                  0.203   _core/read_index_2<3>
-                                                       _core/core_state_read_index_2<3>1
-    SLICE_X8Y17.D2       net (fanout=32)       2.954   _core/read_index_2<3>
-    SLICE_X8Y17.CLK      Tas                   0.407   _core/data_from_reg_2<10>
-                                                       _core/_RegisterFile/mux25_2_f7_F
-                                                       _core/_RegisterFile/mux25_2_f7
-                                                       _core/data_from_reg_2_10
+    RAMB16_X1Y0.DOB0     Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
+    SLICE_X25Y26.A6      net (fanout=1)        2.300   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.ram_doutb
+    SLICE_X25Y26.A       Tilo                  0.259   _core/dest_reg_index<1>
+                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux11
+    SLICE_X24Y49.C3      net (fanout=137)      2.374   data_from_ram_b<0>
+    SLICE_X24Y49.C       Tilo                  0.205   _core/_RegisterFile/r14<15>
+                                                       _core/_RegisterFile/mux6_92
+    SLICE_X18Y48.D2      net (fanout=1)        0.930   _core/_RegisterFile/mux6_92
+    SLICE_X18Y48.CLK     Tas                   0.380   _core/data_from_reg_1<15>
+                                                       _core/_RegisterFile/mux6_4
+                                                       _core/_RegisterFile/mux6_2_f7
+                                                       _core/data_from_reg_1_15
     -------------------------------------------------  ---------------------------
-    Total                                      9.254ns (2.821ns logic, 6.433ns route)
-                                                       (30.5% logic, 69.5% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point _core/data_from_reg_2_4 (SLICE_X8Y27.D1), 16 paths
---------------------------------------------------------------------------------
-Slack (setup path):     0.401ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
-  Destination:          _core/data_from_reg_2_4 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      9.523ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.041ns (0.263 - 0.304)
-  Source Clock:         clk_BUFGP rising at 0.000ns
-  Destination Clock:    clk_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_4
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    RAMB16_X0Y8.DOB0     Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-    SLICE_X17Y26.A2      net (fanout=1)        2.000   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.ram_doutb
-    SLICE_X17Y26.A       Tilo                  0.259   _core/immediateL<5>
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux61
-    SLICE_X3Y29.A5       net (fanout=108)      3.568   data_from_ram_b<5>
-    SLICE_X3Y29.A        Tilo                  0.259   _core/_RegisterFile/mux42_7
-                                                       _core/_RegisterFile/mux42_7
-    SLICE_X8Y27.D1       net (fanout=1)        1.180   _core/_RegisterFile/mux42_7
-    SLICE_X8Y27.CLK      Tas                   0.407   _core/data_from_reg_2<4>
-                                                       _core/_RegisterFile/mux42_2_f7_F
-                                                       _core/_RegisterFile/mux42_2_f7
-                                                       _core/data_from_reg_2_4
-    -------------------------------------------------  ---------------------------
-    Total                                      9.523ns (2.775ns logic, 6.748ns route)
-                                                       (29.1% logic, 70.9% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     1.022ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
-  Destination:          _core/data_from_reg_2_4 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      8.912ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.031ns (0.263 - 0.294)
-  Source Clock:         clk_BUFGP rising at 0.000ns
-  Destination Clock:    clk_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_4
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    RAMB16_X0Y12.DOB0    Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-    SLICE_X17Y26.A3      net (fanout=1)        1.389   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.ram_doutb
-    SLICE_X17Y26.A       Tilo                  0.259   _core/immediateL<5>
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux61
-    SLICE_X3Y29.A5       net (fanout=108)      3.568   data_from_ram_b<5>
-    SLICE_X3Y29.A        Tilo                  0.259   _core/_RegisterFile/mux42_7
-                                                       _core/_RegisterFile/mux42_7
-    SLICE_X8Y27.D1       net (fanout=1)        1.180   _core/_RegisterFile/mux42_7
-    SLICE_X8Y27.CLK      Tas                   0.407   _core/data_from_reg_2<4>
-                                                       _core/_RegisterFile/mux42_2_f7_F
-                                                       _core/_RegisterFile/mux42_2_f7
-                                                       _core/data_from_reg_2_4
-    -------------------------------------------------  ---------------------------
-    Total                                      8.912ns (2.775ns logic, 6.137ns route)
-                                                       (31.1% logic, 68.9% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     1.416ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
-  Destination:          _core/data_from_reg_2_4 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      8.507ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.042ns (0.440 - 0.482)
-  Source Clock:         clk_BUFGP rising at 0.000ns
-  Destination Clock:    clk_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_4
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    RAMB16_X0Y26.DOB0    Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-    SLICE_X17Y26.A4      net (fanout=1)        2.747   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.ram_doutb
-    SLICE_X17Y26.AMUX    Tilo                  0.313   _core/immediateL<5>
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux71
-    SLICE_X3Y29.A3       net (fanout=108)      1.751   data_from_ram_b<6>
-    SLICE_X3Y29.A        Tilo                  0.259   _core/_RegisterFile/mux42_7
-                                                       _core/_RegisterFile/mux42_7
-    SLICE_X8Y27.D1       net (fanout=1)        1.180   _core/_RegisterFile/mux42_7
-    SLICE_X8Y27.CLK      Tas                   0.407   _core/data_from_reg_2<4>
-                                                       _core/_RegisterFile/mux42_2_f7_F
-                                                       _core/_RegisterFile/mux42_2_f7
-                                                       _core/data_from_reg_2_4
-    -------------------------------------------------  ---------------------------
-    Total                                      8.507ns (2.829ns logic, 5.678ns route)
-                                                       (33.3% logic, 66.7% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point _core/data_from_reg_2_5 (SLICE_X8Y28.C2), 16 paths
---------------------------------------------------------------------------------
-Slack (setup path):     0.415ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
-  Destination:          _core/data_from_reg_2_5 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      9.511ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.039ns (0.265 - 0.304)
-  Source Clock:         clk_BUFGP rising at 0.000ns
-  Destination Clock:    clk_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_5
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    RAMB16_X0Y8.DOB0     Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-    SLICE_X17Y26.A2      net (fanout=1)        2.000   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[11].ram.ram_doutb
-    SLICE_X17Y26.A       Tilo                  0.259   _core/immediateL<5>
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux61
-    SLICE_X3Y27.D3       net (fanout=108)      3.473   data_from_ram_b<5>
-    SLICE_X3Y27.D        Tilo                  0.259   _core/_RegisterFile/lr3<7>
-                                                       _core/_RegisterFile/mux43_9
-    SLICE_X8Y28.C2       net (fanout=1)        1.258   _core/_RegisterFile/mux43_9
-    SLICE_X8Y28.CLK      Tas                   0.412   _core/data_from_reg_2<5>
-                                                       _core/_RegisterFile/mux43_2_f7_G
-                                                       _core/_RegisterFile/mux43_2_f7
-                                                       _core/data_from_reg_2_5
-    -------------------------------------------------  ---------------------------
-    Total                                      9.511ns (2.780ns logic, 6.731ns route)
-                                                       (29.2% logic, 70.8% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     1.036ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
-  Destination:          _core/data_from_reg_2_5 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      8.900ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.029ns (0.265 - 0.294)
-  Source Clock:         clk_BUFGP rising at 0.000ns
-  Destination Clock:    clk_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_5
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    RAMB16_X0Y12.DOB0    Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-    SLICE_X17Y26.A3      net (fanout=1)        1.389   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.ram_doutb
-    SLICE_X17Y26.A       Tilo                  0.259   _core/immediateL<5>
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux61
-    SLICE_X3Y27.D3       net (fanout=108)      3.473   data_from_ram_b<5>
-    SLICE_X3Y27.D        Tilo                  0.259   _core/_RegisterFile/lr3<7>
-                                                       _core/_RegisterFile/mux43_9
-    SLICE_X8Y28.C2       net (fanout=1)        1.258   _core/_RegisterFile/mux43_9
-    SLICE_X8Y28.CLK      Tas                   0.412   _core/data_from_reg_2<5>
-                                                       _core/_RegisterFile/mux43_2_f7_G
-                                                       _core/_RegisterFile/mux43_2_f7
-                                                       _core/data_from_reg_2_5
-    -------------------------------------------------  ---------------------------
-    Total                                      8.900ns (2.780ns logic, 6.120ns route)
-                                                       (31.2% logic, 68.8% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     1.641ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
-  Destination:          _core/data_from_reg_2_5 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      8.284ns (Levels of Logic = 3)
-  Clock Path Skew:      -0.040ns (0.442 - 0.482)
-  Source Clock:         clk_BUFGP rising at 0.000ns
-  Destination Clock:    clk_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path at Slow Process Corner: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_5
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    RAMB16_X0Y26.DOB0    Trcko_DOB             1.850   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram
-    SLICE_X17Y26.A4      net (fanout=1)        2.747   _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[12].ram.ram_doutb
-    SLICE_X17Y26.AMUX    Tilo                  0.313   _core/immediateL<5>
-                                                       _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux71
-    SLICE_X3Y27.D5       net (fanout=108)      1.445   data_from_ram_b<6>
-    SLICE_X3Y27.D        Tilo                  0.259   _core/_RegisterFile/lr3<7>
-                                                       _core/_RegisterFile/mux43_9
-    SLICE_X8Y28.C2       net (fanout=1)        1.258   _core/_RegisterFile/mux43_9
-    SLICE_X8Y28.CLK      Tas                   0.412   _core/data_from_reg_2<5>
-                                                       _core/_RegisterFile/mux43_2_f7_G
-                                                       _core/_RegisterFile/mux43_2_f7
-                                                       _core/data_from_reg_2_5
-    -------------------------------------------------  ---------------------------
-    Total                                      8.284ns (2.834ns logic, 5.450ns route)
-                                                       (34.2% logic, 65.8% route)
+    Total                                      8.298ns (2.694ns logic, 5.604ns route)
+                                                       (32.5% logic, 67.5% route)
 
 --------------------------------------------------------------------------------
 
 Hold Paths: TS_sys_clk_pin = PERIOD TIMEGRP "sys_clk_pin" 100 MHz HIGH 50%;
 --------------------------------------------------------------------------------
 
-Paths for end point _vgaController/_pixelGenerator/random_number_3 (SLICE_X27Y35.DX), 1 path
+Paths for end point _vgaController/_pixelGenerator/random_number_7 (SLICE_X12Y17.DX), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.399ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               _vgaController/_pixelGenerator/random_number_2 (FF)
-  Destination:          _vgaController/_pixelGenerator/random_number_3 (FF)
+Slack (hold path):      0.379ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               _vgaController/_pixelGenerator/random_number_6 (FF)
+  Destination:          _vgaController/_pixelGenerator/random_number_7 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.399ns (Levels of Logic = 0)
+  Data Path Delay:      0.379ns (Levels of Logic = 0)
   Clock Path Skew:      0.000ns
   Source Clock:         clk_BUFGP rising at 10.000ns
   Destination Clock:    clk_BUFGP rising at 10.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path at Fast Process Corner: _vgaController/_pixelGenerator/random_number_2 to _vgaController/_pixelGenerator/random_number_3
+  Minimum Data Path at Fast Process Corner: _vgaController/_pixelGenerator/random_number_6 to _vgaController/_pixelGenerator/random_number_7
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X27Y35.CQ      Tcko                  0.198   _vgaController/_pixelGenerator/random_number<3>
-                                                       _vgaController/_pixelGenerator/random_number_2
-    SLICE_X27Y35.DX      net (fanout=2)        0.142   _vgaController/_pixelGenerator/random_number<2>
-    SLICE_X27Y35.CLK     Tckdi       (-Th)    -0.059   _vgaController/_pixelGenerator/random_number<3>
-                                                       _vgaController/_pixelGenerator/random_number_3
+    SLICE_X12Y17.CQ      Tcko                  0.200   _vgaController/_pixelGenerator/random_number<7>
+                                                       _vgaController/_pixelGenerator/random_number_6
+    SLICE_X12Y17.DX      net (fanout=2)        0.131   _vgaController/_pixelGenerator/random_number<6>
+    SLICE_X12Y17.CLK     Tckdi       (-Th)    -0.048   _vgaController/_pixelGenerator/random_number<7>
+                                                       _vgaController/_pixelGenerator/random_number_7
     -------------------------------------------------  ---------------------------
-    Total                                      0.399ns (0.257ns logic, 0.142ns route)
-                                                       (64.4% logic, 35.6% route)
+    Total                                      0.379ns (0.248ns logic, 0.131ns route)
+                                                       (65.4% logic, 34.6% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point _vgaController/_pixelGenerator/random_number_1 (SLICE_X27Y35.BX), 1 path
+Paths for end point _ioController/current_state_FSM_FFd3 (SLICE_X32Y14.C5), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.402ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               _vgaController/_pixelGenerator/random_number_0 (FF)
-  Destination:          _vgaController/_pixelGenerator/random_number_1 (FF)
-  Requirement:          0.000ns
-  Data Path Delay:      0.402ns (Levels of Logic = 0)
-  Clock Path Skew:      0.000ns
-  Source Clock:         clk_BUFGP rising at 10.000ns
-  Destination Clock:    clk_BUFGP rising at 10.000ns
-  Clock Uncertainty:    0.000ns
-
-  Minimum Data Path at Fast Process Corner: _vgaController/_pixelGenerator/random_number_0 to _vgaController/_pixelGenerator/random_number_1
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X27Y35.AQ      Tcko                  0.198   _vgaController/_pixelGenerator/random_number<3>
-                                                       _vgaController/_pixelGenerator/random_number_0
-    SLICE_X27Y35.BX      net (fanout=2)        0.145   _vgaController/_pixelGenerator/random_number<0>
-    SLICE_X27Y35.CLK     Tckdi       (-Th)    -0.059   _vgaController/_pixelGenerator/random_number<3>
-                                                       _vgaController/_pixelGenerator/random_number_1
-    -------------------------------------------------  ---------------------------
-    Total                                      0.402ns (0.257ns logic, 0.145ns route)
-                                                       (63.9% logic, 36.1% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point _ioController/current_state_FSM_FFd3 (SLICE_X37Y8.C5), 1 path
---------------------------------------------------------------------------------
-Slack (hold path):      0.415ns (requirement - (clock path skew + uncertainty - data path))
+Slack (hold path):      0.401ns (requirement - (clock path skew + uncertainty - data path))
   Source:               _ioController/current_state_FSM_FFd2 (FF)
   Destination:          _ioController/current_state_FSM_FFd3 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.415ns (Levels of Logic = 1)
+  Data Path Delay:      0.401ns (Levels of Logic = 1)
   Clock Path Skew:      0.000ns
   Source Clock:         clk_BUFGP rising at 10.000ns
   Destination Clock:    clk_BUFGP rising at 10.000ns
@@ -464,15 +434,43 @@ Slack (hold path):      0.415ns (requirement - (clock path skew + uncertainty - 
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X37Y8.CQ       Tcko                  0.198   _ioController/current_state_FSM_FFd2
+    SLICE_X32Y14.CQ      Tcko                  0.200   _ioController/current_state_FSM_FFd2
                                                        _ioController/current_state_FSM_FFd2
-    SLICE_X37Y8.C5       net (fanout=5)        0.062   _ioController/current_state_FSM_FFd2
-    SLICE_X37Y8.CLK      Tah         (-Th)    -0.155   _ioController/current_state_FSM_FFd2
+    SLICE_X32Y14.C5      net (fanout=5)        0.080   _ioController/current_state_FSM_FFd2
+    SLICE_X32Y14.CLK     Tah         (-Th)    -0.121   _ioController/current_state_FSM_FFd2
                                                        _ioController/current_state_FSM_FFd3-In1
                                                        _ioController/current_state_FSM_FFd3
     -------------------------------------------------  ---------------------------
-    Total                                      0.415ns (0.353ns logic, 0.062ns route)
-                                                       (85.1% logic, 14.9% route)
+    Total                                      0.401ns (0.321ns logic, 0.080ns route)
+                                                       (80.0% logic, 20.0% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point _ioController/_sevenSeg/anode_counter_0 (SLICE_X36Y8.A6), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.426ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               _ioController/_sevenSeg/anode_counter_0 (FF)
+  Destination:          _ioController/_sevenSeg/anode_counter_0 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.426ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         clk_BUFGP rising at 10.000ns
+  Destination Clock:    clk_BUFGP rising at 10.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: _ioController/_sevenSeg/anode_counter_0 to _ioController/_sevenSeg/anode_counter_0
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X36Y8.AQ       Tcko                  0.200   _ioController/_sevenSeg/anode_counter<1>
+                                                       _ioController/_sevenSeg/anode_counter_0
+    SLICE_X36Y8.A6       net (fanout=8)        0.036   _ioController/_sevenSeg/anode_counter<0>
+    SLICE_X36Y8.CLK      Tah         (-Th)    -0.190   _ioController/_sevenSeg/anode_counter<1>
+                                                       _ioController/_sevenSeg/Mcount_anode_counter_xor<0>11_INV_0
+                                                       _ioController/_sevenSeg/anode_counter_0
+    -------------------------------------------------  ---------------------------
+    Total                                      0.426ns (0.390ns logic, 0.036ns route)
+                                                       (91.5% logic, 8.5% route)
 
 --------------------------------------------------------------------------------
 
@@ -483,7 +481,7 @@ Slack: 6.876ns (period - min period limit)
   Min period limit: 3.124ns (320.102MHz) (Trper_CLKA(Fmax))
   Physical resource: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[14].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram/CLKA
   Logical resource: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[14].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram/CLKA
-  Location pin: RAMB16_X1Y22.CLKA
+  Location pin: RAMB16_X1Y30.CLKA
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 6.876ns (period - min period limit)
@@ -491,7 +489,7 @@ Slack: 6.876ns (period - min period limit)
   Min period limit: 3.124ns (320.102MHz) (Trper_CLKB(Fmax))
   Physical resource: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[14].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram/CLKB
   Logical resource: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[14].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram/CLKB
-  Location pin: RAMB16_X1Y22.CLKB
+  Location pin: RAMB16_X1Y30.CLKB
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 Slack: 6.876ns (period - min period limit)
@@ -499,7 +497,7 @@ Slack: 6.876ns (period - min period limit)
   Min period limit: 3.124ns (320.102MHz) (Trper_CLKA(Fmax))
   Physical resource: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram/CLKA
   Logical resource: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[15].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram/CLKA
-  Location pin: RAMB16_X1Y20.CLKA
+  Location pin: RAMB16_X1Y28.CLKA
   Clock network: clk_BUFGP
 --------------------------------------------------------------------------------
 
@@ -516,7 +514,7 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    9.643|         |         |         |
+clk            |    9.529|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
@@ -525,16 +523,16 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 120849 paths, 0 nets, and 8140 connections
+Constraints cover 120849 paths, 0 nets, and 8109 connections
 
 Design statistics:
-   Minimum period:   9.643ns{1}   (Maximum frequency: 103.702MHz)
+   Minimum period:   9.529ns{1}   (Maximum frequency: 104.943MHz)
 
 
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Mon Dec  4 18:31:12 2017 
+Analysis completed Tue Dec  5 10:08:09 2017 
 --------------------------------------------------------------------------------
 
 Trace Settings:
