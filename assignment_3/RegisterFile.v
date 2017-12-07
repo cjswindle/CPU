@@ -61,7 +61,7 @@ module RegisterFile(
 	
 	reg [15:0] r_mouse_x		= 16'b0;
 	reg [15:0] r_mouse_y		= 16'b0;
-	reg [15:0] r_data_ready	= 16'b0;
+	reg r_data_ready	= 1'b0;
 	reg r_left_click 	= 1'b0;
 	reg r_right_click = 1'b0;
 
@@ -145,9 +145,9 @@ module RegisterFile(
 		 
 		 27 :  read_data_2 = lr0;
 		 28 :  read_data_2 = lr1;
-		 28 :  read_data_2 = lr2;
+		 29 :  read_data_2 = lr2;
 		 30 :  read_data_2 = lr3;
-		 31 :  read_data_1 = lr4;
+		 31 :  read_data_2 = lr4;
 	  endcase
 	end
 

@@ -47,7 +47,7 @@ module PixelGenerator(
    // Calculates the address of the letter. 
    wire [14:0] pixel_address;
    //assign ascii_address = { 4'b0, latched_row[8:3], latched_column[9:3] };
-	assign pixel_address = {((80*latched_row) + {8'h00, latched_column[9:3]})}[14:0];	//paint pixel address
+	assign pixel_address = {((latched_row<<6)+(latched_row<<4)) + {8'h00, latched_column[9:3]}}[14:0];	//paint pixel address
 
    
    // Calculates the row of the letter. 

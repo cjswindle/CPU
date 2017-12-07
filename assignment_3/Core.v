@@ -94,13 +94,13 @@ module Core(
 	initial next_program_counter = 15'b0;
 	
 	reg [23:0] program_return_link;
-	//reg status_SF;
+	reg status_SF;
 	reg status_ZF;
 	reg status_OF;
 	reg [3:0] core_state;
 
 
-	//initial status_SF = 0;
+	initial status_SF = 0;
 	initial status_ZF = 0;
 	initial status_OF = 0;
 	initial core_state = 3'b0;
@@ -116,12 +116,10 @@ module Core(
 	initial opcode = 0;
 	
 	// Used to calculate the next SF, ZF, and OF for the next assembly instruction to use.
-	//reg next_status_SF;
+	reg next_status_SF;
 	reg next_status_ZF;
 	reg next_status_OF;
-	 
-
-	 
+	
 	reg [3:0]	next_state;		// Used to determine the next state based on the op-code. (do we need a next state? or can we just assign the state parameter to the next state?)
 
 	always@(*) begin
@@ -136,6 +134,7 @@ module Core(
 		write_index = dest_reg_index;
 		data_to_ram = 16'b0;
 		next_status_ZF = 0;
+		next_status_SF = 0;
 		
 		case(core_state)
 
@@ -186,17 +185,19 @@ module Core(
 												next_program_counter = (program_counter + 1'b1) + {{4{immediateL[10]}},immediateL};
 											end
 								ADDR:	begin
-												write_data = (80*dat_from_reg_1)+ (data_from_reg_2>>2);
-												write_index = 5'd27;
+												write_data = {(data_from_reg_1<<6)+(data_from_reg_1<<4) + (data_from_reg_2>>2)}[23:0];
+												write_index = 5'd31;
 												write_enable = 1;
 											end
 								JUMPL:	begin
-												//if(status_SF != status_OF)
-												//	next_program_counter = immediateL;
+												if(status_SF != status_OF) begin													
+													next_program_counter = immediateL;
+												end
 											end
 								JUMPG:	begin
-												//if(status_SF == status_OF && status_ZF == 0)
-												//	next_program_counter = immediateL;
+												if(status_SF == status_OF && status_ZF == 0) begin
+													next_program_counter = immediateL;
+												end
 											end
 								JUMPE:	begin
 												if(status_ZF == 1) begin
@@ -209,7 +210,7 @@ module Core(
 												end
 											end
 								CMP:		begin
-												//next_status_SF = ((data_from_reg_1[15])^(data_from_reg_1 - data_from_reg_2))[15];	//
+												next_status_SF = !(data_from_reg_1[15] == {data_from_reg_1 - data_from_reg_2}[15]);	//
 												next_status_ZF = !(|(data_from_reg_1 - data_from_reg_2));	//or all the bits together and invert for ZF bit
 												next_status_OF = (data_from_reg_1[15] == data_from_reg_2[15]); // THIS IS NOT RIGHT. Need to fix.
 											end
@@ -278,9 +279,9 @@ module Core(
 			EXECUTE:	begin
 							core_state <= FETCH;
 							program_counter <= next_program_counter;
-							//status_SF <= next_status_SF;
+							status_SF <= next_status_SF;
 							status_ZF <= next_status_ZF;
-							//status_OF <= next_status_ZF;
+							status_OF <= next_status_ZF;
 						end
 			LOAD1:	begin
 							core_state <= LOAD2;
