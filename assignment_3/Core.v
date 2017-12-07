@@ -41,7 +41,7 @@ module Core(
 	parameter SHLLI 	= 5'b00011;
 	parameter SHRLI 	= 5'b00100;
 	parameter JUMP 	= 5'b00101;
-	parameter JUMPLI 	= 5'b00110;
+	parameter ADDR 	= 5'b00110;
 	parameter JUMPL 	= 5'b00111;
 	parameter JUMPG 	= 5'b01000;
 	parameter JUMPE 	= 5'b01001;
@@ -52,6 +52,7 @@ module Core(
 	parameter LOADI 	= 5'b01110;
 	parameter STORE 	= 5'b01111;
 	parameter MOV 		= 5'b10000;
+	parameter STOREPXL = 5'b10001;
 
 	parameter FETCH 	= 3'b000;
 	parameter DECODE  = 3'b001;
@@ -87,7 +88,7 @@ module Core(
 										
 	// Data that needs to persist between instructions
 	reg [14:0] program_counter;
-	initial program_counter = 15'd9216;	//Start of assembly code (fix address)
+	initial program_counter = 15'd19216;	//Start of assembly code (fix address)
 	
 	reg [14:0] next_program_counter;
 	initial next_program_counter = 15'b0;
@@ -184,9 +185,10 @@ module Core(
 								JUMP:		begin
 												next_program_counter = (program_counter + 1'b1) + {{4{immediateL[10]}},immediateL};
 											end
-								JUMPLI:	begin
-												//next_program_counter = immediateL;
-												//next_program_return_link = program_counter + 16; //should this be $reta???
+								ADDR:	begin
+												write_data = (80*dat_from_reg_1)+ (data_from_reg_2>>2);
+												write_index = 5'd27;
+												write_enable = 1;
 											end
 								JUMPL:	begin
 												//if(status_SF != status_OF)
@@ -224,6 +226,9 @@ module Core(
 												write_data = immediateS;
 												write_enable = 1;
 											end
+								STOREPXL: begin
+												
+											 end
 							endcase
 						end
 			LOAD1:	begin
