@@ -17,7 +17,7 @@
 </TR>
 <TR ALIGN=LEFT>
 <TD BGCOLOR='#FFFF99'><B>Project ID (random number)</B></TD>
-<TD><xtag-property name="RandomID">7535cebb7d38416bb5e4750b0540b4d1</xtag-property>.<xtag-property name="ProjectID">DC454B7CDA680894B561A6D1DF042D83</xtag-property>.<xtag-property name="ProjectIteration">154</xtag-property></TD>
+<TD><xtag-property name="RandomID">7535cebb7d38416bb5e4750b0540b4d1</xtag-property>.<xtag-property name="ProjectID">DC454B7CDA680894B561A6D1DF042D83</xtag-property>.<xtag-property name="ProjectIteration">159</xtag-property></TD>
 <TD BGCOLOR='#FFFF99'><B>Target Package:</B></TD>
 <TD><xtag-property name="TargetPackage">csg324</xtag-property></TD>
 </TR>
@@ -29,7 +29,7 @@
 </TR>
 <TR ALIGN=LEFT>
 <TD BGCOLOR='#FFFF99'><B>Date Generated</B></TD>
-<TD><xtag-property name="Date Generated">2017-12-07T00:05:59</xtag-property></TD>
+<TD><xtag-property name="Date Generated">2017-12-07T01:27:42</xtag-property></TD>
 <TD BGCOLOR='#FFFF99'><B>Tool Flow</B></TD>
 <TD><xtag-property name="ToolFlow">ISE</xtag-property></TD>
 </TR>
@@ -47,7 +47,7 @@
 <TD BGCOLOR='#FFFF99'><B><xtag-env-param-name>CPU Name</xtag-env-param-name></B></TD>
 <TD><xtag-property name="<xtag-env-param-name>CPU Name</xtag-env-param-name>"><xtag-env-param-value>Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz</xtag-env-param-value></xtag-property></TD>
 <TD BGCOLOR='#FFFF99'><B><xtag-env-param-name>CPU Speed</xtag-env-param-name></B></TD>
-<TD><xtag-property name="<xtag-env-param-name>CPU Speed</xtag-env-param-name>"><xtag-env-param-value>3167.004 MHz</xtag-env-param-value></xtag-property></TD>
+<TD><xtag-property name="<xtag-env-param-name>CPU Speed</xtag-env-param-name>"><xtag-env-param-value>3154.150 MHz</xtag-env-param-value></xtag-property></TD>
 </TR>
 <TR ALIGN=LEFT>
 <TD BGCOLOR='#FFFF99'><B><xtag-env-param-name>OS Name</xtag-env-param-name></B></TD>
@@ -59,7 +59,7 @@
 <TD BGCOLOR='#FFFF99'><B><xtag-env-param-name>CPU Name</xtag-env-param-name></B></TD>
 <TD><xtag-property name="<xtag-env-param-name>CPU Name</xtag-env-param-name>"><xtag-env-param-value>Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz</xtag-env-param-value></xtag-property></TD>
 <TD BGCOLOR='#FFFF99'><B><xtag-env-param-name>CPU Speed</xtag-env-param-name></B></TD>
-<TD><xtag-property name="<xtag-env-param-name>CPU Speed</xtag-env-param-name>"><xtag-env-param-value>3356.958 MHz</xtag-env-param-value></xtag-property></TD>
+<TD><xtag-property name="<xtag-env-param-name>CPU Speed</xtag-env-param-name>"><xtag-env-param-value>3006.726 MHz</xtag-env-param-value></xtag-property></TD>
 </TR>
 </xtag-section></TABLE>
 &nbsp;<BR><TABLE BORDER CELLSPACING=0 WIDTH='100%'>
@@ -1838,6 +1838,36 @@
 <LI><xtag-cmdline>par -w -intstyle ise -ol high -mt off &lt;fname&gt;.ncd &lt;fname&gt;.ncd &lt;fname&gt;.pcf</xtag-cmdline></LI>
 <LI><xtag-cmdline>trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml &lt;fname&gt;.twx &lt;fname&gt;.ncd -o &lt;fname&gt;.twr &lt;fname&gt;.pcf -ucf &lt;fname&gt;.ucf</xtag-cmdline></LI>
 <LI><xtag-cmdline>bitgen -intstyle ise -f &lt;fname&gt;.ut &lt;fname&gt;.ncd</xtag-cmdline></LI>
+<LI><xtag-cmdline>xst -intstyle ise -ifn &lt;ise_file&gt;</xtag-cmdline></LI>
+<LI><xtag-cmdline>ngdbuild -intstyle ise -dd _ngo -sd &lt;dname&gt; -nt timestamp -uc &lt;fname&gt;.ucf -p xc6slx16-csg324-3 &lt;fname&gt;.ngc &lt;fname&gt;.ngd</xtag-cmdline></LI>
+<LI><xtag-cmdline>map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o &lt;fname&gt;.ncd &lt;fname&gt;.ngd &lt;fname&gt;.pcf</xtag-cmdline></LI>
+<LI><xtag-cmdline>par -w -intstyle ise -ol high -mt off &lt;fname&gt;.ncd &lt;fname&gt;.ncd &lt;fname&gt;.pcf</xtag-cmdline></LI>
+<LI><xtag-cmdline>trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml &lt;fname&gt;.twx &lt;fname&gt;.ncd -o &lt;fname&gt;.twr &lt;fname&gt;.pcf -ucf &lt;fname&gt;.ucf</xtag-cmdline></LI>
+<LI><xtag-cmdline>bitgen -intstyle ise -f &lt;fname&gt;.ut &lt;fname&gt;.ncd</xtag-cmdline></LI>
+<LI><xtag-cmdline>xst -intstyle ise -ifn &lt;ise_file&gt;</xtag-cmdline></LI>
+<LI><xtag-cmdline>ngdbuild -intstyle ise -dd _ngo -sd &lt;dname&gt; -nt timestamp -uc &lt;fname&gt;.ucf -p xc6slx16-csg324-3 &lt;fname&gt;.ngc &lt;fname&gt;.ngd</xtag-cmdline></LI>
+<LI><xtag-cmdline>map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o &lt;fname&gt;.ncd &lt;fname&gt;.ngd &lt;fname&gt;.pcf</xtag-cmdline></LI>
+<LI><xtag-cmdline>par -w -intstyle ise -ol high -mt off &lt;fname&gt;.ncd &lt;fname&gt;.ncd &lt;fname&gt;.pcf</xtag-cmdline></LI>
+<LI><xtag-cmdline>trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml &lt;fname&gt;.twx &lt;fname&gt;.ncd -o &lt;fname&gt;.twr &lt;fname&gt;.pcf -ucf &lt;fname&gt;.ucf</xtag-cmdline></LI>
+<LI><xtag-cmdline>bitgen -intstyle ise -f &lt;fname&gt;.ut &lt;fname&gt;.ncd</xtag-cmdline></LI>
+<LI><xtag-cmdline>xst -intstyle ise -ifn &lt;ise_file&gt;</xtag-cmdline></LI>
+<LI><xtag-cmdline>ngdbuild -intstyle ise -dd _ngo -sd &lt;dname&gt; -nt timestamp -uc &lt;fname&gt;.ucf -p xc6slx16-csg324-3 &lt;fname&gt;.ngc &lt;fname&gt;.ngd</xtag-cmdline></LI>
+<LI><xtag-cmdline>map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o &lt;fname&gt;.ncd &lt;fname&gt;.ngd &lt;fname&gt;.pcf</xtag-cmdline></LI>
+<LI><xtag-cmdline>par -w -intstyle ise -ol high -mt off &lt;fname&gt;.ncd &lt;fname&gt;.ncd &lt;fname&gt;.pcf</xtag-cmdline></LI>
+<LI><xtag-cmdline>trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml &lt;fname&gt;.twx &lt;fname&gt;.ncd -o &lt;fname&gt;.twr &lt;fname&gt;.pcf -ucf &lt;fname&gt;.ucf</xtag-cmdline></LI>
+<LI><xtag-cmdline>bitgen -intstyle ise -f &lt;fname&gt;.ut &lt;fname&gt;.ncd</xtag-cmdline></LI>
+<LI><xtag-cmdline>xst -intstyle ise -ifn &lt;ise_file&gt;</xtag-cmdline></LI>
+<LI><xtag-cmdline>ngdbuild -intstyle ise -dd _ngo -sd &lt;dname&gt; -nt timestamp -uc &lt;fname&gt;.ucf -p xc6slx16-csg324-3 &lt;fname&gt;.ngc &lt;fname&gt;.ngd</xtag-cmdline></LI>
+<LI><xtag-cmdline>map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o &lt;fname&gt;.ncd &lt;fname&gt;.ngd &lt;fname&gt;.pcf</xtag-cmdline></LI>
+<LI><xtag-cmdline>par -w -intstyle ise -ol high -mt off &lt;fname&gt;.ncd &lt;fname&gt;.ncd &lt;fname&gt;.pcf</xtag-cmdline></LI>
+<LI><xtag-cmdline>trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml &lt;fname&gt;.twx &lt;fname&gt;.ncd -o &lt;fname&gt;.twr &lt;fname&gt;.pcf -ucf &lt;fname&gt;.ucf</xtag-cmdline></LI>
+<LI><xtag-cmdline>bitgen -intstyle ise -f &lt;fname&gt;.ut &lt;fname&gt;.ncd</xtag-cmdline></LI>
+<LI><xtag-cmdline>xst -intstyle ise -ifn &lt;ise_file&gt;</xtag-cmdline></LI>
+<LI><xtag-cmdline>ngdbuild -intstyle ise -dd _ngo -sd &lt;dname&gt; -nt timestamp -uc &lt;fname&gt;.ucf -p xc6slx16-csg324-3 &lt;fname&gt;.ngc &lt;fname&gt;.ngd</xtag-cmdline></LI>
+<LI><xtag-cmdline>map -intstyle ise -p xc6slx16-csg324-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o &lt;fname&gt;.ncd &lt;fname&gt;.ngd &lt;fname&gt;.pcf</xtag-cmdline></LI>
+<LI><xtag-cmdline>par -w -intstyle ise -ol high -mt off &lt;fname&gt;.ncd &lt;fname&gt;.ncd &lt;fname&gt;.pcf</xtag-cmdline></LI>
+<LI><xtag-cmdline>trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml &lt;fname&gt;.twx &lt;fname&gt;.ncd -o &lt;fname&gt;.twr &lt;fname&gt;.pcf -ucf &lt;fname&gt;.ucf</xtag-cmdline></LI>
+<LI><xtag-cmdline>bitgen -intstyle ise -f &lt;fname&gt;.ut &lt;fname&gt;.ncd</xtag-cmdline></LI>
 <LI><xtag-cmdline>fuse</xtag-cmdline></LI>
 </xtag-section></UL></TD></TR>
 </TABLE>
@@ -1845,8 +1875,8 @@
 
 <tr>
   <td><xtag-program-name>bitgen</xtag-program-name></td>
-  <td><xtag-total-run-started>106</xtag-total-run-started></td>
-  <td><xtag-total-run-finished>105</xtag-total-run-finished></td>
+  <td><xtag-total-run-started>111</xtag-total-run-started></td>
+  <td><xtag-total-run-finished>110</xtag-total-run-finished></td>
   <td><xtag-total-error>0</xtag-total-error></td>
   <td><xtag-total-fatal-error>0</xtag-total-fatal-error></td>
   <td><xtag-total-internal-error>0</xtag-total-internal-error></td>
@@ -1855,8 +1885,8 @@
 </tr>
 <tr>
   <td><xtag-program-name>map</xtag-program-name></td>
-  <td><xtag-total-run-started>115</xtag-total-run-started></td>
-  <td><xtag-total-run-finished>111</xtag-total-run-finished></td>
+  <td><xtag-total-run-started>120</xtag-total-run-started></td>
+  <td><xtag-total-run-finished>116</xtag-total-run-finished></td>
   <td><xtag-total-error>0</xtag-total-error></td>
   <td><xtag-total-fatal-error>0</xtag-total-fatal-error></td>
   <td><xtag-total-internal-error>0</xtag-total-internal-error></td>
@@ -1875,8 +1905,8 @@
 </tr>
 <tr>
   <td><xtag-program-name>ngcbuild</xtag-program-name></td>
-  <td><xtag-total-run-started>34</xtag-total-run-started></td>
-  <td><xtag-total-run-finished>34</xtag-total-run-finished></td>
+  <td><xtag-total-run-started>39</xtag-total-run-started></td>
+  <td><xtag-total-run-finished>39</xtag-total-run-finished></td>
   <td><xtag-total-error>0</xtag-total-error></td>
   <td><xtag-total-fatal-error>0</xtag-total-fatal-error></td>
   <td><xtag-total-internal-error>0</xtag-total-internal-error></td>
@@ -1885,8 +1915,8 @@
 </tr>
 <tr>
   <td><xtag-program-name>ngdbuild</xtag-program-name></td>
-  <td><xtag-total-run-started>125</xtag-total-run-started></td>
-  <td><xtag-total-run-finished>125</xtag-total-run-finished></td>
+  <td><xtag-total-run-started>130</xtag-total-run-started></td>
+  <td><xtag-total-run-finished>130</xtag-total-run-finished></td>
   <td><xtag-total-error>0</xtag-total-error></td>
   <td><xtag-total-fatal-error>0</xtag-total-fatal-error></td>
   <td><xtag-total-internal-error>0</xtag-total-internal-error></td>
@@ -1895,8 +1925,8 @@
 </tr>
 <tr>
   <td><xtag-program-name>par</xtag-program-name></td>
-  <td><xtag-total-run-started>110</xtag-total-run-started></td>
-  <td><xtag-total-run-finished>110</xtag-total-run-finished></td>
+  <td><xtag-total-run-started>115</xtag-total-run-started></td>
+  <td><xtag-total-run-finished>115</xtag-total-run-finished></td>
   <td><xtag-total-error>0</xtag-total-error></td>
   <td><xtag-total-fatal-error>0</xtag-total-fatal-error></td>
   <td><xtag-total-internal-error>0</xtag-total-internal-error></td>
@@ -1905,8 +1935,8 @@
 </tr>
 <tr>
   <td><xtag-program-name>trce</xtag-program-name></td>
-  <td><xtag-total-run-started>108</xtag-total-run-started></td>
-  <td><xtag-total-run-finished>108</xtag-total-run-finished></td>
+  <td><xtag-total-run-started>113</xtag-total-run-started></td>
+  <td><xtag-total-run-finished>113</xtag-total-run-finished></td>
   <td><xtag-total-error>0</xtag-total-error></td>
   <td><xtag-total-fatal-error>0</xtag-total-fatal-error></td>
   <td><xtag-total-internal-error>0</xtag-total-internal-error></td>
@@ -1915,8 +1945,8 @@
 </tr>
 <tr>
   <td><xtag-program-name>xst</xtag-program-name></td>
-  <td><xtag-total-run-started>284</xtag-total-run-started></td>
-  <td><xtag-total-run-finished>283</xtag-total-run-finished></td>
+  <td><xtag-total-run-started>294</xtag-total-run-started></td>
+  <td><xtag-total-run-finished>293</xtag-total-run-finished></td>
   <td><xtag-total-error>0</xtag-total-error></td>
   <td><xtag-total-fatal-error>0</xtag-total-fatal-error></td>
   <td><xtag-total-internal-error>0</xtag-total-internal-error></td>
@@ -1950,7 +1980,7 @@
 </TR><TR><TD><xtag-design-property-name>PROP_intProjectCreationTimestamp</xtag-design-property-name>=<xtag-design-property-value>2017-09-14T11:54:15</xtag-design-property-value></TD>
 <TD><xtag-design-property-name>PROP_intWbtProjectID</xtag-design-property-name>=<xtag-design-property-value>DC454B7CDA680894B561A6D1DF042D83</xtag-design-property-value></TD>
 
-</TR><TR><TD><xtag-process-property-name>PROP_intWbtProjectIteration</xtag-process-property-name>=<xtag-process-property-value>154</xtag-process-property-value></TD>
+</TR><TR><TD><xtag-process-property-name>PROP_intWbtProjectIteration</xtag-process-property-name>=<xtag-process-property-value>159</xtag-process-property-value></TD>
 <TD><xtag-design-property-name>PROP_intWorkingDirLocWRTProjDir</xtag-design-property-name>=<xtag-design-property-value>Same</xtag-design-property-value></TD>
 
 </TR><TR><TD><xtag-design-property-name>PROP_intWorkingDirUsed</xtag-design-property-name>=<xtag-design-property-value>No</xtag-design-property-value></TD>
