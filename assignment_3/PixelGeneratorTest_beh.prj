@@ -1,0 +1,3 @@
+verilog work "PixelGenerator.v"
+verilog work "PixelGeneratorTest.v"
+verilog work "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v"

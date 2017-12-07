@@ -30,54 +30,60 @@ module PixelGenerator(
    );
    
    // Latched row and column so they only change when req is high.
-   reg [8:0] latched_row;
+   reg [7:0] latched_row;
    reg [9:0] latched_column;
    
    reg [30:0] random_number;
    initial random_number = 30'd250000;
    
-   // Keeps track of the glyph state.
-   reg [1:0] glyph_state;
-   initial glyph_state = 0;
+   // Keeps track of the pixel state.
+   reg [1:0] pixel_state;
+   initial pixel_state = 0;
    
-   
-   reg glyph;
    // Latch data so we know it wont change. 
    reg [15:0] latched_data_in;
    initial latched_data_in = 0;
    
-   // Upper bits of the data coming from the RAM
-   wire [7:0] upper_bits;
-   assign upper_bits = data_from_ram[15:8];
-
-   // Upper bits of the data coming from the RAM  
-   wire [7:0] lower_bits;
-   assign lower_bits = data_from_ram[7:0];
-   
    // Calculates the address of the letter. 
-   wire [14:0] ascii_address;
-   assign ascii_address = { 4'b0, latched_row[8:3], latched_column[9:3] };
+   wire [14:0] pixel_address;
+   //assign ascii_address = { 4'b0, latched_row[8:3], latched_column[9:3] };
+	assign pixel_address = {((80*latched_row) + {8'h00, latched_column[9:3]})}[14:0];	//paint pixel address
+
    
    // Calculates the row of the letter. 
-   wire [14:0] letter_address;
-   assign letter_address = 14'h2000 + {latched_data_in[7:0], latched_row[2:1]};
+   wire [14:0] color_address;
+   //assign letter_address = 14'h2000 + {latched_data_in[7:0], latched_row[2:1]};
+   assign color_address = 15'h4B00 + color_index;
+	
+	reg [3:0] color_index;
+
    
    always@(*) begin
-      // Set the glyph depending on if we need upper bits or lower bits.
-      if (!latched_row[0]) begin
-         glyph = upper_bits[latched_column[2:0]];
-      end
-      else begin
-         glyph = lower_bits[latched_column[2:0]];
-      end  
+	
+		color_index = 3'b0;
+      case (latched_column[2:1]) 
+			0: begin
+				color_index = latched_data_in[15:12];
+			end
+			1: begin
+				color_index = latched_data_in[11:8];
+			end
+			2: begin
+				color_index = latched_data_in[7:4];
+			end
+			3: begin
+				color_index = latched_data_in[3:0];
+			end
+		endcase
+		
       
       // Case statements for get the data out of the ram. 
-      case (glyph_state)
+      case (pixel_state)
          0: begin
-               ram_address = ascii_address;
+               ram_address = pixel_address;
             end
          default: begin 
-               ram_address = letter_address;
+               ram_address = color_address;
             end
       endcase
    end
@@ -87,22 +93,22 @@ module PixelGenerator(
       random_number <= random_number << 2;
       random_number <= { random_number[29:0], random_number[30]^random_number[27] };
       
-      glyph_state <= glyph_state + 1'b1;
+      pixel_state <= pixel_state + 1'b1;
       
       // Only latch when the request is high. 
       if (request_color) begin
-         glyph_state <= 1'b0;
-         latched_row <= row;
+         pixel_state <= 1'b0;
+         latched_row <= row[8:1];
          latched_column <= column;
          case (mode)
-            0: next_color <= {8{latched_column[5] ^ latched_row[5]}};
+            0: next_color <= data_from_ram[7:0];
             1: next_color <= random_number[7:0];
-            2: next_color <= {8{glyph}};
-            default: next_color <= 8'b11111111;
+            2: next_color <= {8{latched_column[5] ^ latched_row[4]}};
+            default: next_color <= 8'b00010010;
          endcase
       end
       latched_data_in <= 15'b0;
-      if (glyph_state == 1) begin
+      if (pixel_state == 1) begin
          latched_data_in <= data_from_ram;
       end
    end

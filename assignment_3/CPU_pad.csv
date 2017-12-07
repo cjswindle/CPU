@@ -1,7 +1,7 @@
 #Release 14.7 - par P.20131013 (lin64)
 #Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-#Tue Dec  5 10:08:03 2017
+#Wed Dec  6 23:27:38 2017
 
 #
 ## NOTE: This file is designed to be imported into a spreadsheet program
@@ -227,7 +227,7 @@ M7,,,VCCINT,,,,,,,,1.2,,,,
 M8,,IOBM,IO_L40P_2,UNUSED,,2,,,,,,,,,
 M9,,,VCCAUX,,,,,,,,2.5,,,,
 M10,,IOBM,IO_L22P_2,UNUSED,,2,,,,,,,,,
-M11,data_ready_LED,IOB,IO_L15P_2,OUTPUT,LVCMOS33,2,12,SLOW,,,,LOCATED,NO,NONE,
+M11,,IOBM,IO_L15P_2,UNUSED,,2,,,,,,,,,
 M12,,,VCCINT,,,,,,,,1.2,,,,
 M13,sev_seg<7>,IOB,IO_L61N_1,OUTPUT,LVCMOS33,1,12,SLOW,,,,LOCATED,NO,NONE,
 M14,sev_seg<4>,IOB,IO_L53P_1,OUTPUT,LVCMOS33,1,12,SLOW,,,,LOCATED,NO,NONE,

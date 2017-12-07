@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Tue Dec 05 10:07:47 2017
+// Written by: Map P.20131013 on Wed Dec 06 23:27:22 2017
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -32,7 +32,6 @@ COMP "debug_core" LOCATE = SITE "T5" LEVEL 1;
 COMP "vsync" LOCATE = SITE "P7" LEVEL 1;
 COMP "x_overflow" LOCATE = SITE "T11" LEVEL 1;
 COMP "y_overflow" LOCATE = SITE "R11" LEVEL 1;
-COMP "data_ready_LED" LOCATE = SITE "M11" LEVEL 1;
 COMP "left_button" LOCATE = SITE "U15" LEVEL 1;
 COMP "mouse_clk" LOCATE = SITE "L13" LEVEL 1;
 COMP "right_button" LOCATE = SITE "U16" LEVEL 1;
@@ -387,8 +386,8 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_ioController/_writeToMouse/current_filter_1" BEL
         "_ioController/_writeToMouse/current_filter_0" BEL
         "_ioController/_writeToMouse/current_filter_clk" BEL
-        "_vgaController/_pixelGenerator/glyph_state_1" BEL
-        "_vgaController/_pixelGenerator/glyph_state_0" BEL
+        "_vgaController/_pixelGenerator/pixel_state_1" BEL
+        "_vgaController/_pixelGenerator/pixel_state_0" BEL
         "_vgaController/_pixelGenerator/next_color_7" BEL
         "_vgaController/_pixelGenerator/next_color_6" BEL
         "_vgaController/_pixelGenerator/next_color_5" BEL
@@ -405,6 +404,22 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_vgaController/_pixelGenerator/random_number_2" BEL
         "_vgaController/_pixelGenerator/random_number_1" BEL
         "_vgaController/_pixelGenerator/random_number_0" BEL
+        "_vgaController/_pixelGenerator/latched_row_7" BEL
+        "_vgaController/_pixelGenerator/latched_row_6" BEL
+        "_vgaController/_pixelGenerator/latched_row_5" BEL
+        "_vgaController/_pixelGenerator/latched_row_4" BEL
+        "_vgaController/_pixelGenerator/latched_row_3" BEL
+        "_vgaController/_pixelGenerator/latched_row_2" BEL
+        "_vgaController/_pixelGenerator/latched_row_1" BEL
+        "_vgaController/_pixelGenerator/latched_row_0" BEL
+        "_vgaController/_pixelGenerator/latched_data_in_15" BEL
+        "_vgaController/_pixelGenerator/latched_data_in_14" BEL
+        "_vgaController/_pixelGenerator/latched_data_in_13" BEL
+        "_vgaController/_pixelGenerator/latched_data_in_12" BEL
+        "_vgaController/_pixelGenerator/latched_data_in_11" BEL
+        "_vgaController/_pixelGenerator/latched_data_in_10" BEL
+        "_vgaController/_pixelGenerator/latched_data_in_9" BEL
+        "_vgaController/_pixelGenerator/latched_data_in_8" BEL
         "_vgaController/_pixelGenerator/latched_data_in_7" BEL
         "_vgaController/_pixelGenerator/latched_data_in_6" BEL
         "_vgaController/_pixelGenerator/latched_data_in_5" BEL
@@ -422,16 +437,6 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_vgaController/_pixelGenerator/latched_column_3" BEL
         "_vgaController/_pixelGenerator/latched_column_2" BEL
         "_vgaController/_pixelGenerator/latched_column_1" BEL
-        "_vgaController/_pixelGenerator/latched_column_0" BEL
-        "_vgaController/_pixelGenerator/latched_row_8" BEL
-        "_vgaController/_pixelGenerator/latched_row_7" BEL
-        "_vgaController/_pixelGenerator/latched_row_6" BEL
-        "_vgaController/_pixelGenerator/latched_row_5" BEL
-        "_vgaController/_pixelGenerator/latched_row_4" BEL
-        "_vgaController/_pixelGenerator/latched_row_3" BEL
-        "_vgaController/_pixelGenerator/latched_row_2" BEL
-        "_vgaController/_pixelGenerator/latched_row_1" BEL
-        "_vgaController/_pixelGenerator/latched_row_0" BEL
         "_vgaController/_vgaSignalGenerator/column_counter_9" BEL
         "_vgaController/_vgaSignalGenerator/column_counter_8" BEL
         "_vgaController/_vgaSignalGenerator/column_counter_7" BEL
@@ -543,14 +548,6 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_core/_RegisterFile/r4_5" BEL "_core/_RegisterFile/r4_4" BEL
         "_core/_RegisterFile/r4_3" BEL "_core/_RegisterFile/r4_2" BEL
         "_core/_RegisterFile/r4_1" BEL "_core/_RegisterFile/r4_0" BEL
-        "_core/_RegisterFile/r5_15" BEL "_core/_RegisterFile/r5_14" BEL
-        "_core/_RegisterFile/r5_13" BEL "_core/_RegisterFile/r5_12" BEL
-        "_core/_RegisterFile/r5_11" BEL "_core/_RegisterFile/r5_10" BEL
-        "_core/_RegisterFile/r5_9" BEL "_core/_RegisterFile/r5_8" BEL
-        "_core/_RegisterFile/r5_7" BEL "_core/_RegisterFile/r5_6" BEL
-        "_core/_RegisterFile/r5_5" BEL "_core/_RegisterFile/r5_4" BEL
-        "_core/_RegisterFile/r5_3" BEL "_core/_RegisterFile/r5_2" BEL
-        "_core/_RegisterFile/r5_1" BEL "_core/_RegisterFile/r5_0" BEL
         "_core/_RegisterFile/r6_15" BEL "_core/_RegisterFile/r6_14" BEL
         "_core/_RegisterFile/r6_13" BEL "_core/_RegisterFile/r6_12" BEL
         "_core/_RegisterFile/r6_11" BEL "_core/_RegisterFile/r6_10" BEL
@@ -567,6 +564,14 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_core/_RegisterFile/r7_5" BEL "_core/_RegisterFile/r7_4" BEL
         "_core/_RegisterFile/r7_3" BEL "_core/_RegisterFile/r7_2" BEL
         "_core/_RegisterFile/r7_1" BEL "_core/_RegisterFile/r7_0" BEL
+        "_core/_RegisterFile/r5_15" BEL "_core/_RegisterFile/r5_14" BEL
+        "_core/_RegisterFile/r5_13" BEL "_core/_RegisterFile/r5_12" BEL
+        "_core/_RegisterFile/r5_11" BEL "_core/_RegisterFile/r5_10" BEL
+        "_core/_RegisterFile/r5_9" BEL "_core/_RegisterFile/r5_8" BEL
+        "_core/_RegisterFile/r5_7" BEL "_core/_RegisterFile/r5_6" BEL
+        "_core/_RegisterFile/r5_5" BEL "_core/_RegisterFile/r5_4" BEL
+        "_core/_RegisterFile/r5_3" BEL "_core/_RegisterFile/r5_2" BEL
+        "_core/_RegisterFile/r5_1" BEL "_core/_RegisterFile/r5_0" BEL
         "_core/_RegisterFile/r8_15" BEL "_core/_RegisterFile/r8_14" BEL
         "_core/_RegisterFile/r8_13" BEL "_core/_RegisterFile/r8_12" BEL
         "_core/_RegisterFile/r8_11" BEL "_core/_RegisterFile/r8_10" BEL
@@ -687,46 +692,6 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_core/_RegisterFile/r22_5" BEL "_core/_RegisterFile/r22_4" BEL
         "_core/_RegisterFile/r22_3" BEL "_core/_RegisterFile/r22_2" BEL
         "_core/_RegisterFile/r22_1" BEL "_core/_RegisterFile/r22_0" BEL
-        "_core/_RegisterFile/r23_15" BEL "_core/_RegisterFile/r23_14" BEL
-        "_core/_RegisterFile/r23_13" BEL "_core/_RegisterFile/r23_12" BEL
-        "_core/_RegisterFile/r23_11" BEL "_core/_RegisterFile/r23_10" BEL
-        "_core/_RegisterFile/r23_9" BEL "_core/_RegisterFile/r23_8" BEL
-        "_core/_RegisterFile/r23_7" BEL "_core/_RegisterFile/r23_6" BEL
-        "_core/_RegisterFile/r23_5" BEL "_core/_RegisterFile/r23_4" BEL
-        "_core/_RegisterFile/r23_3" BEL "_core/_RegisterFile/r23_2" BEL
-        "_core/_RegisterFile/r23_1" BEL "_core/_RegisterFile/r23_0" BEL
-        "_core/_RegisterFile/r24_15" BEL "_core/_RegisterFile/r24_14" BEL
-        "_core/_RegisterFile/r24_13" BEL "_core/_RegisterFile/r24_12" BEL
-        "_core/_RegisterFile/r24_11" BEL "_core/_RegisterFile/r24_10" BEL
-        "_core/_RegisterFile/r24_9" BEL "_core/_RegisterFile/r24_8" BEL
-        "_core/_RegisterFile/r24_7" BEL "_core/_RegisterFile/r24_6" BEL
-        "_core/_RegisterFile/r24_5" BEL "_core/_RegisterFile/r24_4" BEL
-        "_core/_RegisterFile/r24_3" BEL "_core/_RegisterFile/r24_2" BEL
-        "_core/_RegisterFile/r24_1" BEL "_core/_RegisterFile/r24_0" BEL
-        "_core/_RegisterFile/r25_15" BEL "_core/_RegisterFile/r25_14" BEL
-        "_core/_RegisterFile/r25_13" BEL "_core/_RegisterFile/r25_12" BEL
-        "_core/_RegisterFile/r25_11" BEL "_core/_RegisterFile/r25_10" BEL
-        "_core/_RegisterFile/r25_9" BEL "_core/_RegisterFile/r25_8" BEL
-        "_core/_RegisterFile/r25_7" BEL "_core/_RegisterFile/r25_6" BEL
-        "_core/_RegisterFile/r25_5" BEL "_core/_RegisterFile/r25_4" BEL
-        "_core/_RegisterFile/r25_3" BEL "_core/_RegisterFile/r25_2" BEL
-        "_core/_RegisterFile/r25_1" BEL "_core/_RegisterFile/r25_0" BEL
-        "_core/_RegisterFile/r26_15" BEL "_core/_RegisterFile/r26_14" BEL
-        "_core/_RegisterFile/r26_13" BEL "_core/_RegisterFile/r26_12" BEL
-        "_core/_RegisterFile/r26_11" BEL "_core/_RegisterFile/r26_10" BEL
-        "_core/_RegisterFile/r26_9" BEL "_core/_RegisterFile/r26_8" BEL
-        "_core/_RegisterFile/r26_7" BEL "_core/_RegisterFile/r26_6" BEL
-        "_core/_RegisterFile/r26_5" BEL "_core/_RegisterFile/r26_4" BEL
-        "_core/_RegisterFile/r26_3" BEL "_core/_RegisterFile/r26_2" BEL
-        "_core/_RegisterFile/r26_1" BEL "_core/_RegisterFile/r26_0" BEL
-        "_core/_RegisterFile/r27_15" BEL "_core/_RegisterFile/r27_14" BEL
-        "_core/_RegisterFile/r27_13" BEL "_core/_RegisterFile/r27_12" BEL
-        "_core/_RegisterFile/r27_11" BEL "_core/_RegisterFile/r27_10" BEL
-        "_core/_RegisterFile/r27_9" BEL "_core/_RegisterFile/r27_8" BEL
-        "_core/_RegisterFile/r27_7" BEL "_core/_RegisterFile/r27_6" BEL
-        "_core/_RegisterFile/r27_5" BEL "_core/_RegisterFile/r27_4" BEL
-        "_core/_RegisterFile/r27_3" BEL "_core/_RegisterFile/r27_2" BEL
-        "_core/_RegisterFile/r27_1" BEL "_core/_RegisterFile/r27_0" BEL
         "_core/_RegisterFile/lr3_23" BEL "_core/_RegisterFile/lr3_22" BEL
         "_core/_RegisterFile/lr3_21" BEL "_core/_RegisterFile/lr3_20" BEL
         "_core/_RegisterFile/lr3_19" BEL "_core/_RegisterFile/lr3_18" BEL
@@ -739,6 +704,18 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_core/_RegisterFile/lr3_5" BEL "_core/_RegisterFile/lr3_4" BEL
         "_core/_RegisterFile/lr3_3" BEL "_core/_RegisterFile/lr3_2" BEL
         "_core/_RegisterFile/lr3_1" BEL "_core/_RegisterFile/lr3_0" BEL
+        "_core/_RegisterFile/lr0_23" BEL "_core/_RegisterFile/lr0_22" BEL
+        "_core/_RegisterFile/lr0_21" BEL "_core/_RegisterFile/lr0_20" BEL
+        "_core/_RegisterFile/lr0_19" BEL "_core/_RegisterFile/lr0_18" BEL
+        "_core/_RegisterFile/lr0_17" BEL "_core/_RegisterFile/lr0_16" BEL
+        "_core/_RegisterFile/lr0_15" BEL "_core/_RegisterFile/lr0_14" BEL
+        "_core/_RegisterFile/lr0_13" BEL "_core/_RegisterFile/lr0_12" BEL
+        "_core/_RegisterFile/lr0_11" BEL "_core/_RegisterFile/lr0_10" BEL
+        "_core/_RegisterFile/lr0_9" BEL "_core/_RegisterFile/lr0_8" BEL
+        "_core/_RegisterFile/lr0_7" BEL "_core/_RegisterFile/lr0_6" BEL
+        "_core/_RegisterFile/lr0_5" BEL "_core/_RegisterFile/lr0_4" BEL
+        "_core/_RegisterFile/lr0_3" BEL "_core/_RegisterFile/lr0_2" BEL
+        "_core/_RegisterFile/lr0_1" BEL "_core/_RegisterFile/lr0_0" BEL
         "_core/_RegisterFile/lr1_23" BEL "_core/_RegisterFile/lr1_22" BEL
         "_core/_RegisterFile/lr1_21" BEL "_core/_RegisterFile/lr1_20" BEL
         "_core/_RegisterFile/lr1_19" BEL "_core/_RegisterFile/lr1_18" BEL
@@ -763,18 +740,6 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_core/_RegisterFile/lr2_5" BEL "_core/_RegisterFile/lr2_4" BEL
         "_core/_RegisterFile/lr2_3" BEL "_core/_RegisterFile/lr2_2" BEL
         "_core/_RegisterFile/lr2_1" BEL "_core/_RegisterFile/lr2_0" BEL
-        "_core/_RegisterFile/lr0_23" BEL "_core/_RegisterFile/lr0_22" BEL
-        "_core/_RegisterFile/lr0_21" BEL "_core/_RegisterFile/lr0_20" BEL
-        "_core/_RegisterFile/lr0_19" BEL "_core/_RegisterFile/lr0_18" BEL
-        "_core/_RegisterFile/lr0_17" BEL "_core/_RegisterFile/lr0_16" BEL
-        "_core/_RegisterFile/lr0_15" BEL "_core/_RegisterFile/lr0_14" BEL
-        "_core/_RegisterFile/lr0_13" BEL "_core/_RegisterFile/lr0_12" BEL
-        "_core/_RegisterFile/lr0_11" BEL "_core/_RegisterFile/lr0_10" BEL
-        "_core/_RegisterFile/lr0_9" BEL "_core/_RegisterFile/lr0_8" BEL
-        "_core/_RegisterFile/lr0_7" BEL "_core/_RegisterFile/lr0_6" BEL
-        "_core/_RegisterFile/lr0_5" BEL "_core/_RegisterFile/lr0_4" BEL
-        "_core/_RegisterFile/lr0_3" BEL "_core/_RegisterFile/lr0_2" BEL
-        "_core/_RegisterFile/lr0_1" BEL "_core/_RegisterFile/lr0_0" BEL
         "_ioController/_readFromMouse/current_data_counter_3" BEL
         "_ioController/_readFromMouse/current_data_counter_2" BEL
         "_ioController/_readFromMouse/current_data_counter_1" BEL
@@ -850,6 +815,8 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/sel_pipe_1"
         BEL
         "_vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/sel_pipe_2"
+        BEL
+        "_vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_a.A/sel_pipe_3"
         BEL
         "_vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/sel_pipe_0"
         BEL

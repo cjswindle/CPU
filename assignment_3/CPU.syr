@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.06 secs
  
 --> 
 Reading design: CPU.prj
@@ -147,12 +147,10 @@ Elaborating module <VGAController>.
 Elaborating module <PixelGenerator>.
 
 Elaborating module <VGASignalGenerator>.
-WARNING:HDLCompiler:1016 - "/home/rajp/Projects/CPU/assignment_3/Core.v" Line 74: Port data_ready is not connected to this instance
 
 Elaborating module <Core>.
 
 Elaborating module <RegisterFile>.
-WARNING:HDLCompiler:552 - "/home/rajp/Projects/CPU/assignment_3/Core.v" Line 74: Input port data_ready is not connected on this instance
 
 Elaborating module <IOController>.
 
@@ -180,21 +178,24 @@ Unit <VGAController> synthesized.
 
 Synthesizing Unit <PixelGenerator>.
     Related source file is "/home/rajp/Projects/CPU/assignment_3/PixelGenerator.v".
-    Found 2-bit register for signal <glyph_state>.
-    Found 9-bit register for signal <latched_row>.
+WARNING:Xst:647 - Input <row<0:0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 2-bit register for signal <pixel_state>.
+    Found 8-bit register for signal <latched_row>.
     Found 10-bit register for signal <latched_column>.
     Found 8-bit register for signal <next_color>.
-    Found 8-bit register for signal <latched_data_in<7:0>>.
+    Found 16-bit register for signal <latched_data_in>.
     Found 31-bit register for signal <random_number>.
-    Found 15-bit adder for signal <n0050> created at line 63.
-    Found 2-bit adder for signal <glyph_state[1]_GND_4_o_add_9_OUT> created at line 90.
-    Found 1-bit 8-to-1 multiplexer for signal <latched_column[2]_upper_bits[7]_Mux_4_o> created at line 68.
-    Found 1-bit 8-to-1 multiplexer for signal <latched_column[2]_lower_bits[7]_Mux_5_o> created at line 71.
-    Found 8-bit 4-to-1 multiplexer for signal <mode[1]_PWR_4_o_wide_mux_10_OUT> created at line 97.
+    Found 15-bit adder for signal <pixel_address> created at line 50.
+    Found 15-bit adder for signal <color_address> created at line 56.
+    Found 2-bit adder for signal <pixel_state[1]_GND_4_o_add_7_OUT> created at line 96.
+    Found 7x8-bit multiplier for signal <n0050> created at line 50.
+    Found 4-bit 4-to-1 multiplexer for signal <color_index> created at line 64.
+    Found 8-bit 4-to-1 multiplexer for signal <mode[1]_GND_4_o_wide_mux_8_OUT> created at line 103.
     Summary:
+	inferred   1 Multiplier(s).
 	inferred   2 Adder/Subtractor(s).
-	inferred  68 D-type flip-flop(s).
-	inferred   5 Multiplexer(s).
+	inferred  75 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
 Unit <PixelGenerator> synthesized.
 
 Synthesizing Unit <VGASignalGenerator>.
@@ -207,14 +208,14 @@ Synthesizing Unit <VGASignalGenerator>.
     Found 2-bit register for signal <pixel_counter>.
     Found 10-bit subtractor for signal <column> created at line 76.
     Found 2-bit adder for signal <next_pixel_counter> created at line 79.
-    Found 10-bit adder for signal <column_counter[9]_GND_5_o_add_13_OUT> created at line 84.
-    Found 10-bit adder for signal <row_counter[9]_GND_5_o_add_16_OUT> created at line 89.
+    Found 10-bit adder for signal <column_counter[9]_GND_6_o_add_13_OUT> created at line 84.
+    Found 10-bit adder for signal <row_counter[9]_GND_6_o_add_16_OUT> created at line 89.
     Found 9-bit subtractor for signal <calculated_row_output<8:0>> created at line 72.
     Found 9-bit comparator greater for signal <row[8]_PWR_5_o_LessThan_2_o> created at line 59
     Found 10-bit comparator greater for signal <column[9]_PWR_5_o_LessThan_3_o> created at line 59
-    Found 10-bit comparator greater for signal <column_counter[9]_GND_5_o_LessThan_6_o> created at line 67
+    Found 10-bit comparator greater for signal <column_counter[9]_GND_6_o_LessThan_6_o> created at line 67
     Found 10-bit comparator lessequal for signal <n0010> created at line 67
-    Found 10-bit comparator greater for signal <row_counter[9]_GND_5_o_LessThan_8_o> created at line 68
+    Found 10-bit comparator greater for signal <row_counter[9]_GND_6_o_LessThan_8_o> created at line 68
     Found 10-bit comparator lessequal for signal <n0014> created at line 68
     Found 10-bit comparator lessequal for signal <PWR_5_o_column_counter[9]_LessThan_20_o> created at line 92
     Found 10-bit comparator lessequal for signal <PWR_5_o_row_counter[9]_LessThan_21_o> created at line 95
@@ -250,8 +251,6 @@ Synthesizing Unit <Core>.
         LOAD1 = 3'b011
         LOAD2 = 3'b100
         STORE1 = 3'b101
-WARNING:Xst:2898 - Port 'data_ready', unconnected in block instance '_RegisterFile', is tied to GND.
-WARNING:Xst:647 - Input <data_ready> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 5-bit register for signal <opcode>.
     Found 5-bit register for signal <dest_reg_index>.
     Found 11-bit register for signal <immediateL>.
@@ -272,13 +271,13 @@ WARNING:Xst:647 - Input <data_ready> is never used. This port will be preserved 
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 24-bit subtractor for signal <data_from_reg_1[23]_data_from_reg_2[23]_sub_7_OUT> created at line 168.
-    Found 15-bit adder for signal <n0140> created at line 131.
-    Found 24-bit adder for signal <data_from_reg_1[23]_data_from_reg_2[23]_add_5_OUT> created at line 164.
-    Found 24-bit adder for signal <data_from_reg_1[23]_GND_6_o_add_7_OUT> created at line 172.
-    Found 15-bit adder for signal <program_counter[14]_immediateL[10]_add_11_OUT> created at line 184.
-    Found 24-bit shifter logical left for signal <data_from_reg_1[23]_immediateS[5]_shift_left_8_OUT> created at line 176
-    Found 24-bit shifter logical right for signal <data_from_reg_1[23]_immediateS[5]_shift_right_9_OUT> created at line 180
+    Found 24-bit subtractor for signal <data_from_reg_1[23]_data_from_reg_2[23]_sub_7_OUT> created at line 169.
+    Found 15-bit adder for signal <n0140> created at line 132.
+    Found 24-bit adder for signal <data_from_reg_1[23]_data_from_reg_2[23]_add_5_OUT> created at line 165.
+    Found 24-bit adder for signal <data_from_reg_1[23]_GND_7_o_add_7_OUT> created at line 173.
+    Found 15-bit adder for signal <program_counter[14]_immediateL[10]_add_11_OUT> created at line 185.
+    Found 24-bit shifter logical left for signal <data_from_reg_1[23]_immediateS[5]_shift_left_8_OUT> created at line 177
+    Found 24-bit shifter logical right for signal <data_from_reg_1[23]_immediateS[5]_shift_right_9_OUT> created at line 181
     Summary:
 	inferred   5 Adder/Subtractor(s).
 	inferred  91 D-type flip-flop(s).
@@ -375,7 +374,7 @@ Synthesizing Unit <ReadFromMouse>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 4-bit subtractor for signal <current_data_counter[3]_GND_11_o_sub_14_OUT> created at line 91.
+    Found 4-bit subtractor for signal <current_data_counter[3]_GND_12_o_sub_14_OUT> created at line 91.
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred  24 D-type flip-flop(s).
@@ -407,8 +406,8 @@ Synthesizing Unit <WriteToMouse>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 13-bit subtractor for signal <current_clk_counter[12]_GND_12_o_sub_8_OUT> created at line 100.
-    Found 4-bit subtractor for signal <current_data_counter[3]_GND_12_o_sub_14_OUT> created at line 125.
+    Found 13-bit subtractor for signal <current_clk_counter[12]_GND_13_o_sub_8_OUT> created at line 100.
+    Found 4-bit subtractor for signal <current_data_counter[3]_GND_13_o_sub_14_OUT> created at line 125.
     Found 1-bit tristate buffer for signal <usb_clk> created at line 62
     Found 1-bit tristate buffer for signal <data_out> created at line 63
     Summary:
@@ -439,8 +438,8 @@ Synthesizing Unit <SevenSeg>.
         letf = 8'b10001110
     Found 2-bit register for signal <anode_counter>.
     Found 20-bit register for signal <counter>.
-    Found 20-bit adder for signal <counter[19]_GND_15_o_add_1_OUT> created at line 55.
-    Found 2-bit adder for signal <anode_counter[1]_GND_15_o_add_5_OUT> created at line 62.
+    Found 20-bit adder for signal <counter[19]_GND_16_o_add_1_OUT> created at line 55.
+    Found 2-bit adder for signal <anode_counter[1]_GND_16_o_add_5_OUT> created at line 62.
     Found 16x8-bit Read Only RAM for signal <sev_seg>
     Found 4x4-bit Read Only RAM for signal <an>
     Found 1-bit 4-to-1 multiplexer for signal <tempNumber<3>> created at line 83.
@@ -461,6 +460,8 @@ Macro Statistics
 # RAMs                                                 : 2
  16x8-bit single-port Read Only RAM                    : 1
  4x4-bit single-port Read Only RAM                     : 1
+# Multipliers                                          : 1
+ 8x7-bit multiplier                                    : 1
 # Adders/Subtractors                                   : 17
  10-bit adder                                          : 2
  10-bit subtractor                                     : 1
@@ -478,7 +479,7 @@ Macro Statistics
  11-bit register                                       : 2
  13-bit register                                       : 1
  15-bit register                                       : 1
- 16-bit register                                       : 23
+ 16-bit register                                       : 24
  2-bit register                                        : 3
  20-bit register                                       : 1
  24-bit register                                       : 6
@@ -488,21 +489,21 @@ Macro Statistics
  5-bit register                                        : 2
  6-bit register                                        : 1
  8-bit register                                        : 5
- 9-bit register                                        : 4
+ 9-bit register                                        : 3
 # Comparators                                          : 8
  10-bit comparator greater                             : 3
  10-bit comparator lessequal                           : 4
  9-bit comparator greater                              : 1
-# Multiplexers                                         : 64
- 1-bit 2-to-1 multiplexer                              : 29
+# Multiplexers                                         : 63
+ 1-bit 2-to-1 multiplexer                              : 28
  1-bit 4-to-1 multiplexer                              : 4
- 1-bit 8-to-1 multiplexer                              : 2
  13-bit 2-to-1 multiplexer                             : 1
- 15-bit 2-to-1 multiplexer                             : 10
+ 15-bit 2-to-1 multiplexer                             : 11
  16-bit 2-to-1 multiplexer                             : 1
  24-bit 2-to-1 multiplexer                             : 7
  24-bit 32-to-1 multiplexer                            : 2
  4-bit 2-to-1 multiplexer                              : 2
+ 4-bit 4-to-1 multiplexer                              : 1
  5-bit 2-to-1 multiplexer                              : 2
  8-bit 4-to-1 multiplexer                              : 1
  9-bit 2-to-1 multiplexer                              : 3
@@ -517,6 +518,7 @@ Macro Statistics
  1-bit xor8                                            : 1
 
 =========================================================================
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
 
 =========================================================================
 *                       Advanced HDL Synthesis                          *
@@ -524,21 +526,22 @@ Macro Statistics
 
 Reading core <ipcore_dir/VGARAM.ngc>.
 Loading core <VGARAM> for timing and area information for instance <_vgaRam>.
-INFO:Xst:2261 - The FF/Latch <immediateL_0> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <dest_reg_index_0> 
-INFO:Xst:2261 - The FF/Latch <immediateL_1> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <dest_reg_index_1> 
-INFO:Xst:2261 - The FF/Latch <immediateL_2> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <dest_reg_index_2> 
 INFO:Xst:2261 - The FF/Latch <immediateL_3> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <dest_reg_index_3> 
 INFO:Xst:2261 - The FF/Latch <immediateL_4> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <dest_reg_index_4> 
-INFO:Xst:2261 - The FF/Latch <immediateL_10> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <immediateS_5> 
 INFO:Xst:2261 - The FF/Latch <immediateL_5> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <immediateS_0> 
 INFO:Xst:2261 - The FF/Latch <immediateL_6> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <immediateS_1> 
 INFO:Xst:2261 - The FF/Latch <immediateL_7> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <immediateS_2> 
 INFO:Xst:2261 - The FF/Latch <immediateL_8> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <immediateS_3> 
 INFO:Xst:2261 - The FF/Latch <immediateL_9> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <immediateS_4> 
+INFO:Xst:2261 - The FF/Latch <immediateL_10> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <immediateS_5> 
+INFO:Xst:2261 - The FF/Latch <immediateL_0> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <dest_reg_index_0> 
+INFO:Xst:2261 - The FF/Latch <immediateL_1> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <dest_reg_index_1> 
+INFO:Xst:2261 - The FF/Latch <immediateL_2> in Unit <_core> is equivalent to the following FF/Latch, which will be removed : <dest_reg_index_2> 
+WARNING:Xst:2677 - Node <latched_column_0> of sequential type is unconnected in block <_pixelGenerator>.
 WARNING:Xst:2677 - Node <current_buffer_0> of sequential type is unconnected in block <_readFromMouse>.
 
 Synthesizing (advanced) Unit <PixelGenerator>.
-The following registers are absorbed into counter <glyph_state>: 1 register on signal <glyph_state>.
+The following registers are absorbed into counter <pixel_state>: 1 register on signal <pixel_state>.
 Unit <PixelGenerator> synthesized (advanced).
 
 Synthesizing (advanced) Unit <ReadFromMouse>.
@@ -582,6 +585,7 @@ Synthesizing (advanced) Unit <WriteToMouse>.
 The following registers are absorbed into counter <current_data_counter>: 1 register on signal <current_data_counter>.
 The following registers are absorbed into counter <current_clk_counter>: 1 register on signal <current_clk_counter>.
 Unit <WriteToMouse> synthesized (advanced).
+WARNING:Xst:2677 - Node <latched_column_0> of sequential type is unconnected in block <PixelGenerator>.
 WARNING:Xst:2677 - Node <current_buffer_0> of sequential type is unconnected in block <ReadFromMouse>.
 
 =========================================================================
@@ -591,6 +595,8 @@ Macro Statistics
 # RAMs                                                 : 2
  16x8-bit single-port distributed Read Only RAM        : 1
  4x4-bit single-port distributed Read Only RAM         : 1
+# Multipliers                                          : 1
+ 8x7-bit multiplier                                    : 1
 # Adders/Subtractors                                   : 8
  10-bit subtractor                                     : 1
  15-bit adder                                          : 3
@@ -603,20 +609,20 @@ Macro Statistics
  2-bit up counter                                      : 3
  20-bit up counter                                     : 1
  4-bit down counter                                    : 2
-# Registers                                            : 689
- Flip-Flops                                            : 689
+# Registers                                            : 695
+ Flip-Flops                                            : 695
 # Comparators                                          : 8
  10-bit comparator greater                             : 3
  10-bit comparator lessequal                           : 4
  9-bit comparator greater                              : 1
-# Multiplexers                                         : 106
- 1-bit 2-to-1 multiplexer                              : 28
+# Multiplexers                                         : 105
+ 1-bit 2-to-1 multiplexer                              : 27
  1-bit 32-to-1 multiplexer                             : 48
  1-bit 4-to-1 multiplexer                              : 4
- 1-bit 8-to-1 multiplexer                              : 2
- 15-bit 2-to-1 multiplexer                             : 10
+ 15-bit 2-to-1 multiplexer                             : 11
  16-bit 2-to-1 multiplexer                             : 1
  24-bit 2-to-1 multiplexer                             : 7
+ 4-bit 4-to-1 multiplexer                              : 1
  5-bit 2-to-1 multiplexer                              : 2
  8-bit 4-to-1 multiplexer                              : 1
  9-bit 2-to-1 multiplexer                              : 3
@@ -633,17 +639,17 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-INFO:Xst:2261 - The FF/Latch <dest_reg_index_0> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateL_0> 
-INFO:Xst:2261 - The FF/Latch <dest_reg_index_1> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateL_1> 
-INFO:Xst:2261 - The FF/Latch <dest_reg_index_2> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateL_2> 
 INFO:Xst:2261 - The FF/Latch <dest_reg_index_3> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateL_3> 
 INFO:Xst:2261 - The FF/Latch <dest_reg_index_4> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateL_4> 
-INFO:Xst:2261 - The FF/Latch <immediateL_10> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateS_5> 
 INFO:Xst:2261 - The FF/Latch <immediateL_5> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateS_0> 
 INFO:Xst:2261 - The FF/Latch <immediateL_6> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateS_1> 
 INFO:Xst:2261 - The FF/Latch <immediateL_7> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateS_2> 
 INFO:Xst:2261 - The FF/Latch <immediateL_8> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateS_3> 
 INFO:Xst:2261 - The FF/Latch <immediateL_9> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateS_4> 
+INFO:Xst:2261 - The FF/Latch <immediateL_10> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateS_5> 
+INFO:Xst:2261 - The FF/Latch <dest_reg_index_0> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateL_0> 
+INFO:Xst:2261 - The FF/Latch <dest_reg_index_1> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateL_1> 
+INFO:Xst:2261 - The FF/Latch <dest_reg_index_2> in Unit <Core> is equivalent to the following FF/Latch, which will be removed : <immediateL_2> 
 Analyzing FSM <MFsm> for best encoding.
 Optimizing FSM <_core/FSM_0> on signal <core_state[1:6]> with one-hot encoding.
 -------------------
@@ -704,6 +710,8 @@ Optimizing unit <RegisterFile> ...
 Optimizing unit <ReadFromMouse> ...
 
 Optimizing unit <SevenSeg> ...
+INFO:Xst:2261 - The FF/Latch <_vgaController/_pixelGenerator/pixel_state_0> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_vgaController/_vgaSignalGenerator/pixel_counter_0> 
+INFO:Xst:2261 - The FF/Latch <_vgaController/_pixelGenerator/pixel_state_1> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_vgaController/_vgaSignalGenerator/pixel_counter_1> 
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_clk> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_clk> 
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_0> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_0> 
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_1> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_1> 
@@ -713,12 +721,10 @@ INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_4> in U
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_5> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_5> 
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_6> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_6> 
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_7> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_7> 
-INFO:Xst:2261 - The FF/Latch <_vgaController/_pixelGenerator/glyph_state_0> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_vgaController/_vgaSignalGenerator/pixel_counter_0> 
-INFO:Xst:2261 - The FF/Latch <_vgaController/_pixelGenerator/glyph_state_1> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_vgaController/_vgaSignalGenerator/pixel_counter_1> 
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block CPU, actual ratio is 17.
+Found area constraint ratio of 100 (+ 5) on block CPU, actual ratio is 18.
 
 Final Macro Processing ...
 
@@ -732,8 +738,8 @@ Unit <CPU> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 721
- Flip-Flops                                            : 721
+# Registers                                            : 727
+ Flip-Flops                                            : 727
 # Shift Registers                                      : 3
  20-bit shift register                                 : 1
  3-bit shift register                                  : 2
@@ -759,24 +765,24 @@ Top Level Output File Name         : CPU.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 1868
+# BELS                             : 1889
 #      GND                         : 2
-#      INV                         : 12
+#      INV                         : 11
 #      LUT1                        : 60
 #      LUT2                        : 145
-#      LUT3                        : 422
-#      LUT4                        : 123
-#      LUT5                        : 86
-#      LUT6                        : 623
-#      MUXCY                       : 146
-#      MUXF7                       : 74
+#      LUT3                        : 425
+#      LUT4                        : 113
+#      LUT5                        : 90
+#      LUT6                        : 628
+#      MUXCY                       : 156
+#      MUXF7                       : 73
 #      MUXF8                       : 18
 #      VCC                         : 2
-#      XORCY                       : 155
-# FlipFlops/Latches                : 732
+#      XORCY                       : 166
+# FlipFlops/Latches                : 738
 #      FD                          : 34
-#      FDE                         : 640
-#      FDR                         : 38
+#      FDE                         : 638
+#      FDR                         : 46
 #      FDRE                        : 20
 # RAMS                             : 30
 #      RAMB16BWER                  : 30
@@ -797,17 +803,17 @@ Selected Device : 6slx16csg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             732  out of  18224     4%  
- Number of Slice LUTs:                 1474  out of   9112    16%  
-    Number used as Logic:              1471  out of   9112    16%  
+ Number of Slice Registers:             738  out of  18224     4%  
+ Number of Slice LUTs:                 1475  out of   9112    16%  
+    Number used as Logic:              1472  out of   9112    16%  
     Number used as Memory:                3  out of   2176     0%  
        Number used as SRL:                3
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   1939
-   Number with an unused Flip Flop:    1207  out of   1939    62%  
-   Number with an unused LUT:           465  out of   1939    23%  
-   Number of fully used LUT-FF pairs:   267  out of   1939    13%  
+ Number of LUT Flip Flop pairs used:   1957
+   Number with an unused Flip Flop:    1219  out of   1957    62%  
+   Number with an unused LUT:           482  out of   1957    24%  
+   Number of fully used LUT-FF pairs:   256  out of   1957    13%  
    Number of unique control sets:        49
 
 IO Utilization: 
@@ -840,7 +846,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 765   |
+clk                                | BUFGP                  | 771   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -851,8 +857,8 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 7.146ns (Maximum Frequency: 139.941MHz)
-   Minimum input arrival time before clock: 3.792ns
+   Minimum period: 7.184ns (Maximum Frequency: 139.200MHz)
+   Minimum input arrival time before clock: 2.694ns
    Maximum output required time after clock: 6.244ns
    Maximum combinational path delay: No path found
 
@@ -862,10 +868,10 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 7.146ns (frequency: 139.941MHz)
-  Total number of paths / destination ports: 107302 / 2508
+  Clock period: 7.184ns (frequency: 139.200MHz)
+  Total number of paths / destination ports: 121925 / 2535
 -------------------------------------------------------------------------
-Delay:               7.146ns (Levels of Logic = 6)
+Delay:               7.184ns (Levels of Logic = 6)
   Source:            _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
   Destination:       _core/data_from_reg_2_11 (FF)
   Source Clock:      clk rising
@@ -876,22 +882,22 @@ Delay:               7.146ns (Levels of Logic = 6)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      RAMB16BWER:CLKB->DOB0    1   1.850   0.684  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.ram_doutb)
-     LUT3:I1->O          104   0.203   1.888  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux61 (doutb<5>)
+     LUT3:I1->O          101   0.203   1.880  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux61 (doutb<5>)
      end scope: '_vgaRam:doutb<5>'
-     LUT2:I1->O           15   0.205   1.086  _core/core_state_read_index_2<0>1 (_core/read_index_2<0>)
+     LUT2:I1->O           17   0.205   1.132  _core/core_state_read_index_2<0>1 (_core/read_index_2<0>)
      LUT6:I4->O            1   0.203   0.580  _core/_RegisterFile/mux26_91 (_core/_RegisterFile/mux26_91)
-     LUT6:I5->O            1   0.205   0.000  _core/_RegisterFile/mux26_2_f7_G (N958)
+     LUT6:I5->O            1   0.205   0.000  _core/_RegisterFile/mux26_2_f7_G (N939)
      MUXF7:I1->O           1   0.140   0.000  _core/_RegisterFile/mux26_2_f7 (_core/read_data_2<11>)
      FDE:D                     0.102          _core/data_from_reg_2_11
     ----------------------------------------
-    Total                      7.146ns (2.908ns logic, 4.238ns route)
-                                       (40.7% logic, 59.3% route)
+    Total                      7.184ns (2.908ns logic, 4.276ns route)
+                                       (40.5% logic, 59.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 28 / 12
+  Total number of paths / destination ports: 20 / 12
 -------------------------------------------------------------------------
-Offset:              3.792ns (Levels of Logic = 3)
+Offset:              2.694ns (Levels of Logic = 2)
   Source:            mode<0> (PAD)
   Destination:       _vgaController/_pixelGenerator/next_color_7 (FF)
   Destination Clock: clk rising
@@ -900,13 +906,12 @@ Offset:              3.792ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            16   1.222   1.252  mode_0_IBUF (mode_0_IBUF)
-     LUT4:I0->O            1   0.203   0.808  _vgaController/_pixelGenerator/Mmux_mode[1]_PWR_4_o_wide_mux_10_OUT12_SW1 (N50)
-     LUT6:I3->O            1   0.205   0.000  _vgaController/_pixelGenerator/Mmux_mode[1]_PWR_4_o_wide_mux_10_OUT21 (_vgaController/_pixelGenerator/mode[1]_PWR_4_o_wide_mux_10_OUT<1>)
-     FDE:D                     0.102          _vgaController/_pixelGenerator/next_color_1
+     IBUF:I->O             8   1.222   1.167  mode_0_IBUF (mode_0_IBUF)
+     LUT6:I0->O            1   0.203   0.000  _vgaController/_pixelGenerator/Mmux_mode[1]_GND_4_o_wide_mux_8_OUT31 (_vgaController/_pixelGenerator/mode[1]_GND_4_o_wide_mux_8_OUT<2>)
+     FDE:D                     0.102          _vgaController/_pixelGenerator/next_color_2
     ----------------------------------------
-    Total                      3.792ns (1.732ns logic, 2.060ns route)
-                                       (45.7% logic, 54.3% route)
+    Total                      2.694ns (1.527ns logic, 1.167ns route)
+                                       (56.7% logic, 43.3% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
@@ -939,21 +944,21 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    7.146|         |         |         |
+clk            |    7.184|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 12.00 secs
-Total CPU time to Xst completion: 12.14 secs
+Total REAL time to Xst completion: 13.00 secs
+Total CPU time to Xst completion: 12.58 secs
  
 --> 
 
 
-Total memory usage is 419896 kilobytes
+Total memory usage is 419960 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    7 (   0 filtered)
-Number of infos    :   35 (   0 filtered)
+Number of warnings :    6 (   0 filtered)
+Number of infos    :   36 (   0 filtered)
 

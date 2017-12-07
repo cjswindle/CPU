@@ -5,7 +5,7 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/home/rajp/Projects/CPU/assignment_3/CoreTest.v" Line 37: Port <arg fmt="%s" index="1">debug_core</arg> is not connected to this instance
+<msg type="fatal" file="Simulator" num="0" delta="unknown" srcfile="/build/xfndry10/P.20131013/env/Jobs/Simulator/Compiler/common/src/CompilerAssert.h" srcline="40" srcrcs="1.51" >Internal Compiler Error in file <arg fmt="%s" index="1">../src/VlogExpr.cpp</arg> at line <arg fmt="%d" index="2">3735</arg>
 </msg>
 
 </messages>

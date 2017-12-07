@@ -1,6 +1,8 @@
+verilog work "WriteToMouse.v"
 verilog work "VGASignalGenerator.v"
 verilog work "SevenSeg.v"
 verilog work "RegisterFile.v"
+verilog work "ReadFromMouse.v"
 verilog work "PixelGenerator.v"
 verilog work "VGAController.v"
 verilog work "ipcore_dir/VGARAM.v"

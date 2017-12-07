@@ -82,7 +82,8 @@ module Core(
 										.x					(x),
 										.y					(y),
 										.left_click		(left_click),
-										.right_click	(right_click));
+										.right_click	(right_click),
+										.data_ready		(data_ready));
 										
 	// Data that needs to persist between instructions
 	reg [14:0] program_counter;
