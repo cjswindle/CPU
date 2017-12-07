@@ -29,8 +29,8 @@ module IOController(
 	output					y_overflow,
 	output 		[7:0]		sev_seg,
 	output 		[3:0]		an,
-	output 		[15:0]	x,
-	output 		[15:0]	y,
+	output 		[15:0]	mouse_x,
+	output 		[15:0]	mouse_y,
 	output reg			 	data_ready,
 	output					left_click,
 	output					right_click
@@ -72,8 +72,8 @@ module IOController(
 	wire	[7:0]	mouse_data;
 	
 	// Outputs
-	assign x = 					{ {8{current_x[8]}}, current_x[7:0] };
-	assign y = 					{ {8{current_y[8]}}, current_y[7:0] };
+	assign mouse_x = 			{ {8{current_x[8]}}, current_x[7:0] };
+	assign mouse_y = 			{ {8{current_y[8]}}, current_y[7:0] };
 	assign left_click = 		current_btn[0];
 	assign right_click = 	current_btn[1];
 	

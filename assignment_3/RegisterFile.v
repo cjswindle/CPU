@@ -28,8 +28,8 @@ module RegisterFile(
 	input						data_ready,
 	input						left_click,
 	input						right_click,
-	input			[15:0]	x,
-	input			[15:0]	y,
+	input			[15:0]	mouse_x,
+	input			[15:0]	mouse_y,
 	output reg 	[23:0] 	read_data_1,
 	output reg 	[23:0] 	read_data_2
    );
@@ -57,7 +57,14 @@ module RegisterFile(
 	reg [15:0] r19		= 16'hAAAA;
 	reg [15:0] r20		= 16'hAAAA;
 	reg [15:0] r21		= 16'hAAAA;
-	reg [15:0] r22		= 16'hAAAA;
+	
+	reg [15:0] r_read_data 	= 16'b0;
+	
+	reg [15:0] r_mouse_x		= 16'b0;
+	reg [15:0] r_mouse_y		= 16'b0;
+	reg [15:0] r_data_ready	= 16'b0;
+	reg r_left_click 	= 1'b0;
+	reg r_right_click = 1'b0;
 
 	// 24-bit registers
 	reg [23:0] lr0		= 24'hAAAAAA;
@@ -91,13 +98,14 @@ module RegisterFile(
 		 19 :  read_data_1 = {8'b0, r19};
 		 20 :  read_data_1 = {8'b0, r20};
 		 21 :  read_data_1 = {8'b0, r21};
-		 22 :  read_data_1 = {8'b0, r22};
 		 
-		 23 :  read_data_1 = x;
-		 24 :  read_data_1 = y;
-		 25 :  read_data_1 = {15'b0, data_ready};
-		 26 :  read_data_1 = {15'b0, left_click};
-		 27 :  read_data_1 = {15'b0, right_click};
+		 22 :  read_data_1 = {8'b0, r_read_data};
+		 
+		 23 :  read_data_1 = r_mouse_x;
+		 24 :  read_data_1 = r_mouse_y;
+		 25 :  read_data_1 = {15'b0, r_data_ready};
+		 26 :  read_data_1 = {15'b0, r_left_click};
+		 27 :  read_data_1 = {15'b0, r_right_click};
 		 
 		 28 :  read_data_1 = lr0;
 		 29 :  read_data_1 = lr1;
@@ -127,14 +135,15 @@ module RegisterFile(
 		 18 :  read_data_2 = {8'b0, r18};
 		 19 :  read_data_2 = {8'b0, r19};
 		 20 :  read_data_2 = {8'b0, r20};
-		 21 :  read_data_2 = {8'b0, r21};		 
-		 22 :  read_data_2 = {8'b0, r22};
+		 21 :  read_data_2 = {8'b0, r21};
 		 
-		 23 :  read_data_2 = x;
-		 24 :  read_data_2 = y;
-		 25 :  read_data_2 = {15'b0, data_ready};
-		 26 :  read_data_2 = {15'b0, left_click};
-		 27 :  read_data_2 = {15'b0, right_click};
+		 22 :  read_data_2 = {8'b0, r_read_data};
+		 
+		 23 :  read_data_2 = r_mouse_x;
+		 24 :  read_data_2 = r_mouse_y;
+		 25 :  read_data_2 = {15'b0, r_data_ready};
+		 26 :  read_data_2 = {15'b0, r_left_click};
+		 27 :  read_data_2 = {15'b0, r_right_click};
 		 
 		 28 :  read_data_2 = lr0;
 		 29 :  read_data_2 = lr1;
@@ -145,6 +154,14 @@ module RegisterFile(
 
 	always@(posedge clk)
 	begin
+		r_data_ready <= data_ready;
+		if (data_ready) begin
+			r_read_data <= 16'd1;
+			r_mouse_x 	<= mouse_x;
+			r_mouse_y	<= mouse_y;
+			r_left_click	<= left_click;
+			r_right_click  <= right_click;
+		end
 	  if(write_enable)
 	  begin
 		 case(write_index)
@@ -170,7 +187,8 @@ module RegisterFile(
 			19 :  r19 <= write_data[15:0];
 			20 :  r20 <= write_data[15:0];
 			21 :  r21 <= write_data[15:0];
-			22 :  r22 <= write_data[15:0];
+			
+			22	:	r_read_data <= write_data[15:0];
 			// We don't need to write to 23 - 27 because they're used for mouse data.
 			
 			28 :  lr0 <= write_data;

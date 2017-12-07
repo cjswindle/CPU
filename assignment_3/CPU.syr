@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Reading design: CPU.prj
@@ -288,10 +288,15 @@ Unit <Core> synthesized.
 
 Synthesizing Unit <RegisterFile>.
     Related source file is "/home/rajp/Projects/CPU/assignment_3/RegisterFile.v".
+    Found 16-bit register for signal <r_read_data>.
+    Found 16-bit register for signal <r_mouse_x>.
+    Found 16-bit register for signal <r_mouse_y>.
+    Found 1-bit register for signal <r_left_click>.
+    Found 1-bit register for signal <r_right_click>.
+    Found 24-bit register for signal <lr3>.
     Found 24-bit register for signal <lr2>.
     Found 24-bit register for signal <lr1>.
     Found 24-bit register for signal <lr0>.
-    Found 16-bit register for signal <r22>.
     Found 16-bit register for signal <r21>.
     Found 16-bit register for signal <r20>.
     Found 16-bit register for signal <r19>.
@@ -314,12 +319,13 @@ Synthesizing Unit <RegisterFile>.
     Found 16-bit register for signal <r2>.
     Found 16-bit register for signal <r1>.
     Found 16-bit register for signal <r0>.
-    Found 24-bit register for signal <lr3>.
-    Found 24-bit 32-to-1 multiplexer for signal <read_data_1> created at line 71.
-    Found 24-bit 32-to-1 multiplexer for signal <read_data_2> created at line 108.
+    Found 1-bit register for signal <r_data_ready>.
+    Found 24-bit 32-to-1 multiplexer for signal <read_data_1> created at line 78.
+    Found 24-bit 32-to-1 multiplexer for signal <read_data_2> created at line 116.
+    WARNING:Xst:2404 -  FFs/Latches <r_data_ready<15:1>> (without init value) have a constant value of 0 in block <RegisterFile>.
     Summary:
-	inferred 464 D-type flip-flop(s).
-	inferred   2 Multiplexer(s).
+	inferred 499 D-type flip-flop(s).
+	inferred   4 Multiplexer(s).
 Unit <RegisterFile> synthesized.
 
 Synthesizing Unit <IOController>.
@@ -473,13 +479,13 @@ Macro Statistics
  24-bit subtractor                                     : 1
  4-bit subtractor                                      : 2
  9-bit subtractor                                      : 1
-# Registers                                            : 61
- 1-bit register                                        : 5
+# Registers                                            : 66
+ 1-bit register                                        : 8
  10-bit register                                       : 3
  11-bit register                                       : 2
  13-bit register                                       : 1
  15-bit register                                       : 1
- 16-bit register                                       : 24
+ 16-bit register                                       : 26
  2-bit register                                        : 3
  20-bit register                                       : 1
  24-bit register                                       : 6
@@ -494,12 +500,12 @@ Macro Statistics
  10-bit comparator greater                             : 3
  10-bit comparator lessequal                           : 4
  9-bit comparator greater                              : 1
-# Multiplexers                                         : 63
+# Multiplexers                                         : 65
  1-bit 2-to-1 multiplexer                              : 28
  1-bit 4-to-1 multiplexer                              : 4
  13-bit 2-to-1 multiplexer                             : 1
  15-bit 2-to-1 multiplexer                             : 11
- 16-bit 2-to-1 multiplexer                             : 1
+ 16-bit 2-to-1 multiplexer                             : 3
  24-bit 2-to-1 multiplexer                             : 7
  24-bit 32-to-1 multiplexer                            : 2
  4-bit 2-to-1 multiplexer                              : 2
@@ -609,18 +615,18 @@ Macro Statistics
  2-bit up counter                                      : 3
  20-bit up counter                                     : 1
  4-bit down counter                                    : 2
-# Registers                                            : 695
- Flip-Flops                                            : 695
+# Registers                                            : 730
+ Flip-Flops                                            : 730
 # Comparators                                          : 8
  10-bit comparator greater                             : 3
  10-bit comparator lessequal                           : 4
  9-bit comparator greater                              : 1
-# Multiplexers                                         : 105
+# Multiplexers                                         : 107
  1-bit 2-to-1 multiplexer                              : 27
  1-bit 32-to-1 multiplexer                             : 48
  1-bit 4-to-1 multiplexer                              : 4
  15-bit 2-to-1 multiplexer                             : 11
- 16-bit 2-to-1 multiplexer                             : 1
+ 16-bit 2-to-1 multiplexer                             : 3
  24-bit 2-to-1 multiplexer                             : 7
  4-bit 4-to-1 multiplexer                              : 1
  5-bit 2-to-1 multiplexer                              : 2
@@ -713,6 +719,7 @@ Optimizing unit <SevenSeg> ...
 INFO:Xst:2261 - The FF/Latch <_vgaController/_pixelGenerator/pixel_state_0> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_vgaController/_vgaSignalGenerator/pixel_counter_0> 
 INFO:Xst:2261 - The FF/Latch <_vgaController/_pixelGenerator/pixel_state_1> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_vgaController/_vgaSignalGenerator/pixel_counter_1> 
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_clk> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_clk> 
+INFO:Xst:2261 - The FF/Latch <_core/_RegisterFile/r_mouse_x_15> in Unit <CPU> is equivalent to the following 7 FFs/Latches, which will be removed : <_core/_RegisterFile/r_mouse_x_14> <_core/_RegisterFile/r_mouse_x_13> <_core/_RegisterFile/r_mouse_x_12> <_core/_RegisterFile/r_mouse_x_11> <_core/_RegisterFile/r_mouse_x_10> <_core/_RegisterFile/r_mouse_x_9> <_core/_RegisterFile/r_mouse_x_8> 
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_0> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_0> 
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_1> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_1> 
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_2> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_2> 
@@ -721,10 +728,13 @@ INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_4> in U
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_5> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_5> 
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_6> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_6> 
 INFO:Xst:2261 - The FF/Latch <_ioController/_writeToMouse/current_filter_7> in Unit <CPU> is equivalent to the following FF/Latch, which will be removed : <_ioController/_readFromMouse/current_filter_7> 
+INFO:Xst:2261 - The FF/Latch <_core/_RegisterFile/r_mouse_y_15> in Unit <CPU> is equivalent to the following 7 FFs/Latches, which will be removed : <_core/_RegisterFile/r_mouse_y_14> <_core/_RegisterFile/r_mouse_y_13> <_core/_RegisterFile/r_mouse_y_12> <_core/_RegisterFile/r_mouse_y_11> <_core/_RegisterFile/r_mouse_y_10> <_core/_RegisterFile/r_mouse_y_9> <_core/_RegisterFile/r_mouse_y_8> 
 
 Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block CPU, actual ratio is 18.
+FlipFlop _core/core_state_FSM_FFd4 has been replicated 1 time(s)
+FlipFlop _core/opcode_1 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -738,8 +748,8 @@ Unit <CPU> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 727
- Flip-Flops                                            : 727
+# Registers                                            : 750
+ Flip-Flops                                            : 750
 # Shift Registers                                      : 3
  20-bit shift register                                 : 1
  3-bit shift register                                  : 2
@@ -765,23 +775,23 @@ Top Level Output File Name         : CPU.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 1889
+# BELS                             : 1925
 #      GND                         : 2
 #      INV                         : 11
 #      LUT1                        : 60
-#      LUT2                        : 145
-#      LUT3                        : 425
+#      LUT2                        : 149
+#      LUT3                        : 430
 #      LUT4                        : 113
-#      LUT5                        : 90
-#      LUT6                        : 628
+#      LUT5                        : 95
+#      LUT6                        : 648
 #      MUXCY                       : 156
-#      MUXF7                       : 73
+#      MUXF7                       : 75
 #      MUXF8                       : 18
 #      VCC                         : 2
 #      XORCY                       : 166
-# FlipFlops/Latches                : 738
-#      FD                          : 34
-#      FDE                         : 638
+# FlipFlops/Latches                : 761
+#      FD                          : 36
+#      FDE                         : 659
 #      FDR                         : 46
 #      FDRE                        : 20
 # RAMS                             : 30
@@ -803,18 +813,18 @@ Selected Device : 6slx16csg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             738  out of  18224     4%  
- Number of Slice LUTs:                 1475  out of   9112    16%  
-    Number used as Logic:              1472  out of   9112    16%  
+ Number of Slice Registers:             761  out of  18224     4%  
+ Number of Slice LUTs:                 1509  out of   9112    16%  
+    Number used as Logic:              1506  out of   9112    16%  
     Number used as Memory:                3  out of   2176     0%  
        Number used as SRL:                3
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   1957
-   Number with an unused Flip Flop:    1219  out of   1957    62%  
-   Number with an unused LUT:           482  out of   1957    24%  
-   Number of fully used LUT-FF pairs:   256  out of   1957    13%  
-   Number of unique control sets:        49
+ Number of LUT Flip Flop pairs used:   1996
+   Number with an unused Flip Flop:    1235  out of   1996    61%  
+   Number with an unused LUT:           487  out of   1996    24%  
+   Number of fully used LUT-FF pairs:   274  out of   1996    13%  
+   Number of unique control sets:        50
 
 IO Utilization: 
  Number of IOs:                          33
@@ -846,7 +856,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 771   |
+clk                                | BUFGP                  | 794   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -857,7 +867,7 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 7.184ns (Maximum Frequency: 139.200MHz)
+   Minimum period: 7.187ns (Maximum Frequency: 139.149MHz)
    Minimum input arrival time before clock: 2.694ns
    Maximum output required time after clock: 6.244ns
    Maximum combinational path delay: No path found
@@ -868,29 +878,29 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 7.184ns (frequency: 139.200MHz)
-  Total number of paths / destination ports: 121925 / 2535
+  Clock period: 7.187ns (frequency: 139.149MHz)
+  Total number of paths / destination ports: 123208 / 2579
 -------------------------------------------------------------------------
-Delay:               7.184ns (Levels of Logic = 6)
+Delay:               7.187ns (Levels of Logic = 6)
   Source:            _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (RAM)
-  Destination:       _core/data_from_reg_2_11 (FF)
+  Destination:       _core/data_from_reg_2_0 (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_11
+  Data Path: _vgaRam/U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram to _core/data_from_reg_2_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      RAMB16BWER:CLKB->DOB0    1   1.850   0.684  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.r/s6_init.ram/TRUE_DP.PRIM18.ram (U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[10].ram.ram_doutb)
-     LUT3:I1->O          101   0.203   1.880  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux61 (doutb<5>)
+     LUT3:I1->O          102   0.203   1.883  U0/xst_blk_mem_generator/gnativebmg.native_blk_mem_gen/valid.cstr/has_mux_b.B/Mmux_dout_mux61 (doutb<5>)
      end scope: '_vgaRam:doutb<5>'
      LUT2:I1->O           17   0.205   1.132  _core/core_state_read_index_2<0>1 (_core/read_index_2<0>)
-     LUT6:I4->O            1   0.203   0.580  _core/_RegisterFile/mux26_91 (_core/_RegisterFile/mux26_91)
-     LUT6:I5->O            1   0.205   0.000  _core/_RegisterFile/mux26_2_f7_G (N939)
-     MUXF7:I1->O           1   0.140   0.000  _core/_RegisterFile/mux26_2_f7 (_core/read_data_2<11>)
-     FDE:D                     0.102          _core/data_from_reg_2_11
+     LUT6:I4->O            1   0.203   0.580  _core/_RegisterFile/mux24_91 (_core/_RegisterFile/mux24_91)
+     LUT6:I5->O            1   0.205   0.000  _core/_RegisterFile/mux24_2_f7_G (N972)
+     MUXF7:I1->O           1   0.140   0.000  _core/_RegisterFile/mux24_2_f7 (_core/read_data_2<0>)
+     FDE:D                     0.102          _core/data_from_reg_2_0
     ----------------------------------------
-    Total                      7.184ns (2.908ns logic, 4.276ns route)
+    Total                      7.187ns (2.908ns logic, 4.279ns route)
                                        (40.5% logic, 59.5% route)
 
 =========================================================================
@@ -944,21 +954,21 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    7.184|         |         |         |
+clk            |    7.187|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 13.00 secs
-Total CPU time to Xst completion: 12.58 secs
+Total CPU time to Xst completion: 13.27 secs
  
 --> 
 
 
-Total memory usage is 419960 kilobytes
+Total memory usage is 420088 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    6 (   0 filtered)
-Number of infos    :   36 (   0 filtered)
+Number of warnings :    7 (   0 filtered)
+Number of infos    :   38 (   0 filtered)
 

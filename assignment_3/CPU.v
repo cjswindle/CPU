@@ -58,8 +58,8 @@ module CPU(
 								.raw_button				(raw_next_inst),
 								.debounced_button		(debounced_next_inst));*/
 	
-	wire	[15:0]	x;
-	wire	[15:0] 	y;
+	wire	[15:0]	mouse_x;
+	wire	[15:0] 	mouse_y;
 	wire				data_ready;
 	wire				left_click;
 	wire				right_click;
@@ -93,8 +93,8 @@ module CPU(
 				  .debug_core			(debug_core),
 				  .debug_next_inst	(debounced_next_inst),
 				  .data_from_ram		(data_from_ram_b),
-				  .x						(x),
-				  .y						(y),
+				  .mouse_x						(mouse_x),
+				  .mouse_y						(mouse_y),
 				  .data_ready			(data_ready),
 				  .left_click			(left_click),
 				  .right_click			(right_click),
@@ -114,8 +114,8 @@ module CPU(
 										.sev_seg				(sev_seg),
 										.an					(an),
 										.data_ready			(data_ready),
-										.x						(x),
-										.y						(y),
+										.mouse_x				(mouse_x),
+										.mouse_y				(mouse_y),
 										.right_click		(right_click),
 										.left_click			(left_click));
 										  
