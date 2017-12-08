@@ -52,7 +52,10 @@ module Core(
 	parameter LOADI 	= 5'b01110;
 	parameter STORE 	= 5'b01111;
 	parameter MOV 		= 5'b10000;
-	parameter STOREPXL = 5'b10001;
+	parameter INCRSR 	= 5'b10001;
+	parameter INDRAW	= 5'b10010;
+	parameter INERSR	= 5'b10011;
+	parameter SETCOLR	= 5'b10100;
 
 	parameter FETCH 	= 3'b000;
 	parameter DECODE  = 3'b001;
@@ -94,31 +97,33 @@ module Core(
 	initial next_program_counter = 15'b0;
 	
 	reg [23:0] program_return_link;
-	reg status_SF;
 	reg status_ZF;
-	reg status_OF;
+	reg status_GF;
+	reg status_LF;
 	reg [3:0] core_state;
 
 
-	initial status_SF = 0;
 	initial status_ZF = 0;
-	initial status_OF = 0;
+	initial status_GF = 0;
+	initial status_LF = 0;	
 	initial core_state = 3'b0;
 
 	// Data that needs to persist between cycles
-	reg [4:0] dest_reg_index;
-	reg [10:0] immediateL;
-	reg [5:0] immediateS;
-	reg [23:0] data_from_reg_1;
-	reg [23:0] data_from_reg_2;
-
+	reg [4:0] 	dest_reg_index;
+	reg [10:0] 	immediateL;
+	reg [5:0] 	immediateS;
+	reg [23:0] 	data_from_reg_1;
+	reg [23:0] 	data_from_reg_2;
+	reg [3:0]	selected_color;
+	
 	reg [4:0] opcode;	// Latch the instruction so we can decode it and guarantee that it is the correct value
 	initial opcode = 0;
 	
 	// Used to calculate the next SF, ZF, and OF for the next assembly instruction to use.
-	reg next_status_SF;
 	reg next_status_ZF;
-	reg next_status_OF;
+	reg next_status_GF;
+	reg next_status_LF;
+	reg next_selected_color;
 	
 	reg [3:0]	next_state;		// Used to determine the next state based on the op-code. (do we need a next state? or can we just assign the state parameter to the next state?)
 
@@ -134,7 +139,8 @@ module Core(
 		write_index = dest_reg_index;
 		data_to_ram = 16'b0;
 		next_status_ZF = 0;
-		next_status_SF = 0;
+		next_status_LF = 0;
+		next_status_GF = 0;
 		
 		case(core_state)
 
@@ -170,7 +176,7 @@ module Core(
 												write_enable = 1;
 											end
 								ADDI:		begin
-												write_data = data_from_reg_1 + {{9{immediateS[5]}},immediateS};
+												write_data = data_from_reg_1 + {{10{immediateS[5]}},immediateS};
 												write_enable = 1;
 											end
 								SHLLI:	begin
@@ -178,7 +184,7 @@ module Core(
 												write_enable = 1;
 											end
 								SHRLI:	begin
-												write_data = data_from_reg_1 >> immediateS;
+												write_data = data_from_reg_1 >>> immediateS;
 												write_enable = 1;
 											end
 								JUMP:		begin
@@ -190,13 +196,13 @@ module Core(
 												write_enable = 1;
 											end
 								JUMPL:	begin
-												if(status_SF != status_OF) begin													
-													next_program_counter = immediateL;
+												if(status_LF) begin													
+													next_program_counter = (program_counter + 1'b1) + {{4{immediateL[10]}}, immediateL};
 												end
 											end
 								JUMPG:	begin
-												if(status_SF == status_OF && status_ZF == 0) begin
-													next_program_counter = immediateL;
+												if(status_GF) begin
+													next_program_counter = (program_counter + 1'b1) + {{4{immediateL[10]}}, immediateL};
 												end
 											end
 								JUMPE:	begin
@@ -210,26 +216,66 @@ module Core(
 												end
 											end
 								CMP:		begin
-												next_status_SF = !(data_from_reg_1[15] == {data_from_reg_1 - data_from_reg_2}[15]);	//
-												next_status_ZF = !(|(data_from_reg_1 - data_from_reg_2));	//or all the bits together and invert for ZF bit
-												next_status_OF = (data_from_reg_1[15] == data_from_reg_2[15]); // THIS IS NOT RIGHT. Need to fix.
+												next_status_ZF = !(|(data_from_reg_1 - data_from_reg_2));	//or all the bits together and invert for ZF bit 
+												if ($signed(data_from_reg_1) < $signed(data_from_reg_2)) begin
+													next_status_LF = 1'b1;
+												end
+												if ($signed(data_from_reg_1) > $signed(data_from_reg_2)) begin
+													next_status_GF = 1'b1;
+												end
 											end
 								RET:		begin
 													//next_program_counter = ;//Insert return address $reta
 											end
 								MOV:		begin
-													write_data = data_from_reg_2;
-													write_index = dest_reg_index;
-													write_enable = 1;
+												write_data = data_from_reg_2;
+												write_index = dest_reg_index;
+												write_enable = 1;
 											end
 								LOADI:	begin
 												write_index = dest_reg_index;
 												write_data = immediateS;
 												write_enable = 1;
 											end
-								STOREPXL: begin
-												
-											 end
+								INCRSR: begin
+												write_index = 5'd16;
+												write_enable = 1'b1;
+												case(data_from_reg_1[1:0])
+													0 : write_data = {(4'b1111),(data_from_reg_2[11:0])};
+													1 : write_data = {(data_from_reg_2[15:12]),(4'b1111),(data_from_reg_2[7:0])};
+													2 : write_data = {(data_from_reg_2[15:8]),(4'b1111),(data_from_reg_2[3:0])};
+													3 : write_data = {(data_from_reg_2[15:4]),(4'b1111)};
+												endcase
+											end
+								INDRAW: begin
+												write_index = 5'd16;
+												write_enable =1'b1;
+												case(data_from_reg_1[1:0])
+													0 : write_data = {selected_color,(data_from_reg_2[11:0])};
+													1 : write_data = {(data_from_reg_2[15:12]),selected_color,(data_from_reg_2[7:0])};
+													2 : write_data = {(data_from_reg_2[15:8]),selected_color,(data_from_reg_2[3:0])};
+													3 : write_data = {(data_from_reg_2[15:4]),selected_color};
+												endcase
+											end
+								INERSR: begin
+												write_index = 5'd16;
+												write_enable = 1'b1;
+												case(data_from_reg_1[1:0])
+													0 : write_data = {(4'b0000),(data_from_reg_2[11:0])};
+													1 : write_data = {(data_from_reg_2[15:12]),(4'b0000),(data_from_reg_2[7:0])};
+													2 : write_data = {(data_from_reg_2[15:8]),(4'b0000),(data_from_reg_2[3:0])};
+													3 : write_data = {(data_from_reg_2[15:4]),(4'b0000)};
+												endcase
+											end
+								SETCOLR:	begin
+												case(data_from_reg_1[1:0])
+													0: next_selected_color = data_from_reg_2[15:12];
+													1:	next_selected_color = data_from_reg_2[11:8];
+													2:	next_selected_color = data_from_reg_2[7:4];
+													3:	next_selected_color = data_from_reg_2[3:0];
+												endcase
+											end
+											 
 							endcase
 						end
 			LOAD1:	begin
@@ -279,9 +325,10 @@ module Core(
 			EXECUTE:	begin
 							core_state <= FETCH;
 							program_counter <= next_program_counter;
-							status_SF <= next_status_SF;
 							status_ZF <= next_status_ZF;
-							status_OF <= next_status_ZF;
+							status_LF <= next_status_LF;
+							status_GF <= next_status_GF;
+							selected_color <= next_selected_color;
 						end
 			LOAD1:	begin
 							core_state <= LOAD2;

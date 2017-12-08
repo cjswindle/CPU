@@ -35,27 +35,27 @@ module RegisterFile(
    );
 
 	// 16-bit registers
-	reg [15:0] r0		= 16'hAAAA;
-	reg [15:0] r1		= 16'hAAAA;
-	reg [15:0] r2		= 16'hAAAA;
-	reg [15:0] r3		= 16'hAAAA;
-	reg [15:0] r4		= 16'hAAAA;
-	reg [15:0] r5		= 16'hAAAA;
-	reg [15:0] r6		= 16'hAAAA;
-	reg [15:0] r7		= 16'hAAAA;
-	reg [15:0] r8		= 16'hAAAA;
-	reg [15:0] r9		= 16'hAAAA;
-	reg [15:0] r10		= 16'hAAAA;
-	reg [15:0] r11		= 16'hAAAA;
-	reg [15:0] r12		= 16'hAAAA;
-	reg [15:0] r13		= 16'hAAAA;
-	reg [15:0] r14		= 16'hAAAA;
-	reg [15:0] r15		= 16'hAAAA;
-	reg [15:0] r16		= 16'hAAAA;
-	reg [15:0] r17		= 16'hAAAA;
-	reg [15:0] r18		= 16'hAAAA;
-	reg [15:0] r19		= 16'hAAAA;
-	reg [15:0] r20		= 16'hAAAA;
+	reg [15:0] r0		= 16'h0000;
+	reg [15:0] r1		= 16'h0000;
+	reg [15:0] r2		= 16'h0000;
+	reg [15:0] r3		= 16'h0000;
+	reg [15:0] r4		= 16'h0000;
+	reg [15:0] r5		= 16'h0000;
+	reg [15:0] r6		= 16'h0000;
+	reg [15:0] r7		= 16'h0000;
+	reg [15:0] r8		= 16'h0000;
+	reg [15:0] r9		= 16'h0000;
+	reg [15:0] r10		= 16'h0000;
+	reg [15:0] r11		= 16'h0000;
+	reg [15:0] r12		= 16'h0000;
+	reg [15:0] r13		= 16'h0000;
+	reg [15:0] r14		= 16'h0000;
+	reg [15:0] r15		= 16'h0000;
+	reg [15:0] r16		= 16'h0000;
+	reg [15:0] r17		= 16'h0000;
+	reg [15:0] r18		= 16'h0000;
+	reg [15:0] r19		= 16'h0000;
+	reg [15:0] r20		= 16'h0000;
 	
 	reg [15:0] r_read_data 	= 16'b0;
 	
@@ -66,36 +66,36 @@ module RegisterFile(
 	reg r_right_click = 1'b0;
 
 	// 24-bit registers
-	reg [23:0] lr0		= 24'hAAAAAA;
-	reg [23:0] lr1		= 24'hAAAAAA;
-	reg [23:0] lr2		= 24'hAAAAAA;
-	reg [23:0] lr3		= 24'hAAAAAA;
-	reg [23:0] lr4		= 24'hAAAAAA;
+	reg [23:0] lr0		= 24'h000000;
+	reg [23:0] lr1		= 24'h000000;
+	reg [23:0] lr2		= 24'h000000;
+	reg [23:0] lr3		= 24'h000000;
+	reg [23:0] lr4		= 24'h000000;
 
 	always@*
 	begin
 	  case(read_index_1)
-		 0 :	 read_data_1 = {8'b0, r0};
-		 1 :	 read_data_1 = {8'b0, r1};
-		 2 :	 read_data_1 = {8'b0, r2};
-		 3 :	 read_data_1 = {8'b0, r3};
-		 4 :	 read_data_1 = {8'b0, r4};
-		 5 :	 read_data_1 = {8'b0, r5};
-		 6 :	 read_data_1 = {8'b0, r6};
-		 7 :	 read_data_1 = {8'b0, r7};
-		 8 :	 read_data_1 = {8'b0, r8};
-		 9 :	 read_data_1 = {8'b0, r9};
-		 10 :  read_data_1 = {8'b0, r10};
-		 11 :  read_data_1 = {8'b0, r11};
-		 12 :  read_data_1 = {8'b0, r12};
-		 13 :  read_data_1 = {8'b0, r13};
-		 14 :  read_data_1 = {8'b0, r14};
-		 15 :  read_data_1 = {8'b0, r15};
-		 16 :  read_data_1 = {8'b0, r16};
-		 17 :  read_data_1 = {8'b0, r17};
-		 18 :  read_data_1 = {8'b0, r18};
-		 19 :  read_data_1 = {8'b0, r19};
-		 20 :  read_data_1 = {8'b0, r20};
+		 0 :	 read_data_1 = {{8{r0[15]}}, r0};
+		 1 :	 read_data_1 = {{8{r1[15]}}, r1};
+		 2 :	 read_data_1 = {{8{r2[15]}}, r2};
+		 3 :	 read_data_1 = {{8{r3[15]}}, r3};
+		 4 :	 read_data_1 = {{8{r4[15]}}, r4};
+		 5 :	 read_data_1 = {{8{r5[15]}}, r5};
+		 6 :	 read_data_1 = {{8{r6[15]}}, r6};
+		 7 :	 read_data_1 = {{8{r7[15]}}, r7};
+		 8 :	 read_data_1 = {{8{r8[15]}}, r8};
+		 9 :	 read_data_1 = {{8{r9[15]}}, r9};
+		 10 :  read_data_1 = {{8{r10[15]}}, r10};
+		 11 :  read_data_1 = {{8{r11[15]}}, r11};
+		 12 :  read_data_1 = {{8{r12[15]}}, r12};
+		 13 :  read_data_1 = {{8{r13[15]}}, r13};
+		 14 :  read_data_1 = {{8{r14[15]}}, r14};
+		 15 :  read_data_1 = {{8{r15[15]}}, r15};
+		 16 :  read_data_1 = {{8{r16[15]}}, r16};
+		 17 :  read_data_1 = {{8{r17[15]}}, r17};
+		 18 :  read_data_1 = {{8{r18[15]}}, r18};
+		 19 :  read_data_1 = {{8{r19[15]}}, r19};
+		 20 :  read_data_1 = {{8{r20[15]}}, r20};
 		 
 		 21 :  read_data_1 = {8'b0, r_read_data};
 		 
@@ -113,27 +113,27 @@ module RegisterFile(
 	  endcase
 
 	  case(read_index_2)
-		 0 :	 read_data_2 = {8'b0, r0};
-		 1 : 	 read_data_2 = {8'b0, r1};
-		 2 : 	 read_data_2 = {8'b0, r2};
-		 3 : 	 read_data_2 = {8'b0, r3};
-		 4 : 	 read_data_2 = {8'b0, r4};
-		 5 : 	 read_data_2 = {8'b0, r5};
-		 6 :	 read_data_2 = {8'b0, r6};
-		 7 :	 read_data_2 = {8'b0, r7};
-		 8 :	 read_data_2 = {8'b0, r8};
-		 9 : 	 read_data_2 = {8'b0, r9};
-		 10 :  read_data_2 = {8'b0, r10};
-		 11 :  read_data_2 = {8'b0, r11};
-		 12 :  read_data_2 = {8'b0, r12};
-		 13 :  read_data_2 = {8'b0, r13};
-		 14 :  read_data_2 = {8'b0, r14};
-		 15 :  read_data_2 = {8'b0, r15};
-		 16 :  read_data_2 = {8'b0, r16};
-		 17 :  read_data_2 = {8'b0, r17};
-		 18 :  read_data_2 = {8'b0, r18};
-		 19 :  read_data_2 = {8'b0, r19};
-		 20 :  read_data_2 = {8'b0, r20};
+		 0 :	 read_data_2 = {{8{r0[15]}}, r0};
+		 1 :	 read_data_2 = {{8{r1[15]}}, r1};
+		 2 :	 read_data_2 = {{8{r2[15]}}, r2};
+		 3 :	 read_data_2 = {{8{r3[15]}}, r3};
+		 4 :	 read_data_2 = {{8{r4[15]}}, r4};
+		 5 :	 read_data_2 = {{8{r5[15]}}, r5};
+		 6 :	 read_data_2 = {{8{r6[15]}}, r6};
+		 7 :	 read_data_2 = {{8{r7[15]}}, r7};
+		 8 :	 read_data_2 = {{8{r8[15]}}, r8};
+		 9 :	 read_data_2 = {{8{r9[15]}}, r9};
+		 10 :  read_data_2 = {{8{r10[15]}}, r10};
+		 11 :  read_data_2 = {{8{r11[15]}}, r11};
+		 12 :  read_data_2 = {{8{r12[15]}}, r12};
+		 13 :  read_data_2 = {{8{r13[15]}}, r13};
+		 14 :  read_data_2 = {{8{r14[15]}}, r14};
+		 15 :  read_data_2 = {{8{r15[15]}}, r15};
+		 16 :  read_data_2 = {{8{r16[15]}}, r16};
+		 17 :  read_data_2 = {{8{r17[15]}}, r17};
+		 18 :  read_data_2 = {{8{r18[15]}}, r18};
+		 19 :  read_data_2 = {{8{r19[15]}}, r19};
+		 20 :  read_data_2 = {{8{r20[15]}}, r20};
 		 
 		 21 :  read_data_2 = {8'b0, r_read_data};
 		 

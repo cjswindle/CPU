@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Thu Dec 07 13:32:45 2017
+// Written by: Map P.20131013 on Fri Dec 08 00:30:56 2017
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -470,30 +470,6 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_core/core_state_FSM_FFd1" BEL "_core/core_state_FSM_FFd2" BEL
         "_core/core_state_FSM_FFd3" BEL "_core/core_state_FSM_FFd4" BEL
         "_core/core_state_FSM_FFd5" BEL "_core/core_state_FSM_FFd6" BEL
-        "_core/data_from_reg_2_23" BEL "_core/data_from_reg_2_22" BEL
-        "_core/data_from_reg_2_21" BEL "_core/data_from_reg_2_20" BEL
-        "_core/data_from_reg_2_19" BEL "_core/data_from_reg_2_18" BEL
-        "_core/data_from_reg_2_17" BEL "_core/data_from_reg_2_16" BEL
-        "_core/data_from_reg_2_15" BEL "_core/data_from_reg_2_14" BEL
-        "_core/data_from_reg_2_13" BEL "_core/data_from_reg_2_12" BEL
-        "_core/data_from_reg_2_11" BEL "_core/data_from_reg_2_10" BEL
-        "_core/data_from_reg_2_9" BEL "_core/data_from_reg_2_8" BEL
-        "_core/data_from_reg_2_7" BEL "_core/data_from_reg_2_6" BEL
-        "_core/data_from_reg_2_5" BEL "_core/data_from_reg_2_4" BEL
-        "_core/data_from_reg_2_3" BEL "_core/data_from_reg_2_2" BEL
-        "_core/data_from_reg_2_1" BEL "_core/data_from_reg_2_0" BEL
-        "_core/data_from_reg_1_23" BEL "_core/data_from_reg_1_22" BEL
-        "_core/data_from_reg_1_21" BEL "_core/data_from_reg_1_20" BEL
-        "_core/data_from_reg_1_19" BEL "_core/data_from_reg_1_18" BEL
-        "_core/data_from_reg_1_17" BEL "_core/data_from_reg_1_16" BEL
-        "_core/data_from_reg_1_15" BEL "_core/data_from_reg_1_14" BEL
-        "_core/data_from_reg_1_13" BEL "_core/data_from_reg_1_12" BEL
-        "_core/data_from_reg_1_11" BEL "_core/data_from_reg_1_10" BEL
-        "_core/data_from_reg_1_9" BEL "_core/data_from_reg_1_8" BEL
-        "_core/data_from_reg_1_7" BEL "_core/data_from_reg_1_6" BEL
-        "_core/data_from_reg_1_5" BEL "_core/data_from_reg_1_4" BEL
-        "_core/data_from_reg_1_3" BEL "_core/data_from_reg_1_2" BEL
-        "_core/data_from_reg_1_1" BEL "_core/data_from_reg_1_0" BEL
         "_core/program_counter_14" BEL "_core/program_counter_13" BEL
         "_core/program_counter_12" BEL "_core/program_counter_11" BEL
         "_core/program_counter_10" BEL "_core/program_counter_9" BEL
@@ -501,14 +477,39 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_core/program_counter_6" BEL "_core/program_counter_5" BEL
         "_core/program_counter_4" BEL "_core/program_counter_3" BEL
         "_core/program_counter_2" BEL "_core/program_counter_1" BEL
-        "_core/program_counter_0" BEL "_core/immediateL_10" BEL
-        "_core/immediateL_9" BEL "_core/immediateL_8" BEL "_core/immediateL_7"
-        BEL "_core/immediateL_6" BEL "_core/immediateL_5" BEL "_core/opcode_4"
-        BEL "_core/opcode_3" BEL "_core/opcode_2" BEL "_core/opcode_1" BEL
-        "_core/opcode_0" BEL "_core/dest_reg_index_4" BEL
-        "_core/dest_reg_index_3" BEL "_core/dest_reg_index_2" BEL
-        "_core/dest_reg_index_1" BEL "_core/dest_reg_index_0" BEL
-        "_core/_RegisterFile/r_read_data_15" BEL
+        "_core/program_counter_0" BEL "_core/selected_color" BEL
+        "_core/status_GF" BEL "_core/status_LF" BEL "_core/data_from_reg_2_23"
+        BEL "_core/data_from_reg_2_22" BEL "_core/data_from_reg_2_21" BEL
+        "_core/data_from_reg_2_20" BEL "_core/data_from_reg_2_19" BEL
+        "_core/data_from_reg_2_18" BEL "_core/data_from_reg_2_17" BEL
+        "_core/data_from_reg_2_16" BEL "_core/data_from_reg_2_15" BEL
+        "_core/data_from_reg_2_14" BEL "_core/data_from_reg_2_13" BEL
+        "_core/data_from_reg_2_12" BEL "_core/data_from_reg_2_11" BEL
+        "_core/data_from_reg_2_10" BEL "_core/data_from_reg_2_9" BEL
+        "_core/data_from_reg_2_8" BEL "_core/data_from_reg_2_7" BEL
+        "_core/data_from_reg_2_6" BEL "_core/data_from_reg_2_5" BEL
+        "_core/data_from_reg_2_4" BEL "_core/data_from_reg_2_3" BEL
+        "_core/data_from_reg_2_2" BEL "_core/data_from_reg_2_1" BEL
+        "_core/data_from_reg_2_0" BEL "_core/status_ZF" BEL
+        "_core/immediateL_10" BEL "_core/immediateL_9" BEL
+        "_core/immediateL_8" BEL "_core/immediateL_7" BEL "_core/immediateL_6"
+        BEL "_core/immediateL_5" BEL "_core/data_from_reg_1_23" BEL
+        "_core/data_from_reg_1_22" BEL "_core/data_from_reg_1_21" BEL
+        "_core/data_from_reg_1_20" BEL "_core/data_from_reg_1_19" BEL
+        "_core/data_from_reg_1_18" BEL "_core/data_from_reg_1_17" BEL
+        "_core/data_from_reg_1_16" BEL "_core/data_from_reg_1_15" BEL
+        "_core/data_from_reg_1_14" BEL "_core/data_from_reg_1_13" BEL
+        "_core/data_from_reg_1_12" BEL "_core/data_from_reg_1_11" BEL
+        "_core/data_from_reg_1_10" BEL "_core/data_from_reg_1_9" BEL
+        "_core/data_from_reg_1_8" BEL "_core/data_from_reg_1_7" BEL
+        "_core/data_from_reg_1_6" BEL "_core/data_from_reg_1_5" BEL
+        "_core/data_from_reg_1_4" BEL "_core/data_from_reg_1_3" BEL
+        "_core/data_from_reg_1_2" BEL "_core/data_from_reg_1_1" BEL
+        "_core/data_from_reg_1_0" BEL "_core/opcode_4" BEL "_core/opcode_3"
+        BEL "_core/opcode_2" BEL "_core/opcode_1" BEL "_core/opcode_0" BEL
+        "_core/dest_reg_index_4" BEL "_core/dest_reg_index_3" BEL
+        "_core/dest_reg_index_2" BEL "_core/dest_reg_index_1" BEL
+        "_core/dest_reg_index_0" BEL "_core/_RegisterFile/r_read_data_15" BEL
         "_core/_RegisterFile/r_read_data_14" BEL
         "_core/_RegisterFile/r_read_data_13" BEL
         "_core/_RegisterFile/r_read_data_12" BEL
@@ -806,16 +807,17 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_ioController/_sevenSeg/counter_3" BEL
         "_ioController/_sevenSeg/counter_2" BEL
         "_ioController/_sevenSeg/counter_1" BEL
-        "_ioController/_sevenSeg/counter_0" BEL "_core/status_ZF" BEL
-        "_core/opcode_2_1" BEL "_core/opcode_0_1" BEL "_core/opcode_2_2" BEL
-        "_core/core_state_FSM_FFd4_1" BEL "_core/opcode_3_1" BEL
-        "_core/opcode_4_1" BEL "_core/immediateL_5_1" BEL
-        "_core/immediateL_5_2" BEL "_core/opcode_1_1" BEL "_core/opcode_0_2"
-        BEL "_core/immediateL_8_1" BEL "_core/immediateL_7_1" BEL
-        "_core/immediateL_6_1" BEL "_core/data_from_reg_1_0_1" BEL
-        "_core/core_state_FSM_FFd4_2" BEL "_core/opcode_1_2" BEL
-        "_core/opcode_2_3" BEL "_core/immediateL_7_2" BEL "_core/opcode_3_2"
-        BEL "_core/opcode_1_3" BEL "clk_BUFGP/BUFG" BEL
+        "_ioController/_sevenSeg/counter_0" BEL "_core/opcode_1_1" BEL
+        "_core/opcode_0_1" BEL "_core/opcode_2_1" BEL "_core/opcode_3_1" BEL
+        "_core/opcode_4_1" BEL "_core/opcode_1_2" BEL "_core/opcode_0_2" BEL
+        "_core/opcode_2_2" BEL "_core/core_state_FSM_FFd4_1" BEL
+        "_core/opcode_4_2" BEL "_core/opcode_1_3" BEL "_core/opcode_0_3" BEL
+        "_core/opcode_2_3" BEL "_core/immediateL_5_1" BEL
+        "_core/immediateL_6_1" BEL "_core/data_from_reg_1_1_1" BEL
+        "_core/opcode_1_4" BEL "_core/opcode_0_4" BEL "_core/immediateL_7_1"
+        BEL "_core/immediateL_9_1" BEL "_core/immediateL_8_1" BEL
+        "_core/immediateL_5_2" BEL "_core/immediateL_10_1" BEL
+        "clk_BUFGP/BUFG" BEL
         "_ioController/_readFromMouse/Mshreg_current_buffer_8" BEL
         "_ioController/_readFromMouse/current_buffer_8" BEL
         "_vgaController/_pixelGenerator/Mshreg_random_number_27" BEL
