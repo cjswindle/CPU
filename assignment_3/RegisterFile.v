@@ -30,6 +30,8 @@ module RegisterFile(
 	input						right_click,
 	input			[15:0]	mouse_x,
 	input			[15:0]	mouse_y,
+	input						x_overflow,
+	input						y_overflow,
 	output reg 	[23:0] 	read_data_1,
 	output reg 	[23:0] 	read_data_2
    );
@@ -54,8 +56,9 @@ module RegisterFile(
 	reg [15:0] r16		= 16'h0000;
 	reg [15:0] r17		= 16'h0000;
 	reg [15:0] r18		= 16'h0000;
-	reg [15:0] r19		= 16'h0000;
-	reg [15:0] r20		= 16'h0000;
+	
+	reg r_x_overflow	= 1'b0;
+	reg r_y_overflow	= 1'b0;
 	
 	reg [15:0] r_read_data 	= 16'b0;
 	
@@ -64,6 +67,7 @@ module RegisterFile(
 	reg r_data_ready	= 1'b0;
 	reg r_left_click 	= 1'b0;
 	reg r_right_click = 1'b0;
+
 
 	// 24-bit registers
 	reg [23:0] lr0		= 24'h000000;
@@ -94,8 +98,9 @@ module RegisterFile(
 		 16 :  read_data_1 = {{8{r16[15]}}, r16};
 		 17 :  read_data_1 = {{8{r17[15]}}, r17};
 		 18 :  read_data_1 = {{8{r18[15]}}, r18};
-		 19 :  read_data_1 = {{8{r19[15]}}, r19};
-		 20 :  read_data_1 = {{8{r20[15]}}, r20};
+		 
+		 19 :  read_data_1 = {15'b0, r_x_overflow};
+		 20 :  read_data_1 = {15'b0, r_y_overflow};
 		 
 		 21 :  read_data_1 = {8'b0, r_read_data};
 		 
@@ -132,8 +137,9 @@ module RegisterFile(
 		 16 :  read_data_2 = {{8{r16[15]}}, r16};
 		 17 :  read_data_2 = {{8{r17[15]}}, r17};
 		 18 :  read_data_2 = {{8{r18[15]}}, r18};
-		 19 :  read_data_2 = {{8{r19[15]}}, r19};
-		 20 :  read_data_2 = {{8{r20[15]}}, r20};
+		 
+		 19 :  read_data_2 = {15'b0, r_x_overflow};
+		 20 :  read_data_2 = {15'b0, r_y_overflow};
 		 
 		 21 :  read_data_2 = {8'b0, r_read_data};
 		 
@@ -160,6 +166,8 @@ module RegisterFile(
 			r_mouse_y	<= mouse_y;
 			r_left_click	<= left_click;
 			r_right_click  <= right_click;
+			r_x_overflow	<= x_overflow;
+			r_y_overflow	<= y_overflow;
 		end
 	  if(write_enable)
 	  begin
@@ -183,8 +191,6 @@ module RegisterFile(
 			16 :  r16 <= write_data[15:0];
 			17 :  r17 <= write_data[15:0];
 			18 :  r18 <= write_data[15:0];
-			19 :  r19 <= write_data[15:0];
-			20 :  r20 <= write_data[15:0];
 			
 			21	:	r_read_data <= write_data[15:0];
 			// We don't need to write to 23 - 27 because they're used for mouse data.

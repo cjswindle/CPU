@@ -1,7 +1,7 @@
 #Release 14.7 - par P.20131013 (lin64)
 #Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-#Fri Dec  8 00:31:11 2017
+#Fri Dec  8 03:53:50 2017
 
 #
 ## NOTE: This file is designed to be imported into a spreadsheet program
@@ -227,7 +227,7 @@ M7,,,VCCINT,,,,,,,,1.2,,,,
 M8,,IOBM,IO_L40P_2,UNUSED,,2,,,,,,,,,
 M9,,,VCCAUX,,,,,,,,2.5,,,,
 M10,,IOBM,IO_L22P_2,UNUSED,,2,,,,,,,,,
-M11,,IOBM,IO_L15P_2,UNUSED,,2,,,,,,,,,
+M11,y_sign_bit,IOB,IO_L15P_2,OUTPUT,LVCMOS33,2,12,SLOW,,,,LOCATED,NO,NONE,
 M12,,,VCCINT,,,,,,,,1.2,,,,
 M13,sev_seg<7>,IOB,IO_L61N_1,OUTPUT,LVCMOS33,1,12,SLOW,,,,LOCATED,NO,NONE,
 M14,sev_seg<4>,IOB,IO_L53P_1,OUTPUT,LVCMOS33,1,12,SLOW,,,,LOCATED,NO,NONE,
@@ -245,7 +245,7 @@ N7,rgbcolor<2>,IOB,IO_L44P_2,OUTPUT,LVCMOS33,2,12,SLOW,,,,LOCATED,NO,NONE,
 N8,,IOBS,IO_L40N_2,UNUSED,,2,,,,,,,,,
 N9,,IOBS,IO_L22N_2,UNUSED,,2,,,,,,,,,
 N10,,IOBM,IO_L20P_2,UNUSED,,2,,,,,,,,,
-N11,,IOBS,IO_L15N_2,UNUSED,,2,,,,,,,,,
+N11,x_sign_bit,IOB,IO_L15N_2,OUTPUT,LVCMOS33,2,12,SLOW,,,,LOCATED,NO,NONE,
 N12,,IOBM,IO_L13P_M1_2,UNUSED,,2,,,,,,,,,
 N13,,,GND,,,,,,,,,,,,
 N14,sev_seg<5>,IOB,IO_L53N_VREF_1,OUTPUT,LVCMOS33,1,12,SLOW,,,,LOCATED,NO,NONE,

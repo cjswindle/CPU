@@ -27,6 +27,8 @@ module IOController(
 	output					right_button,
 	output					x_overflow,
 	output					y_overflow,
+	output					x_sign_bit,
+	output					y_sing_bit,
 	output 		[7:0]		sev_seg,
 	output 		[3:0]		an,
 	output 		[15:0]	mouse_x,
@@ -52,8 +54,10 @@ module IOController(
 	assign latched_packet = { current_x[7:0], current_y[7:0] };
 	
 	// Prints to LEDS
-	assign x_overflow 		= current_x[8];
-	assign y_overflow 		= current_y[8];
+	assign x_sign_bit 		= current_x[8];
+	assign y_sing_bit 		= current_y[8];
+	assign y_overflow			= current_y_overflow;
+	assign x_overflow			= current_x_overflow;
 	assign left_button		= current_btn[0];
 	assign right_button		= current_btn[1];
 	assign middle_button 	= current_btn[2];
@@ -64,6 +68,10 @@ module IOController(
 	reg	[8:0] next_x			= 0;
 	reg	[8:0] current_y		= 0;
 	reg	[8:0] next_y			= 0;
+	reg	current_y_overflow 	= 0;
+	reg	next_y_overflow		= 0;
+	reg	current_x_overflow	= 0;
+	reg	next_x_overflow		= 0;
 	reg	[2:0]	current_btn		= 0;
 	reg	[2:0]	next_btn			= 0;
 	reg			write_to_mouse	= 0;
@@ -101,6 +109,8 @@ module IOController(
 		next_y			= current_y;
 		next_btn			= current_btn;
 		data_ready		= 1'b0;
+		next_x_overflow	= current_x_overflow;
+		next_y_overflow	= current_y_overflow;
 		case(current_state)
 		
 			SEND_STREAM_COMMAND_1: 	begin
@@ -127,6 +137,8 @@ module IOController(
 					next_x[8]	= mouse_data[4];
 					next_y[8]	= mouse_data[5];
 					next_btn		= mouse_data[2:0];
+					next_x_overflow = mouse_data[6];
+					next_y_overflow = mouse_data[7];
 				end
 			end
 			
@@ -158,6 +170,8 @@ module IOController(
 		current_x		<= next_x;
 		current_y		<= next_y;
 		current_btn		<= next_btn;
+		current_x_overflow <= next_x_overflow;
+		current_y_overflow <= next_y_overflow;
 	end
 
 	SevenSeg _sevenSeg(.clk				(clk),

@@ -10,7 +10,7 @@ Target Device  : xc6slx16
 Target Package : csg324
 Target Speed   : -3
 Mapper Version : spartan6 -- $Revision: 1.55 $
-Mapped Date    : Fri Dec  8 00:30:28 2017
+Mapped Date    : Fri Dec  8 03:53:17 2017
 
 Mapping design into LUTs...
 Running directed packing...
@@ -23,52 +23,52 @@ Total REAL time at the beginning of Placer: 5 secs
 Total CPU  time at the beginning of Placer: 5 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:e11bfb1e) REAL time: 6 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:75781b7b) REAL time: 5 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:e11bfb1e) REAL time: 6 secs 
+Phase 2.7  Design Feasibility Check (Checksum:75781b7b) REAL time: 5 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:e11bfb1e) REAL time: 6 secs 
+Phase 3.31  Local Placement Optimization (Checksum:75781b7b) REAL time: 5 secs 
 
 Phase 4.2  Initial Placement for Architecture Specific Features
 
 Phase 4.2  Initial Placement for Architecture Specific Features
-(Checksum:f649b2ae) REAL time: 8 secs 
+(Checksum:a04d381f) REAL time: 7 secs 
 
 Phase 5.36  Local Placement Optimization
-Phase 5.36  Local Placement Optimization (Checksum:f649b2ae) REAL time: 8 secs 
+Phase 5.36  Local Placement Optimization (Checksum:a04d381f) REAL time: 7 secs 
 
 Phase 6.30  Global Clock Region Assignment
-Phase 6.30  Global Clock Region Assignment (Checksum:f649b2ae) REAL time: 8 secs 
+Phase 6.30  Global Clock Region Assignment (Checksum:a04d381f) REAL time: 7 secs 
 
 Phase 7.3  Local Placement Optimization
-Phase 7.3  Local Placement Optimization (Checksum:f649b2ae) REAL time: 8 secs 
+Phase 7.3  Local Placement Optimization (Checksum:a04d381f) REAL time: 7 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:f649b2ae) REAL time: 8 secs 
+Phase 8.5  Local Placement Optimization (Checksum:a04d381f) REAL time: 7 secs 
 
 Phase 9.8  Global Placement
-..........................................................................................................
-...................................................
-..................................................
-......................................
-Phase 9.8  Global Placement (Checksum:31b51ef) REAL time: 23 secs 
+..........................................................................
+.......................................................
+.....................................................................................
+.......................................
+Phase 9.8  Global Placement (Checksum:66462c61) REAL time: 12 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:31b51ef) REAL time: 23 secs 
+Phase 10.5  Local Placement Optimization (Checksum:66462c61) REAL time: 12 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:c53d53b) REAL time: 27 secs 
+Phase 11.18  Placement Optimization (Checksum:932971a5) REAL time: 17 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:c53d53b) REAL time: 27 secs 
+Phase 12.5  Local Placement Optimization (Checksum:932971a5) REAL time: 17 secs 
 
 Phase 13.34  Placement Validation
-Phase 13.34  Placement Validation (Checksum:b7467c6a) REAL time: 27 secs 
+Phase 13.34  Placement Validation (Checksum:c401447f) REAL time: 17 secs 
 
-Total REAL time to Placer completion: 27 secs 
-Total CPU  time to Placer completion: 27 secs 
+Total REAL time to Placer completion: 17 secs 
+Total CPU  time to Placer completion: 17 secs 
 Running post-placement packing...
 Writing output files...
 
@@ -79,16 +79,16 @@ Design Summary:
 Number of errors:      0
 Number of warnings:    0
 Slice Logic Utilization:
-  Number of Slice Registers:                   794 out of  18,224    4%
-    Number used as Flip Flops:                 793
-    Number used as Latches:                      1
+  Number of Slice Registers:                   760 out of  18,224    4%
+    Number used as Flip Flops:                 760
+    Number used as Latches:                      0
     Number used as Latch-thrus:                  0
     Number used as AND/OR logics:                0
-  Number of Slice LUTs:                      1,313 out of   9,112   14%
-    Number used as logic:                    1,297 out of   9,112   14%
-      Number using O6 output only:           1,072
+  Number of Slice LUTs:                      1,200 out of   9,112   13%
+    Number used as logic:                    1,189 out of   9,112   13%
+      Number using O6 output only:             977
       Number using O5 output only:              47
-      Number using O5 and O6:                  178
+      Number using O5 and O6:                  165
       Number used as ROM:                        0
     Number used as Memory:                       3 out of   2,176    1%
       Number used as Dual Port RAM:              0
@@ -97,21 +97,21 @@ Slice Logic Utilization:
         Number using O6 output only:             3
         Number using O5 output only:             0
         Number using O5 and O6:                  0
-    Number used exclusively as route-thrus:     13
-      Number with same-slice register load:      8
-      Number with same-slice carry load:         5
+    Number used exclusively as route-thrus:      8
+      Number with same-slice register load:      4
+      Number with same-slice carry load:         4
       Number with other load:                    0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                   515 out of   2,278   22%
+  Number of occupied Slices:                   534 out of   2,278   23%
   Number of MUXCYs used:                       196 out of   4,556    4%
-  Number of LUT Flip Flop pairs used:        1,545
-    Number with an unused Flip Flop:           776 out of   1,545   50%
-    Number with an unused LUT:                 232 out of   1,545   15%
-    Number of fully used LUT-FF pairs:         537 out of   1,545   34%
-    Number of unique control sets:              51
+  Number of LUT Flip Flop pairs used:        1,513
+    Number with an unused Flip Flop:           774 out of   1,513   51%
+    Number with an unused LUT:                 313 out of   1,513   20%
+    Number of fully used LUT-FF pairs:         426 out of   1,513   28%
+    Number of unique control sets:              47
     Number of slice register sites lost
-      to control set restrictions:             131 out of  18,224    1%
+      to control set restrictions:              85 out of  18,224    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -120,8 +120,8 @@ Slice Logic Distribution:
   over-mapped for a non-slice resource or if Placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                        33 out of     232   14%
-    Number of LOCed IOBs:                       33 out of      33  100%
+  Number of bonded IOBs:                        35 out of     232   15%
+    Number of LOCed IOBs:                       35 out of      35  100%
 
 Specific Feature Utilization:
   Number of RAMB16BWERs:                        30 out of      32   93%
@@ -148,11 +148,11 @@ Specific Feature Utilization:
   Number of STARTUPs:                            0 out of       1    0%
   Number of SUSPEND_SYNCs:                       0 out of       1    0%
 
-Average Fanout of Non-Clock Nets:                4.00
+Average Fanout of Non-Clock Nets:                4.08
 
-Peak Memory Usage:  729 MB
-Total REAL time to MAP completion:  28 secs 
-Total CPU time to MAP completion:   28 secs 
+Peak Memory Usage:  726 MB
+Total REAL time to MAP completion:  18 secs 
+Total CPU time to MAP completion:   18 secs 
 
 Mapping completed.
 See MAP report file "CPU_map.mrp" for details.

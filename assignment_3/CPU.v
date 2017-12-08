@@ -32,6 +32,8 @@ module CPU(
 	output				left_button,
 	output				middle_button,
 	output				right_button,
+	output				x_sign_bit,
+	output				y_sign_bit,
    output	[7:0] 	rgbcolor,
 	output	[7:0]		sev_seg,
 	output	[3:0]		an
@@ -63,6 +65,10 @@ module CPU(
 	wire				data_ready;
 	wire				left_click;
 	wire				right_click;
+	wire				x_overflow_wire;
+	wire				y_overflow_wire;
+	assign	x_overflow = x_overflow_wire;
+	assign	y_overflow = y_overflow_wire;
 
 	// RAM for the glyphs and text in ascii
    //synthesis attribute box_type VGARAM "black_box"
@@ -93,8 +99,10 @@ module CPU(
 				  .debug_core			(debug_core),
 				  .debug_next_inst	(debounced_next_inst),
 				  .data_from_ram		(data_from_ram_b),
-				  .mouse_x						(mouse_x),
-				  .mouse_y						(mouse_y),
+				  .mouse_x				(mouse_x),
+				  .mouse_y				(mouse_y),
+				  .x_overflow			(x_overflow_wire),
+				  .y_overflow			(y_overflow_wire),
 				  .data_ready			(data_ready),
 				  .left_click			(left_click),
 				  .right_click			(right_click),
@@ -106,8 +114,10 @@ module CPU(
 	IOController _ioController(.clk					(clk),
 										.data_in				(mouse_data),
 										.usb_clk				(mouse_clk),
-										.x_overflow			(x_overflow),
-										.y_overflow			(y_overflow),
+										.x_overflow			(x_overflow_wire),
+										.y_overflow			(y_overflow_wire),
+										.x_sign_bit			(x_sign_bit),
+										.y_sing_bit			(y_sign_bit),
 										.left_button		(left_button),
 										.middle_button		(middle_button),
 										.right_button		(right_button),

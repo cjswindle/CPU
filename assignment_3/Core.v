@@ -25,6 +25,8 @@ module Core(
 	input			[15:0]	data_from_ram,
 	input			[15:0]	mouse_x,
 	input			[15:0]	mouse_y,
+	input						x_overflow,
+	input						y_overflow,
 	input						data_ready,
 	input						left_click,
 	input						right_click,
@@ -85,6 +87,8 @@ module Core(
 										.write_data		(write_data),
 										.mouse_x			(mouse_x),
 										.mouse_y			(mouse_y),
+										.x_overflow		(x_overflow),
+										.y_overflow		(y_overflow),
 										.left_click		(left_click),
 										.right_click	(right_click),
 										.data_ready		(data_ready));
@@ -114,7 +118,7 @@ module Core(
 	reg [5:0] 	immediateS;
 	reg [23:0] 	data_from_reg_1;
 	reg [23:0] 	data_from_reg_2;
-	reg [3:0]	selected_color;
+	reg [3:0]	selected_color = 4'b0100;
 	
 	reg [4:0] opcode;	// Latch the instruction so we can decode it and guarantee that it is the correct value
 	initial opcode = 0;
@@ -123,7 +127,7 @@ module Core(
 	reg next_status_ZF;
 	reg next_status_GF;
 	reg next_status_LF;
-	reg next_selected_color;
+	reg [3:0] next_selected_color;
 	
 	reg [3:0]	next_state;		// Used to determine the next state based on the op-code. (do we need a next state? or can we just assign the state parameter to the next state?)
 
@@ -141,7 +145,7 @@ module Core(
 		next_status_ZF = 0;
 		next_status_LF = 0;
 		next_status_GF = 0;
-		
+		next_selected_color = 4'b0100;
 		case(core_state)
 
 			FETCH:	begin
@@ -251,10 +255,10 @@ module Core(
 												write_index = 5'd16;
 												write_enable =1'b1;
 												case(data_from_reg_1[1:0])
-													0 : write_data = {selected_color,(data_from_reg_2[11:0])};
-													1 : write_data = {(data_from_reg_2[15:12]),selected_color,(data_from_reg_2[7:0])};
-													2 : write_data = {(data_from_reg_2[15:8]),selected_color,(data_from_reg_2[3:0])};
-													3 : write_data = {(data_from_reg_2[15:4]),selected_color};
+													0 : write_data = {4'b0100,(data_from_reg_2[11:0])};
+													1 : write_data = {(data_from_reg_2[15:12]),4'b0100,(data_from_reg_2[7:0])};
+													2 : write_data = {(data_from_reg_2[15:8]),4'b0100,(data_from_reg_2[3:0])};
+													3 : write_data = {(data_from_reg_2[15:4]),4'b0100};
 												endcase
 											end
 								INERSR: begin
