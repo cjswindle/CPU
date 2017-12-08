@@ -145,7 +145,7 @@ module Core(
 		next_status_ZF = 0;
 		next_status_LF = 0;
 		next_status_GF = 0;
-		next_selected_color = 4'b0100;
+		next_selected_color = 4'b0111;
 		case(core_state)
 
 			FETCH:	begin
@@ -255,10 +255,10 @@ module Core(
 												write_index = 5'd16;
 												write_enable =1'b1;
 												case(data_from_reg_1[1:0])
-													0 : write_data = {4'b0100,(data_from_reg_2[11:0])};
-													1 : write_data = {(data_from_reg_2[15:12]),4'b0100,(data_from_reg_2[7:0])};
-													2 : write_data = {(data_from_reg_2[15:8]),4'b0100,(data_from_reg_2[3:0])};
-													3 : write_data = {(data_from_reg_2[15:4]),4'b0100};
+													0 : write_data = {selected_color,(data_from_reg_2[11:0])};
+													1 : write_data = {(data_from_reg_2[15:12]),selected_color,(data_from_reg_2[7:0])};
+													2 : write_data = {(data_from_reg_2[15:8]),selected_color,(data_from_reg_2[3:0])};
+													3 : write_data = {(data_from_reg_2[15:4]),selected_color};
 												endcase
 											end
 								INERSR: begin
@@ -332,7 +332,9 @@ module Core(
 							status_ZF <= next_status_ZF;
 							status_LF <= next_status_LF;
 							status_GF <= next_status_GF;
-							selected_color <= next_selected_color;
+							if(opcode == SETCOLR) begin
+								selected_color <= next_selected_color;
+							end
 						end
 			LOAD1:	begin
 							core_state <= LOAD2;

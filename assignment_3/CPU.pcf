@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Fri Dec 08 03:53:35 2017
+// Written by: Map P.20131013 on Fri Dec 08 09:53:04 2017
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -798,13 +798,11 @@ TIMEGRP sys_clk_pin = BEL "_ioController/current_state_FSM_FFd2" BEL
         "_ioController/_sevenSeg/counter_3" BEL
         "_ioController/_sevenSeg/counter_2" BEL
         "_ioController/_sevenSeg/counter_1" BEL
-        "_ioController/_sevenSeg/counter_0" BEL "_core/immediateL_9_1" BEL
-        "_core/opcode_1_1" BEL "_core/opcode_0_1" BEL "_core/opcode_2_1" BEL
-        "_core/opcode_4_1" BEL "_core/opcode_3_1" BEL "_core/opcode_2_2" BEL
-        "_core/opcode_1_2" BEL "_core/opcode_0_2" BEL
-        "_core/core_state_FSM_FFd4_1" BEL "_core/opcode_0_3" BEL
-        "_core/opcode_2_3" BEL "_core/core_state_FSM_FFd4_2" BEL
-        "_core/opcode_4_2" BEL "_core/opcode_3_2" BEL "clk_BUFGP/BUFG" BEL
+        "_ioController/_sevenSeg/counter_0" BEL "_core/opcode_2_1" BEL
+        "_core/immediateL_9_1" BEL "_core/opcode_1_1" BEL "_core/opcode_0_1"
+        BEL "_core/opcode_2_2" BEL "_core/opcode_4_1" BEL "_core/opcode_3_1"
+        BEL "_core/opcode_1_2" BEL "_core/opcode_0_2" BEL
+        "_core/core_state_FSM_FFd4_1" BEL "clk_BUFGP/BUFG" BEL
         "_ioController/_readFromMouse/Mshreg_current_buffer_8" BEL
         "_ioController/_readFromMouse/current_buffer_8" BEL
         "_vgaController/_pixelGenerator/Mshreg_random_number_27" BEL
